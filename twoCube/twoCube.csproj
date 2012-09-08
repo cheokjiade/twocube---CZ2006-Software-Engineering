@@ -80,6 +80,8 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="HTMLPage1.htm" />
+    <Content Include="Sample.aspx" />
     <Content Include="SampleSurvey.htm" />
     <Content Include="Services\SampleService.asmx" />
     <Content Include="Services\SurveyControllerService.asmx" />
@@ -142,6 +144,7 @@
     </Compile>
     <Compile Include="Entities\Survey.cs" />
     <Compile Include="Entities\SurveyQuestion.cs" />
+    <Compile Include="Entities\SurveyQuestionOption.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="FluentNHibernateConfiguration\InitFactory.cs" />
     <Compile Include="FluentNHibernateConfiguration\NTUsurveyAutoMappingConfiguration.cs" />
@@ -149,6 +152,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sample.aspx.cs">
+      <DependentUpon>Sample.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sample.aspx.designer.cs">
+      <DependentUpon>Sample.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Services\SampleService.asmx.cs">
       <DependentUpon>SampleService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -173,6 +183,7 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\external.pubxml" />
     <None Include="Properties\PublishProfiles\twoCube.pubxml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

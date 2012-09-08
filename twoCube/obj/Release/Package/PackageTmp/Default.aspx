@@ -7,7 +7,7 @@
     <h2>
         Welcome to twocube™</h2>
     <p>
-        <a href="SampleSurvey.htm" title="SampleSurvey">Sample Survey</a>
+        <a href="Sample.aspx" title="SampleSurvey">Sample Survey</a>
     </p>
 
     <asp:Image ID="Image1" runat="server" 

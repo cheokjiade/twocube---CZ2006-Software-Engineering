@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script src="https://raw.github.com/SamWM/jQuery-Plugins/master/numeric/jquery.numeric.js"></script>
+    <script src="https://raw.github.com/caphun/jquery.inlineedit/master/jquery.inlineedit.js"></script>
+</head>
+<body>
+    <style>
+        .editable input {width:100%}
+        .hover { background-color: #ffC }
+	    .inlineEdit-placeholder { font-style: italic; color: #555; }
+        .demo ul
+        {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+        .demo li
+        {
+            margin: 5px;
+            padding: 5px;
+            width: 600px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('.editable').inlineEdit();
+        });
+        $(function () {
+            $("#sortable").sortable({
+                revert: true
+            });
+            $("#qnType1").draggable({
+                connectToSortable: "#sortable",
+                helper: "clone",
+                revert: "invalid"
+            });
+            $("#qnType2").draggable({
+                connectToSortable: "#sortable",
+                helper: "clone",
+                revert: "invalid"
+            });
+            $("#qnType3").draggable({
+                connectToSortable: "#sortable",
+                helper: "clone",
+                revert: "invalid"
+            });
+            $("#qnType4").draggable({
+                connectToSortable: "#sortable",
+                helper: "clone",
+                revert: "invalid"
+            });
+            $("#qnType5").draggable({
+                connectToSortable: "#sortable",
+                helper: "clone",
+                revert: "invalid"
+            });
+            $("ul, li").disableSelection();
+        });
+    </script>
+    <div class="demo">
+        <ul>
+            <li id="qnType1" class="ui-state-highlight"><span class="editable">Text answer Survey question. Click to edit title.</span><br /><input type="text" /></li>
+            <li id="qnType2" class="ui-state-highlight"><span class="editable">Single selection Survey question. Click to edit title.</span></li>
+            <li id="qnType3" class="ui-state-highlight">3</li>
+            <li id="qnType4" class="ui-state-highlight">4</li>
+            <li id="qnType5" class="ui-state-highlight">5</li>
+        </ul>
+        <ul id="sortable">
+            <li class="ui-state-default">Item 1</li>
+            <li class="ui-state-default">Item 2</li>
+            <li class="ui-state-default">Item 3</li>
+            <li class="ui-state-default">Item 4</li>
+            <li class="ui-state-default">Item 5</li>
+        </ul>
+    </div>
+</body>
+</html>
