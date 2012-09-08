@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Sample.aspx.cs" MasterPageFile="~/Site.master" Inherits="twoCube.Sample" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
-<style>img{ height: 200px; float: left; }</style>
+<style>img{ float: left; }</style>
   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
@@ -11,7 +11,7 @@
     <h2>
         Welcome to twocube™</h2>
         <p></p>
-    <div id="survey" style="width: 600px; display: block;"></div>
+    <div id="survey" style="width: 800px; display: block;"></div>
     <script>
 $.getJSON("./Services/SampleService.asmx/SampleSurvey",
   {
@@ -60,6 +60,11 @@ $.getJSON("./Services/SampleService.asmx/SampleSurvey",
             $("<img/>").attr("src",optval.surveyQuestionOptionTitle).appendTo("#"+qnvali);
             $("<p style=\"clear:both;\"> </p>").appendTo("#"+qnvali);
             $( "#datepicker"+qnvali).datepicker();
+        });
+      }else if(qnval.surveyQuestionType == 6){
+        $("<div id=\""+qnvali+"\" style=\"clear:both\"></div>").appendTo("#survey");
+        $.each(qnval.surveyQuestionOptionList, function(i,optval){
+            $("<div class=\"rad\" style=\"display:inline-block; width:70px;\"><label for=\""+qnvali + i+"\" style=\"display:block; width:70px; text-align:center;\"><img src=\"" + optval.surveyQuestionOptionTitle + "\"></label><input type=\"radio\" width:70px; text-align:center; name=\""+qnvali+"\" value=\""+i+"\" id=\"" + qnvali + i + "\" /></div>").appendTo("#"+qnvali);
         });
       }
     });
