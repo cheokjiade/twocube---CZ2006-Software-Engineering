@@ -8,6 +8,8 @@
         Welcome to twocube™</h2>
     <p>
         <a href="Sample.aspx" title="SampleSurvey">Sample Survey</a>
+        <br />
+        <a href="HTMLPage1.htm" title="SampleSurveyCreator">Sample Survey Creator</a>
     </p>
 
     <asp:Image ID="Image1" runat="server" 
