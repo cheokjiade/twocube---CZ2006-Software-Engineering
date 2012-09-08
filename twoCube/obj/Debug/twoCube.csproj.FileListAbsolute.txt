@@ -1,4 +1,0 @@
-C:\Users\Nobody\Documents\GitHub\twocube\twoCube\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Nobody\Documents\GitHub\twocube\twoCube\bin\twoCube.pdb
-C:\Users\Nobody\Documents\GitHub\twocube\twoCube\obj\Debug\twoCube.dll
-C:\Users\Nobody\Documents\GitHub\twocube\twoCube\obj\Debug\twoCube.pdb
