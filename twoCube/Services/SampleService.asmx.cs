@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Script.Services;
 using System.Web.Script.Serialization;
+using twoCube.Entities;
 
 namespace twoCube.Services
 {
@@ -19,10 +20,23 @@ namespace twoCube.Services
     public class SampleService : System.Web.Services.WebService
     {
 
-        [WebMethod]
-        public string HelloWorld()
+        [WebMethod(Description = "Your Description")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public void HelloWorld()
         {
-            return "Hello World";
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var user = new User {userName="username1",userPassword="password" };
+                    user.AddSurvey(new Entities.Survey{surveyCreated=DateTime.Now,surveyName="test survey",surveyTitle="this is a test survey",surveyStatus=true});
+                    session.SaveOrUpdate(user);
+                    transaction.Commit();
+
+                }
+
+            }
+            //Context.Response.Write(js.Serialize(survey));
         }
 
         [WebMethod(Description = "Your Description")]

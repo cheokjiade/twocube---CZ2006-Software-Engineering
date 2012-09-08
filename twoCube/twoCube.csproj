@@ -146,6 +146,7 @@
     <Compile Include="Entities\SurveyQuestion.cs" />
     <Compile Include="Entities\SurveyQuestionOption.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="FluentNHibernateConfiguration\CascadeConvention.cs" />
     <Compile Include="FluentNHibernateConfiguration\InitFactory.cs" />
     <Compile Include="FluentNHibernateConfiguration\NTUsurveyAutoMappingConfiguration.cs" />
     <Compile Include="Global.asax.cs">
