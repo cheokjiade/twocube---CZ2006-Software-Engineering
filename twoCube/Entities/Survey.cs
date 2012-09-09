@@ -8,22 +8,23 @@ namespace twoCube.Entities
     public class Survey
     {
         public virtual int Id { get; set; }
-        public virtual string surveyName { get; set; }
         public virtual string surveyTitle { get; set; }
+        public virtual string surveyDescription { get; set; }
         public virtual bool surveyStatus { get; set; }
         public virtual DateTime surveyCreated { get; set; }
         public virtual DateTime surveyStartDate { get; set; }
         public virtual DateTime surveyEndDate { get; set; }
-        public virtual IList<SurveyQuestion> surveyQuestions { get; set; }
+        public virtual IList<SurveyQuestion> surveyQuestionList { get; set; }
 
         public Survey()
         {
-            surveyQuestions = new List<SurveyQuestion>();
+            surveyQuestionList = new List<SurveyQuestion>();
+            surveyCreated = DateTime.Now;
         }
 
         public virtual void AddSurveyQuestion(SurveyQuestion surveyQuestion)
         {
-            surveyQuestions.Add(surveyQuestion);
+            surveyQuestionList.Add(surveyQuestion);
         }
 
 
