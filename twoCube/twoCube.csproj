@@ -82,7 +82,70 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="HTMLPage1.htm" />
     <Content Include="Sample.aspx" />
+    <Content Include="SampleResults.aspx" />
     <Content Include="SampleSurvey.htm" />
+    <Content Include="Scripts\plugins\jqplot.barRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.barRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.BezierCurveRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.BezierCurveRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.blockRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.blockRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.bubbleRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.bubbleRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.canvasAxisLabelRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.canvasAxisLabelRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.canvasAxisTickRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.canvasAxisTickRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.canvasOverlay.js" />
+    <Content Include="Scripts\plugins\jqplot.canvasOverlay.min.js" />
+    <Content Include="Scripts\plugins\jqplot.canvasTextRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.canvasTextRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.categoryAxisRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.categoryAxisRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.ciParser.js" />
+    <Content Include="Scripts\plugins\jqplot.ciParser.min.js" />
+    <Content Include="Scripts\plugins\jqplot.cursor.js" />
+    <Content Include="Scripts\plugins\jqplot.cursor.min.js" />
+    <Content Include="Scripts\plugins\jqplot.dateAxisRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.dateAxisRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.donutRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.donutRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.dragable.js" />
+    <Content Include="Scripts\plugins\jqplot.dragable.min.js" />
+    <Content Include="Scripts\plugins\jqplot.enhancedLegendRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.enhancedLegendRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.funnelRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.funnelRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.highlighter.js" />
+    <Content Include="Scripts\plugins\jqplot.highlighter.min.js" />
+    <Content Include="Scripts\plugins\jqplot.json2.js" />
+    <Content Include="Scripts\plugins\jqplot.json2.min.js" />
+    <Content Include="Scripts\plugins\jqplot.logAxisRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.logAxisRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.mekkoAxisRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.mekkoAxisRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.mekkoRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.mekkoRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.meterGaugeRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.meterGaugeRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.mobile.js" />
+    <Content Include="Scripts\plugins\jqplot.mobile.min.js" />
+    <Content Include="Scripts\plugins\jqplot.ohlcRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.ohlcRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.pieRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.pieRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.pointLabels.js" />
+    <Content Include="Scripts\plugins\jqplot.pointLabels.min.js" />
+    <Content Include="Scripts\plugins\jqplot.pyramidAxisRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.pyramidAxisRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.pyramidGridRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.pyramidGridRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.pyramidRenderer.js" />
+    <Content Include="Scripts\plugins\jqplot.pyramidRenderer.min.js" />
+    <Content Include="Scripts\plugins\jqplot.trendline.js" />
+    <Content Include="Scripts\plugins\jqplot.trendline.min.js" />
+    <Content Include="Styles\jquery.jqplot.min.css" />
+    <Content Include="Scripts\jquery.jqplot.min.js" />
     <Content Include="Services\SampleService.asmx" />
     <Content Include="Services\SurveyControllerService.asmx" />
     <Content Include="Styles\Site.css" />
@@ -159,6 +222,13 @@
     </Compile>
     <Compile Include="Sample.aspx.designer.cs">
       <DependentUpon>Sample.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SampleResults.aspx.cs">
+      <DependentUpon>SampleResults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SampleResults.aspx.designer.cs">
+      <DependentUpon>SampleResults.aspx</DependentUpon>
     </Compile>
     <Compile Include="Services\SampleService.asmx.cs">
       <DependentUpon>SampleService.asmx</DependentUpon>

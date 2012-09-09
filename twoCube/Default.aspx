@@ -10,6 +10,8 @@
         <a href="Sample.aspx" title="SampleSurvey">Sample Survey</a>
         <br />
         <a href="HTMLPage1.htm" title="SampleSurveyCreator">Sample Survey Creator</a>
+        <br />
+        <a href="SampleResults.aspx" title="Sample Results">Sample Results</a>
     </p>
 
     <asp:Image ID="Image1" runat="server" 
