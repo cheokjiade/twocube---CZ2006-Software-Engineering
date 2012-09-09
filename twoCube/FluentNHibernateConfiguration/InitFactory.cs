@@ -34,7 +34,7 @@ namespace twoCube.FluentNHibernateConfiguration
 
         private static ISessionFactory CreateSessionFactory()
         {
-            var connectionStr = "Server=127.0.0.1;Port=5432;Database=ntusurvey;User Id=postgres;Password=password;";
+            var connectionStr = "Server=127.0.0.1;Port=5432;Database=ntusurvey;User Id=ntusurvey;Password=password;";
             return Fluently
                  .Configure()
                  .Database(PostgreSQLConfiguration.Standard.ConnectionString(connectionStr))
