@@ -205,9 +205,11 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Respondent.cs" />
     <Compile Include="Entities\Survey.cs" />
     <Compile Include="Entities\SurveyQuestion.cs" />
     <Compile Include="Entities\SurveyQuestionOption.cs" />
+    <Compile Include="Entities\SurveyQuestionResponse.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="FluentNHibernateConfiguration\CascadeConvention.cs" />
     <Compile Include="FluentNHibernateConfiguration\InitFactory.cs" />

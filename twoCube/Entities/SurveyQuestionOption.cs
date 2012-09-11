@@ -12,5 +12,7 @@ namespace twoCube.Entities
         public virtual string surveyQuestionOptionTitle { get; set; }
         public virtual int surveyQuestionOptionTitleType { get; set; }
         public virtual int surveyQuestionOptionRange{ get; set; }
+        public virtual string surveyQuestionOptionMinText { get; set; }
+        public virtual string surveyQuestionOptionMaxText { get; set; }
     }
 }
