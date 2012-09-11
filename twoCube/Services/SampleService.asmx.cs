@@ -197,7 +197,7 @@ namespace twoCube.Services
                         int i = 0;
                         foreach(var question in listofquestions)
                         {
-                            replystring += "Question " + i + "\n";
+                            replystring += "Question " + i + "  -  " + question.surveyQuestionTitle + "\n";
                             i++;
                             int count = 0;
                             foreach(var option in question.surveyQuestionOptionList)
