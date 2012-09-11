@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Script.Services;
 using System.Web.Script.Serialization;
+using System.IO;
 using twoCube.Entities;
 
 namespace twoCube.Services
@@ -225,6 +226,71 @@ namespace twoCube.Services
 
         }
 
+
+        [WebMethod(Description = "Your Description")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        //public void createCSV(String strFilePath)
+        public void createCSV()
+        {
+            //StreamWriter sw = new StreamWriter(strFilePath, false);
+            StreamWriter sw = new StreamWriter("c:\\csvData.csv", false);
+
+
+            // lets get the dataColumn's titles first
+            sw.WriteLine("Question,Option,Response,");
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                // retreive all stores and display them
+                using (session.BeginTransaction())
+                {
+                    var users = session.CreateCriteria(typeof(Entities.User))
+                        .List<Entities.User>();
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+
+                    // and then we go for the data
+                    foreach (var user in users)
+                    {
+                        var survey = user.userSurveys.ElementAt(0);
+                        var listofquestions = survey.surveyQuestionList;
+                        int i = 0;
+                        foreach (var question in listofquestions)
+                        {
+
+                            int count = 0;
+
+                            foreach (var option in question.surveyQuestionOptionList)
+                            {
+                                string fileRow = "";
+                                string cell = "";
+                                cell += "Question " + (i + 1).ToString() + ",";
+                                cell += option.surveyQuestionOptionTitle + ",";
+                                int choices = 0;
+
+                                foreach (var response in question.surveyQuestionResponseList)
+                                {
+                                    if (response.responseIntegerValue == count)
+                                    {
+                                        choices++;
+                                    }
+
+                                }
+                                cell += choices + ",";
+                                fileRow += cell + ",";
+                                sw.WriteLine(fileRow);
+                            }
+                            i++;
+                            count++;
+
+                        }
+                    }
+                }
+
+            }
+            sw.Close();
+        }
+
+
+
         [WebMethod(Description = "Your Description")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void SampleSurvey()
@@ -279,6 +345,9 @@ namespace twoCube.Services
 
         }
     }
+
+
+
 
     public class SampleJSONResponse
     {
