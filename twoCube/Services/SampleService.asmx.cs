@@ -74,6 +74,7 @@ namespace twoCube.Services
                     survey.surveyQuestionList.ElementAt(7).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "http://graph.facebook.com/limws.brandon/picture?type=square" });
 
                     var respondent = new Entities.Respondent {respondentIPAddress="127.0.0.1", respondentSessionID="randomid"};
+
                     var responseqn0 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1,responseIntegerValue = 1 };
                     respondent.surveyQuestionResponseList.Add(responseqn0);
                     survey.surveyQuestionList.ElementAt(0).surveyQuestionResponseList.Add(responseqn0);
@@ -104,7 +105,43 @@ namespace twoCube.Services
                     var responseqn7 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 1 };
                     respondent.surveyQuestionResponseList.Add(responseqn7);
                     survey.surveyQuestionList.ElementAt(7).surveyQuestionResponseList.Add(responseqn7);
+
                     survey.AddRespondent(respondent);
+
+                    var respondent1 = new Entities.Respondent { respondentIPAddress = "127.0.0.1", respondentSessionID = "randomid1" };
+                    var responseqn10 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 2 };
+                    respondent1.surveyQuestionResponseList.Add(responseqn10);
+                    survey.surveyQuestionList.ElementAt(0).surveyQuestionResponseList.Add(responseqn10);
+                    var responseqn11 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 3 };
+                    respondent1.surveyQuestionResponseList.Add(responseqn11);
+                    survey.surveyQuestionList.ElementAt(1).surveyQuestionResponseList.Add(responseqn11);
+                    var responseqn12 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 4 };
+                    respondent1.surveyQuestionResponseList.Add(responseqn12);
+                    survey.surveyQuestionList.ElementAt(2).surveyQuestionResponseList.Add(responseqn12);
+                    var responseqn130 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 0 };
+                    var responseqn131 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 5 };
+                    var responseqn132 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 6 };
+                    respondent1.surveyQuestionResponseList.Add(responseqn130);
+                    respondent1.surveyQuestionResponseList.Add(responseqn131);
+                    respondent1.surveyQuestionResponseList.Add(responseqn132);
+                    survey.surveyQuestionList.ElementAt(3).surveyQuestionResponseList.Add(responseqn130);
+                    survey.surveyQuestionList.ElementAt(3).surveyQuestionResponseList.Add(responseqn131);
+                    survey.surveyQuestionList.ElementAt(3).surveyQuestionResponseList.Add(responseqn132);
+                    var responseqn14 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 2 };
+                    respondent1.surveyQuestionResponseList.Add(responseqn14);
+                    survey.surveyQuestionList.ElementAt(4).surveyQuestionResponseList.Add(responseqn14);
+                    var responseqn15 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 2, responseIntegerValue = 3 };
+                    respondent1.surveyQuestionResponseList.Add(responseqn15);
+                    survey.surveyQuestionList.ElementAt(5).surveyQuestionResponseList.Add(responseqn15);
+                    var responseqn16 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 2, responseStringValue = "09/05/2012" };
+                    respondent1.surveyQuestionResponseList.Add(responseqn16);
+                    survey.surveyQuestionList.ElementAt(6).surveyQuestionResponseList.Add(responseqn16);
+                    var responseqn17 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 0 };
+                    respondent1.surveyQuestionResponseList.Add(responseqn17);
+                    survey.surveyQuestionList.ElementAt(7).surveyQuestionResponseList.Add(responseqn17);
+
+                    survey.AddRespondent(respondent1);
+
                     user.AddSurvey(survey);
                     session.SaveOrUpdate(user);
                     transaction.Commit();
@@ -128,13 +165,64 @@ namespace twoCube.Services
                         var users = session.CreateCriteria(typeof(Entities.User))
                             .List<Entities.User>();
                         JavaScriptSerializer js = new JavaScriptSerializer();
-                        foreach (var store in users)
+                        foreach (var user in users)
                         {
-                            Context.Response.Write(js.Serialize(store));
+                            Context.Response.Write(js.Serialize(user));
                         }
                     }
                 }
             
+        }
+
+        [WebMethod(Description = "Your Description")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public void ViewStatistics()
+        {
+
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                // retreive all stores and display them
+                using (session.BeginTransaction())
+                {
+                    var users = session.CreateCriteria(typeof(Entities.User))
+                        .List<Entities.User>();
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    foreach (var user in users)
+                    {
+                        var survey = user.userSurveys.ElementAt(0);
+                        string replystring = "";
+                        replystring += "Survey statastics for " + survey.surveyTitle + "\n";
+                        replystring += "Number of respondents " + survey.respondentList.Count + "\n";
+                        var listofquestions = survey.surveyQuestionList;
+                        int i = 0;
+                        foreach(var question in listofquestions)
+                        {
+                            replystring += "Question " + i + "\n";
+                            i++;
+                            int count = 0;
+                            foreach(var option in question.surveyQuestionOptionList)
+                            {
+                                int choices = 0;
+                                
+                                foreach (var response in question.surveyQuestionResponseList)
+                                {
+                                    if (response.responseIntegerValue == count)
+                                    {
+                                        choices++;
+                                    }
+                                    
+                                    
+                                }
+                                replystring += "Option " + count + " : " + choices + " chose this option.\n";
+                                count++;
+                            }
+                        }
+                        //var valuetoreturn = new SampleJSONResponse {response=replystring };
+                        Context.Response.Write(replystring);
+                    }
+                }
+            }
+
         }
 
         [WebMethod(Description = "Your Description")]
@@ -190,6 +278,11 @@ namespace twoCube.Services
             Context.Response.Write(js.Serialize(survey));
 
         }
+    }
+
+    public class SampleJSONResponse
+    {
+        public string response;
     }
 
     public class Survey
