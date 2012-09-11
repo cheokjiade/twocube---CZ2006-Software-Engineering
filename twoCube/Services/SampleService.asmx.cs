@@ -213,7 +213,7 @@ namespace twoCube.Services
                                     
                                     
                                 }
-                                replystring += "Option " + count + " : " + choices + " chose this option.\n";
+                                replystring += choices + " respondents chose " + option.surveyQuestionOptionTitle + "\n";
                                 count++;
                             }
                         }
