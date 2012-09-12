@@ -11,7 +11,11 @@
     <h2>
         Welcome to twocube™</h2>
         <p></p>
-    <div id="survey" style="width: 800px; display: block;"></div>
+    
+        <div id="survey" style="width: 800px; display: block;"></div>
+    <input type="submit" />
+    <pre id="result">
+</pre>
     <script>
 $.getJSON("./Services/SampleService.asmx/SampleSurvey",
   {
@@ -28,7 +32,7 @@ $.getJSON("./Services/SampleService.asmx/SampleSurvey",
       if(qnval.surveyQuestionType == 1){
         $.each(qnval.surveyQuestionOptionList, function(i,optval){
             if(optval.surveyQuestionOptionType == 2){
-                $("<input type=\"radio\" name=\""+qnvali+"\" value=\""+i+"\" id=\"" + qnvali + i + "\" /><label for=\""+qnvali + i+"\">" + optval.surveyQuestionOptionTitle + "</label><br/><input type=\"text\" name=\"" + qnvali + i + "\"/>").appendTo("#survey");
+                $("<input type=\"radio\" name=\""+qnvali+"\" value=\""+i+"\" id=\"" + qnvali + i + "\" /><label for=\""+qnvali + i+"\">" + optval.surveyQuestionOptionTitle + "</label><br/><input type=\"text\" name=\"" + qnvali + "o" + i + "\"/>").appendTo("#survey");
             }else{
                  $("<input type=\"radio\" name=\""+qnvali+"\" value=\""+i+"\" id=\"" + qnvali + i + "\" /><label for=\""+qnvali + i+"\">" + optval.surveyQuestionOptionTitle + "</label><br/>").appendTo("#survey");
             }
@@ -37,18 +41,27 @@ $.getJSON("./Services/SampleService.asmx/SampleSurvey",
         });
       }else if (qnval.surveyQuestionType == 2){
         $.each(qnval.surveyQuestionOptionList, function(i,optval){
-	      $("<input type=\"checkbox\" name=\""+ qnvali + i +"\" value=\""+ qnvali + i +"\" id=\"" + qnvali + i + "\" />" + optval.surveyQuestionOptionTitle + "<br/>").appendTo("#survey");
+	      $("<input type=\"checkbox\" name=\""+ qnvali + "o" + i +"\" value=\""+ qnvali + i +"\" id=\"" + qnvali + i + "\" />" + optval.surveyQuestionOptionTitle + "<br/>").appendTo("#survey");
 
         });
       }else if (qnval.surveyQuestionType == 3){
         $.each(qnval.surveyQuestionOptionList, function(i,optval){
-	        $("<div id=\"slider"+qnvali+"\"></div><span style=\"float: left;\">Hardworking</span><span style=\"float: right;\">Most Hardworking</span><br/>").appendTo("#survey");
-            $("#slider"+qnvali).slider();
+	        $("<div id=\"slider"+qnvali+"\"></div><span style=\"float: left;\">Hardworking</span><span style=\"float: right;\">Most Hardworking</span><br/><input type=\"hidden\" name=\"" + qnvali + "\" id=\"" + qnvali + "\">").appendTo("#survey");
+            $("#slider"+qnvali).slider({
+                value:100,
+                min: 0,
+                max: 100,
+                step: 1,
+                slide: function( event, ui ) {
+                                   //Its setting the slider value to the element with id "amount"
+                    $( "#"+qnvali ).val( ui.value );
+                }
+            });
         });
       }else if (qnval.surveyQuestionType == 4){
         $.each(qnval.surveyQuestionOptionList, function(i,optval){
             $("<div id=\""+qnvali+"\" style=\"clear:both;\"></div>").appendTo("#survey");
-	        $("<input class=\"integer\" type=\"text\" /><br/>").appendTo("#"+qnvali);
+	        $("<input class=\"integer\" type=\"text\" name=\"" + qnvali + "\"/><br/>").appendTo("#"+qnvali);
             $("<img/>").attr("src",optval.surveyQuestionOptionTitle).appendTo("#"+qnvali);
             $("<p style=\"clear:both;\"> </p>").appendTo("#"+qnvali);
             $(".integer").numeric(false, function() { alert("Integers only"); this.value = ""; this.focus(); });
@@ -56,7 +69,7 @@ $.getJSON("./Services/SampleService.asmx/SampleSurvey",
       }else if (qnval.surveyQuestionType == 5){
         $.each(qnval.surveyQuestionOptionList, function(i,optval){
             $("<div id=\""+qnvali+"\" style=\"clear:both;\"></div>").appendTo("#survey");
-	        $("<input id=\"datepicker"+qnvali+"\" type=\"text\"/><br/>").appendTo("#"+qnvali);
+	        $("<input id=\"datepicker"+qnvali+"\" type=\"text\" name=\"" + qnvali + "\"/><br/>").appendTo("#"+qnvali);
             $("<img/>").attr("src",optval.surveyQuestionOptionTitle).appendTo("#"+qnvali);
             $("<p style=\"clear:both;\"> </p>").appendTo("#"+qnvali);
             $( "#datepicker"+qnvali).datepicker();
@@ -68,6 +81,32 @@ $.getJSON("./Services/SampleService.asmx/SampleSurvey",
         });
       }
     });
-  });</script>
+  });
+  
+  
+  $.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
+$(function() {
+    $('form').submit(function() {
+        $('#result').text(JSON.stringify($('form').serializeObject()));
+        return false;
+    });
+});
+  </script>
 
     </asp:Content>
