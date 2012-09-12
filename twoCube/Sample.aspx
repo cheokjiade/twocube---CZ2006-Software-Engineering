@@ -1,18 +1,25 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Sample.aspx.cs" MasterPageFile="~/Site.master" Inherits="twoCube.Sample" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Sample.aspx.cs" MasterPageFile="~/Site.master"
+    Inherits="twoCube.Sample" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
-<style>img{  }</style>
-  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-  <script src="https://raw.github.com/SamWM/jQuery-Plugins/master/numeric/jquery.numeric.js"></script>
+    <style>
+        img
+        {
+        }
+    </style>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script src="https://raw.github.com/SamWM/jQuery-Plugins/master/numeric/jquery.numeric.js"></script>
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
     <h2>
         Welcome to twocube™</h2>
-        <p></p>
-    
-        <div id="survey" style="width: 800px; display: block;"></div>
+    <p>
+    </p>
+    <div id="survey" style="width: 800px; display: block;">
+    </div>
     <input type="submit" />
     <pre id="result">
 </pre>
@@ -107,6 +114,5 @@ $(function() {
         return false;
     });
 });
-  </script>
-
-    </asp:Content>
+    </script>
+</asp:Content>
