@@ -289,6 +289,18 @@ namespace twoCube.Services
             sw.Close();
         }
 
+                    
+        [WebMethod(Description = "Your Description")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public void SampleCSV()
+        {
+            System.Web.HttpResponse csvresponse = System.Web.HttpContext.Current.Response;
+            csvresponse.Clear();
+            csvresponse.AddHeader("content-disposition", "attachment; filename=tiffany.csv");
+            csvresponse.ContentType = "text/csv";
+            csvresponse.Write("t,i,f,f,a,n,y,i,s,t,o,o,h,a,r,d,w,o,r,k,i,n,g");
+            csvresponse.End();
+        }
 
 
         [WebMethod(Description = "Your Description")]
