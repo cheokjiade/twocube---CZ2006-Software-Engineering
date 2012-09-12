@@ -12,6 +12,9 @@ namespace twoCube.Entities
         public virtual string userPassword { get; set; }
         public virtual int userAge { get; set; }
         public virtual string userLocation { get; set; }
+        public virtual string userEmail { get; set; }
+        public virtual string userQuestion { get; set; }
+        public virtual string userAnswer { get; set; }
         public virtual IList<Survey> userSurveys { get; set; }
 
         public User() 

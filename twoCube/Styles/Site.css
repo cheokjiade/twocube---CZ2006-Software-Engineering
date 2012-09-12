@@ -292,3 +292,25 @@ div.accountInfo
     text-align: right;
     padding-right: 10px;
 }
+
+.button
+{
+    color: White;
+    background-color: #465C71;
+    border: 1px solid;
+    border-color: Gray;
+}
+
+.buttonhover
+{
+    color: White;
+    background-color: #8FCB06;
+    border: 1px solid;
+    border-color: Gray;
+}
+
+.ValidationError
+{
+    color: Red;
+    font-weight: bolder;
+}
