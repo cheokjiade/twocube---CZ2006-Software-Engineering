@@ -81,6 +81,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="FB.htm" />
     <Content Include="HTMLPage1.htm" />
     <Content Include="Sample.aspx" />
     <Content Include="SampleResults.aspx" />
