@@ -146,6 +146,7 @@
     <Content Include="Scripts\plugins\jqplot.pyramidRenderer.min.js" />
     <Content Include="Scripts\plugins\jqplot.trendline.js" />
     <Content Include="Scripts\plugins\jqplot.trendline.min.js" />
+    <Content Include="Services\SurveyRespondentController.asmx" />
     <Content Include="Styles\jquery.jqplot.min.css" />
     <Content Include="Scripts\jquery.jqplot.min.js" />
     <Content Include="Services\SampleService.asmx" />
@@ -219,7 +220,7 @@
     <Compile Include="Entities\SurveyQuestion.cs" />
     <Compile Include="Entities\SurveyQuestionOption.cs" />
     <Compile Include="Entities\SurveyQuestionResponse.cs" />
-    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\Member.cs" />
     <Compile Include="FluentNHibernateConfiguration\CascadeConvention.cs" />
     <Compile Include="FluentNHibernateConfiguration\InitFactory.cs" />
     <Compile Include="FluentNHibernateConfiguration\NTUsurveyAutoMappingConfiguration.cs" />
@@ -247,6 +248,10 @@
     </Compile>
     <Compile Include="Services\SurveyControllerService.asmx.cs">
       <DependentUpon>SurveyControllerService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\SurveyRespondentController.asmx.cs">
+      <DependentUpon>SurveyRespondentController.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Site.Master.cs">

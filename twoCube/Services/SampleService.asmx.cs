@@ -29,7 +29,7 @@ namespace twoCube.Services
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    var user = new Entities.User { userName = "username1", userPassword = "password" };
+                    var user = new Entities.Member { memberName = "username1", memberPassword = "password" };
                     
                     var survey = new Entities.Survey { surveyDescription = "A Random Sample Survey. This is just a sample of how json can be used to render a survey.", surveyTitle = "Sample Survey", surveyQuestionList = new List<Entities.SurveyQuestion>() };
                     survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "What is your favourite color?", surveyQuestionType = 1, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
@@ -163,8 +163,8 @@ namespace twoCube.Services
                     // retreive all stores and display them
                     using (session.BeginTransaction())
                     {
-                        var users = session.CreateCriteria(typeof(Entities.User))
-                            .List<Entities.User>();
+                        var users = session.CreateCriteria(typeof(Entities.Member))
+                            .List<Entities.Member>();
                         JavaScriptSerializer js = new JavaScriptSerializer();
                         foreach (var user in users)
                         {
@@ -185,12 +185,12 @@ namespace twoCube.Services
                 // retreive all stores and display them
                 using (session.BeginTransaction())
                 {
-                    var users = session.CreateCriteria(typeof(Entities.User))
-                        .List<Entities.User>();
+                    var users = session.CreateCriteria(typeof(Entities.Member))
+                        .List<Entities.Member>();
                     JavaScriptSerializer js = new JavaScriptSerializer();
                     foreach (var user in users)
                     {
-                        var survey = user.userSurveys.ElementAt(0);
+                        var survey = user.memberSurveyList.ElementAt(0);
                         string replystring = "";
                         replystring += "Survey statastics for " + survey.surveyTitle + "\n";
                         replystring += "Number of respondents " + survey.respondentList.Count + "\n";
@@ -243,14 +243,14 @@ namespace twoCube.Services
                 // retreive all stores and display them
                 using (session.BeginTransaction())
                 {
-                    var users = session.CreateCriteria(typeof(Entities.User))
-                        .List<Entities.User>();
+                    var users = session.CreateCriteria(typeof(Entities.Member))
+                        .List<Entities.Member>();
                     JavaScriptSerializer js = new JavaScriptSerializer();
 
                     // and then we go for the data
                     foreach (var user in users)
                     {
-                        var survey = user.userSurveys.ElementAt(0);
+                        var survey = user.memberSurveyList.ElementAt(0);
                         var listofquestions = survey.surveyQuestionList;
                         int i = 0;
                         foreach (var question in listofquestions)
@@ -302,6 +302,19 @@ namespace twoCube.Services
             csvresponse.End();
         }
 
+        [WebMethod(Description = "Your Description")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public void getSurveyById(int Id)
+        {
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                //string retJSON = js.Serialize(e);
+                //return retJSON;
+                Context.Response.Write(js.Serialize(Entities.Survey.GetById(session,Id)));
+
+            }
+        }
 
         [WebMethod(Description = "Your Description")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]

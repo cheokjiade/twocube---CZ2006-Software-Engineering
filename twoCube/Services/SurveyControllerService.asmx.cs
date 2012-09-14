@@ -19,10 +19,20 @@ namespace twoCube.Services
     public class SurveyControllerService : System.Web.Services.WebService
     {
 
-        [WebMethod]
-        public string HelloWorld()
+        [WebMethod(Description = "Your Description")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public void getSurveyById(int Id)
         {
-            return "Hello World";
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                //string retJSON = js.Serialize(e);
+                //return retJSON;
+                var survey = Entities.Survey.GetById(session, Id);
+                survey.respondentList = null;
+                Context.Response.Write(js.Serialize(survey));
+
+            }
         }
 
         
