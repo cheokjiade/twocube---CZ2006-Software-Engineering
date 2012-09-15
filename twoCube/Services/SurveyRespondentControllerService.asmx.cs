@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using System.Web.Script.Serialization;
 
 namespace twoCube.Services
 {
@@ -18,9 +19,16 @@ namespace twoCube.Services
     {
 
         [WebMethod]
-        public string HelloWorld()
+        public void SubmitSurvey()
         {
-            return "Hello World";
+
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            //string retJSON = js.Serialize(e);
+            //return retJSON;
+            //var survey = Entities.Survey.GetById(session, Id);
+            //survey.respondentList = null;
+            Context.Response.Write(js.Serialize(""));
         }
     }
 }

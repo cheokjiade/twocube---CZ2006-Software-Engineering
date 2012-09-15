@@ -30,6 +30,10 @@ namespace twoCube.Services
                 //return retJSON;
                 var survey = Entities.Survey.GetById(session, Id);
                 survey.respondentList = null;
+                foreach(var question in survey.surveyQuestionList)
+                {
+                    question.surveyQuestionResponseList = null;
+                }
                 Context.Response.Write(js.Serialize(survey));
 
             }

@@ -86,6 +86,7 @@
     <Content Include="Sample.aspx" />
     <Content Include="SampleResults.aspx" />
     <Content Include="SampleSurvey.htm" />
+    <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\plugins\jqplot.barRenderer.js" />
     <Content Include="Scripts\plugins\jqplot.barRenderer.min.js" />
     <Content Include="Scripts\plugins\jqplot.BezierCurveRenderer.js" />
@@ -146,7 +147,8 @@
     <Content Include="Scripts\plugins\jqplot.pyramidRenderer.min.js" />
     <Content Include="Scripts\plugins\jqplot.trendline.js" />
     <Content Include="Scripts\plugins\jqplot.trendline.min.js" />
-    <Content Include="Services\SurveyRespondentController.asmx" />
+    <Content Include="Services\MemberControllerService.asmx" />
+    <Content Include="Services\SurveyRespondentControllerService.asmx" />
     <Content Include="Styles\jquery.jqplot.min.css" />
     <Content Include="Scripts\jquery.jqplot.min.js" />
     <Content Include="Services\SampleService.asmx" />
@@ -242,6 +244,10 @@
     <Compile Include="SampleResults.aspx.designer.cs">
       <DependentUpon>SampleResults.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Services\MemberControllerService.asmx.cs">
+      <DependentUpon>MemberControllerService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Services\SampleService.asmx.cs">
       <DependentUpon>SampleService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -250,8 +256,8 @@
       <DependentUpon>SurveyControllerService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Services\SurveyRespondentController.asmx.cs">
-      <DependentUpon>SurveyRespondentController.asmx</DependentUpon>
+    <Compile Include="Services\SurveyRespondentControllerService.asmx.cs">
+      <DependentUpon>SurveyRespondentControllerService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Site.Master.cs">

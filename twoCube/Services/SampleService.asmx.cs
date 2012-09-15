@@ -32,26 +32,26 @@ namespace twoCube.Services
                     var user = new Entities.Member { memberName = "username1", memberPassword = "password" };
                     
                     var survey = new Entities.Survey { surveyDescription = "A Random Sample Survey. This is just a sample of how json can be used to render a survey.", surveyTitle = "Sample Survey", surveyQuestionList = new List<Entities.SurveyQuestion>() };
-                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "What is your favourite color?", surveyQuestionType = 1, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
+                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "What is your favourite color?", surveyQuestionType = 0, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
                     survey.surveyQuestionList.ElementAt(0).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "White" });
                     survey.surveyQuestionList.ElementAt(0).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Yellow" });
                     survey.surveyQuestionList.ElementAt(0).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Blue" });
                     survey.surveyQuestionList.ElementAt(0).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Green" });
                     survey.surveyQuestionList.ElementAt(0).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Enter another color:", surveyQuestionOptionType = 2 });
-                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "Who is the most hardworking person in our team?", surveyQuestionType = 1, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
+                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "Who is the most hardworking person in our team?", surveyQuestionType = 0, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
                     survey.surveyQuestionList.ElementAt(1).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "June" });
                     survey.surveyQuestionList.ElementAt(1).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Wei Leng" });
                     survey.surveyQuestionList.ElementAt(1).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Hong Jing" });
                     survey.surveyQuestionList.ElementAt(1).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Xu Ai" });
                     survey.surveyQuestionList.ElementAt(1).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Wesley" });
-                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "And the best phone is", surveyQuestionType = 1, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
+                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "And the best phone is", surveyQuestionType = 0, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
                     survey.surveyQuestionList.ElementAt(2).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Galaxy S 3" });
                     survey.surveyQuestionList.ElementAt(2).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Galaxy S 2" });
                     survey.surveyQuestionList.ElementAt(2).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Galaxy S" });
                     survey.surveyQuestionList.ElementAt(2).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "HTC One X" });
                     survey.surveyQuestionList.ElementAt(2).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Galaxy Nexus" });
                     survey.surveyQuestionList.ElementAt(2).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Motorola Droid Razr Maxx" });
-                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "Who is the most hardworking person in our team? (You can choose more than 1 answer)", surveyQuestionType = 2, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
+                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "Who is the most hardworking person in our team? (You can choose more than 1 answer)", surveyQuestionType = 1, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
                     survey.surveyQuestionList.ElementAt(3).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "June" });
                     survey.surveyQuestionList.ElementAt(3).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "June" });
                     survey.surveyQuestionList.ElementAt(3).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "June" });
@@ -61,13 +61,13 @@ namespace twoCube.Services
                     survey.surveyQuestionList.ElementAt(3).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "June" });
                     survey.surveyQuestionList.ElementAt(3).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "June" });
                     survey.surveyQuestionList.ElementAt(3).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "June" });
-                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "How hardworking is June?", surveyQuestionType = 3, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
+                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "How hardworking is June?", surveyQuestionType = 2, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
                     survey.surveyQuestionList.ElementAt(4).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Hardworkingness" });
-                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "How young is this pretty young star? Numeric input.", surveyQuestionType = 4, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
+                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "How young is this pretty young star? Numeric input.", surveyQuestionType = 3, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
                     survey.surveyQuestionList.ElementAt(5).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "http://graph.facebook.com/weileng.peh/picture?type=large" });
-                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "Or the birthday of this talented actor/singer? Date input.", surveyQuestionType = 5, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
+                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "Or the birthday of this talented actor/singer? Date input.", surveyQuestionType = 4, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
                     survey.surveyQuestionList.ElementAt(6).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "http://graph.facebook.com/197371292379/picture?type=large" });
-                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "Which picture is the odd one out?", surveyQuestionType = 6, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
+                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "Which picture is the odd one out?", surveyQuestionType = 5, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
                     survey.surveyQuestionList.ElementAt(7).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "http://graph.facebook.com/alexei.sourin/picture?type=square" });
                     survey.surveyQuestionList.ElementAt(7).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "http://graph.facebook.com/kuiyu.chang/picture?type=square" });
                     survey.surveyQuestionList.ElementAt(7).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "http://graph.facebook.com/bengkoon.ng/picture?type=square" });
@@ -369,9 +369,43 @@ namespace twoCube.Services
             Context.Response.Write(js.Serialize(survey));
 
         }
+        //[WebMethod(Description = "Your Description")]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        //public void deSerialize()
+        //{
+        //    string jsonString = "{\"0\":\"4\",\"0o4\":\"test\",\"1\":\"3\",\"2\":\"2\",\"3o3\":\"33\",\"3o6\":\"36\",\"3o8\":\"38\",\"4\":\"27\",\"5\":\"33\",\"6\":\"09/08/2012\",\"7\":\"1\"}";
+        //    JavaScriptSerializer parser = new JavaScriptSerializer();
+        //    var stuff = parser.Deserialize<Dictionary<string, string>>(jsonString);
+        //    var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession();
+        //    var survey = Entities.Survey.GetById(session, 2);
+        //    var respondent1 = new Entities.Respondent { respondentIPAddress = "127.0.0.1", respondentSessionID = "sampledeserialize" };
+        //    int i = 0;
+        //    foreach(var key in stuff.Keys)
+        //    {
+        //        if(!key.Contains("a"))
+        //        {
+        //            if (key.Equals(i.ToString))
+        //            {
+        //                if (survey.surveyQuestionList.ElementAt(i).surveyQuestionType)
+        //                {
+
+        //                }
+        //                var responseqn10 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 2 };
+        //            }
+        //        }
+        //        if(survey.surveyQuestionList.ElementAt(i))
+        //        {
+
+        //        }
+        //    }
+
+        //    Context.Response.Write(parser.Serialize(stuff.Keys));
+
+
+        //}
     }
 
-
+    
 
 
     public class SampleJSONResponse
