@@ -61,7 +61,7 @@ namespace twoCube.Services
                         //Context.Response.Write(jToken);
                         if (jsonObject.TryGetValue("s", out jToken))
                         {
-                            var respondent = new Entities.Respondent { respondentIPAddress = "127.0.0.1", respondentSessionID = "fromworkingresponse" };
+                            var respondent = new Entities.Respondent { respondentIPAddress = HttpContext.Current.Request.UserHostAddress, respondentSessionID = "fromworkingresponse" };
                             jsonObject = JObject.Parse(jToken.ToString());
                             int i = 0;
                             foreach (var question in survey.surveyQuestionList)
@@ -95,7 +95,9 @@ namespace twoCube.Services
                                             }
                                         case 4:
                                             {
-
+                                                var response = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 2, responseStringValue = jToken.ToString() };
+                                                respondent.surveyQuestionResponseList.Add(response);
+                                                question.surveyQuestionResponseList.Add(response);
                                                 break;
                                             }
                                     }

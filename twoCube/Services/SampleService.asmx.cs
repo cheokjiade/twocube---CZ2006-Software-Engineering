@@ -194,11 +194,17 @@ namespace twoCube.Services
                         string replystring = "";
                         replystring += "Survey statastics for " + survey.surveyTitle + "\n";
                         replystring += "Number of respondents " + survey.respondentList.Count + "\n";
+                        replystring += "List of respondent IP Addresses :\n";
+                        foreach (var respondent in survey.respondentList)
+                        {
+                            replystring += respondent.respondentIPAddress + "\n";
+                        }
+                        replystring += "\n\n";
                         var listofquestions = survey.surveyQuestionList;
                         int i = 0;
                         foreach(var question in listofquestions)
                         {
-                            replystring += "Question " + i + "  -  " + question.surveyQuestionTitle + "\n";
+                            replystring += "Question " + i + "  -  " + question.surveyQuestionTitle + "\n\n";
                             i++;
                             int count = 0;
                             foreach(var option in question.surveyQuestionOptionList)
