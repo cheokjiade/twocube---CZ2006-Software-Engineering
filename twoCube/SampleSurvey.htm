@@ -27,6 +27,7 @@ function(data) {
   console.log(data);
     $("<h2>" + data.surveyTitle + "</h2>").appendTo("#survey");
     $("<strong>" + data.surveyDescription + "</strong>").appendTo("#survey");
+    $("<input type=\"hidden\" name=\"surveyId\" value=\""+ data.Id + "\">").appendTo("#survey");
 
     $.each(data.surveyQuestionList, function(qnvali,qnval){
 	  $("<p>" + qnval.surveyQuestionTitle + "</p>").appendTo("#survey");
@@ -115,7 +116,14 @@ function test()
 				});
 
 		document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
-	}
+        $.post("./Services/SurveyControllerService.asmx/repeater",
+          {
+            jsonString: JSON.stringify(formData, null, '\t')
+          },
+            function(data){
+                console.log(data);
+            });
+	 }
     </script>
 </body>
 </html>

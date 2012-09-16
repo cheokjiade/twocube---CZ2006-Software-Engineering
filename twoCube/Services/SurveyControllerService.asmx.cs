@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Script.Serialization;
 using System.Web.Script.Services;
+using Newtonsoft.Json.Linq;
 
 namespace twoCube.Services
 {
@@ -39,7 +40,29 @@ namespace twoCube.Services
             }
         }
 
-        
+        [WebMethod(Description = "Your Description")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public void repeater(string jsonString)
+        {
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                var foo = js.Deserialize<Dictionary<string, object>>(jsonString);
+                dynamic json = JValue.Parse(jsonString);
+                JObject jsonObject = JObject.Parse(jsonString);
+
+                string a = "";
+                foreach (var item in jsonObject)
+                {
+                    a+= item.Value;
+                }
+                //string retJSON = js.Serialize(e);
+                //return retJSON;
+                //if(foo.TryGetValue("surveyId",out))
+                Context.Response.Write(a);
+
+            }
+        }
     }
 
     
