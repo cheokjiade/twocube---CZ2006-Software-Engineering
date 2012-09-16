@@ -27,8 +27,6 @@ namespace twoCube.Services
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
                 JavaScriptSerializer js = new JavaScriptSerializer();
-                //string retJSON = js.Serialize(e);
-                //return retJSON;
                 var survey = Entities.Survey.GetById(session, Id);
                 survey.respondentList = null;
                 foreach(var question in survey.surveyQuestionList)
