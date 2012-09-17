@@ -59,7 +59,14 @@ namespace twoCube.Services
                         //Context.Response.Write(jToken);
                         if (jsonObject.TryGetValue("s", out jToken))
                         {
-                            var respondent = new Entities.Respondent { respondentIPAddress = HttpContext.Current.Request.UserHostAddress, respondentSessionID = "fromworkingresponse" };
+                            string ipAddress;
+                            if (!String.IsNullOrEmpty(HttpContext.Current.Request.ServerVariables["HTTP_CLIENT_IP"]))
+                                ipAddress = HttpContext.Current.Request.ServerVariables["HTTP_CLIENT_IP"];
+                            else if (!String.IsNullOrEmpty(HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"]))
+                                ipAddress = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+                            else ipAddress = System.Web.HttpContext.Current.Request.UserHostAddress;
+
+                            var respondent = new Entities.Respondent { respondentIPAddress = ipAddress, respondentSessionID = "fromworkingresponse" };
                             jsonObject = JObject.Parse(jToken.ToString());
                             int i = 0;
                             foreach (var question in survey.surveyQuestionList)
