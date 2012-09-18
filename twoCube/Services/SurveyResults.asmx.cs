@@ -36,25 +36,45 @@ namespace twoCube.Services
                     {
                         var resultQn = new Questions();
                         i++;
-
-                        int count = 0;
-                        foreach (var option in question.surveyQuestionOptionList)
+                        switch (question.surveyQuestionType)
                         {
-                            var questionOption = new Options();
-
-                            foreach (var response in question.surveyQuestionResponseList)
-                            {
-                                if (response.responseIntegerValue == count)
+                            case 0:
+                            case 1:
+                            case 5:
+                                //multiple choices and checkboxes
+                                int count = 0;
+                                foreach (var option in question.surveyQuestionOptionList)
                                 {
-                                    questionOption.noOfRespondents++;
+                                    var questionOption = new Options();
+
+                                    foreach (var response in question.surveyQuestionResponseList)
+                                    {
+                                        if (response.responseIntegerValue == count)
+                                        {
+                                            questionOption.noOfRespondents++;
+                                        }
+                                    }
+                                    count++;
+                                    resultQn.optionList.Add(questionOption);
+
                                 }
-                            }
-                            count++;
-                            resultQn.optionList.Add(questionOption);
 
+                                result.questionList.Add(resultQn);
+                                break;
+
+                            case 2: //slider
+                            case 3: //numerical input
+                            case 4: //date
+                                foreach (var response in question.surveyQuestionResponseList)
+                                {
+                                    var questionOption = new Options { responseStr= response.responseStringValue};
+
+                                    resultQn.optionList.Add(questionOption);
+                                   
+                                }
+                                break;
                         }
-
-                        result.questionList.Add(resultQn);
+                        
                     }
 
                     //print to webservice
@@ -63,5 +83,7 @@ namespace twoCube.Services
                 }
             }
         }
+
+        public string responseStr { get; set; }
     }
 }
