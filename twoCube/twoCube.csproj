@@ -154,6 +154,7 @@
     <Content Include="Scripts\plugins\jqplot.trendline.min.js" />
     <Content Include="Services\MemberControllerService.asmx" />
     <Content Include="Services\SurveyRespondentControllerService.asmx" />
+    <Content Include="Services\SurveyResults.asmx" />
     <Content Include="Styles\jquery.jqplot.min.css" />
     <Content Include="Scripts\jquery.jqplot.min.js" />
     <Content Include="Services\SampleService.asmx" />
@@ -265,6 +266,10 @@
       <DependentUpon>SurveyRespondentControllerService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Services\SurveyResults.asmx.cs">
+      <DependentUpon>SurveyResults.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -272,6 +277,9 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="SurveyResultsEntities\Options.cs" />
+    <Compile Include="SurveyResultsEntities\Questions.cs" />
+    <Compile Include="SurveyResultsEntities\SurveyResults.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
