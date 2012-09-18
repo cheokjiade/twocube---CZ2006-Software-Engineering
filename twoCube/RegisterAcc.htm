@@ -52,7 +52,7 @@
                     Confirm Password:
                 </td>
                 <td>
-                    <input id="Password1" type="password" />
+                    <input id="Password1" type="password"  />
                 </td>
             </tr>
             <tr>
@@ -98,5 +98,22 @@
         </table>
     </div>
     </form>
+    <script>
+
+    $.get("RegisterAcc.htm",
+   function(data){
+     $('body').append( "Name: " + data.name ) // John
+              .append( "Time: " + data.time ); //  2pm
+   }, "json");
+    
+        function test() {
+            document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
+             $.post("./Services/MemberControllerService.asmx/AddUser",
+             {
+            jsonString: JSON.stringify(formData, null, '\t')
+          },
+                   }
+
+    </script>
 </body>
 </html>
