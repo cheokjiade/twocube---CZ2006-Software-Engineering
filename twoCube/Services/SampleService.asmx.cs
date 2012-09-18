@@ -29,7 +29,7 @@ namespace twoCube.Services
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    var user = new Entities.Member { memberName = "username1", memberPassword = "password" };
+                    var user = new Entities.Member { userName = "username1", memberPassword = "password" };
                     
                     var survey = new Entities.Survey { surveyDescription = "A Random Sample Survey. This is just a sample of how json can be used to render a survey.", surveyTitle = "Sample Survey", surveyQuestionList = new List<Entities.SurveyQuestion>() };
                     survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "What is your favourite color?", surveyQuestionType = 0, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });

@@ -8,7 +8,8 @@ namespace twoCube.Entities
     public class Member
     {
         public virtual int Id { get; set; }
-        public virtual string memberName { get; set; } //Full name: Eg: Hello, June!
+        public virtual string memberFirstName { get; set; } //Full name: Eg: Hello, June!
+        public virtual string memberLastName { get; set; }
         public virtual string userName { get; set; } //Login name
         public virtual string memberPassword { get; set; }
         public virtual int memberAge { get; set; } //FB retrieve. If system registration then auto calculated with DOB given
