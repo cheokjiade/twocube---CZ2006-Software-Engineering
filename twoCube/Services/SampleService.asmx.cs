@@ -295,7 +295,7 @@ namespace twoCube.Services
             sw.Close();
         }
 
-                    
+
         [WebMethod(Description = "Your Description")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void SampleCSV()
@@ -304,7 +304,57 @@ namespace twoCube.Services
             csvresponse.Clear();
             csvresponse.AddHeader("content-disposition", "attachment; filename=tiffany.csv");
             csvresponse.ContentType = "text/csv";
-            csvresponse.Write("t,i,f,f,a,n,y,i,s,t,o,o,h,a,r,d,w,o,r,k,i,n,g");
+            csvresponse.Write("Question,Option,Response,");
+            csvresponse.Write(Environment.NewLine);
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                // retreive all stores and display them
+                using (session.BeginTransaction())
+                {
+                    var users = session.CreateCriteria(typeof(Entities.Member))
+                        .List<Entities.Member>();
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+
+                    // and then we go for the data
+                    foreach (var user in users)
+                    {
+                        var survey = user.memberSurveyList.ElementAt(0);
+                        var listofquestions = survey.surveyQuestionList;
+                        int i = 0;
+                        foreach (var question in listofquestions)
+                        {
+
+                            int count = 0;
+
+                            foreach (var option in question.surveyQuestionOptionList)
+                            {
+                                string fileRow = "";
+                                string cell = "";
+                                cell += "Question " + (i + 1).ToString() + ",";
+                                cell += option.surveyQuestionOptionTitle + ",";
+                                int choices = 0;
+
+                                foreach (var response in question.surveyQuestionResponseList)
+                                {
+                                    if (response.responseIntegerValue == count)
+                                    {
+                                        choices++;
+                                    }
+
+                                }
+                                cell += choices + ",";
+                                fileRow += cell + ",";
+                                csvresponse.Write(fileRow);
+                                csvresponse.Write(Environment.NewLine);
+                            }
+                            i++;
+                            count++;
+
+                        }
+                    }
+                }
+
+            }
             csvresponse.End();
         }
 
