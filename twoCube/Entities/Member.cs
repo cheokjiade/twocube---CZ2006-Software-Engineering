@@ -8,13 +8,15 @@ namespace twoCube.Entities
     public class Member
     {
         public virtual int Id { get; set; }
-        public virtual string memberName { get; set; }
+        public virtual string memberName { get; set; } //Full name: Eg: Hello, June!
+        public virtual string userName { get; set; } //Login name
         public virtual string memberPassword { get; set; }
-        public virtual int memberAge { get; set; }
+        public virtual int memberAge { get; set; } //FB retrieve. If system registration then auto calculated with DOB given
+        public virtual DateTime dateOfBirthday { get; set; }
         public virtual string memberLocation { get; set; }
         public virtual string memberEmail { get; set; }
-        public virtual string memberQuestion { get; set; }
-        public virtual string memberAnswer { get; set; }
+        public virtual string memberQuestion { get; set; } //Forget password
+        public virtual string memberAnswer { get; set; } //Forget password
         public virtual IList<Survey> memberSurveyList { get; set; }
 
         public Member() 
