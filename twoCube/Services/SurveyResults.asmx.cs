@@ -64,16 +64,45 @@ namespace twoCube.Services
 
                             case 2: //slider
                             case 3: //numerical input
+                                {
+                                    foreach (var response in question.surveyQuestionResponseList)
+                                    {
+                                        var questionOption = new Options { responseStr = response.responseIntegerValue.ToString() };
+                                        bool add = true;
+                                        foreach(var tempOption in resultQn.optionList)
+                                        {
+                                            if (tempOption.responseStr.Equals(questionOption.responseStr))
+                                            {
+                                                tempOption.noOfRespondents++;
+                                                add = false;
+                                            }
+                                        }
+                                        if(add)
+                                        resultQn.optionList.Add(questionOption);
+
+                                    }
+                                    result.questionList.Add(resultQn);
+                                    break;
+                                }
                             case 4: //date
                                 foreach (var response in question.surveyQuestionResponseList)
                                 {
                                     var questionOption = new Options {responseStr = response.responseStringValue};
+                                    bool add = true;
+                                        foreach(var tempOption in resultQn.optionList)
+                                        {
+                                            if (tempOption.responseStr.Equals(questionOption.responseStr))
+                                            {
+                                                tempOption.noOfRespondents++;
+                                                add = false;
+                                            }
+                                        }
+                                        if(add)
+                                        resultQn.optionList.Add(questionOption);
 
-                                    resultQn.optionList.Add(questionOption);
-                                   
-                                }
-                                result.questionList.Add(resultQn);
-                                break;
+                                    }
+                                    result.questionList.Add(resultQn);
+                                    break;
                         }
                         
                     }
@@ -84,7 +113,7 @@ namespace twoCube.Services
                 }
             }
         }
-
-      // public string responseStr { get; set; }
+        
+        public string responseStr { get; set; }
     }
 }
