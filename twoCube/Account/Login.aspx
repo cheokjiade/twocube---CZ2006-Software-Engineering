@@ -4,6 +4,16 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
+
+    <label class="uiButton" id="loginbutton" for="u2pka2g4">
+    <asp:Button ID="Button1" runat="server" Text="Facebook Log in" CssClass="button"
+                                                                   onmouseover="this.className='buttonhover'"
+                                                                   onmouseout="this.className='button'"
+                                                                   onmousedown="this.className='button'"
+                                                                   onmouseup="this.className='buttonhover'"
+                                                                   onclick="fbLogin"/>
+    </label>
+
     <h2>
         Log In
     </h2>
