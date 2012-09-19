@@ -38,9 +38,9 @@ namespace twoCube.Services
             }
         }
 
-        [WebMethod(Description = "Your Description")]
+        [WebMethod(Description = "takes in a jsonobject containing the completed survey done by respondent")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
-        public void repeater(string jsonString)
+        public void submitSurvey(string jsonString)
         {
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
@@ -120,7 +120,5 @@ namespace twoCube.Services
             }
         }
     }
-
-    
 }
                             
