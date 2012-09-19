@@ -37,7 +37,7 @@ namespace twoCube.Services
                         memberLastName = jsonObject.SelectToken("lastName").ToString(),
                         userName = jsonObject.SelectToken("userName").ToString(),
                         memberPassword = jsonObject.SelectToken("password").ToString(),
-                        memberAge = Int32.Parse(jsonObject.SelectToken("age").ToString()),
+                       // memberAge = Int32.Parse(jsonObject.SelectToken("age").ToString()),
                         memberLocation = jsonObject.SelectToken("location").ToString(),
                         memberEmail = jsonObject.SelectToken("email").ToString(),
                         memberQuestion = jsonObject.SelectToken("sqn").ToString(),
@@ -77,7 +77,7 @@ namespace twoCube.Services
 
         [WebMethod(Description = "Update password, String userName, Stirng password")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
-        public void UpdateUserDetails(string jsonString)
+        public void UpdateUserPassword(string jsonString)
         {
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
