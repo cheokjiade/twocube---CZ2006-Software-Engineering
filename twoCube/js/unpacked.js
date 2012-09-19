@@ -5,11 +5,30 @@ function save_form_data(){
 	
 	document.getElementById('display').innerHTML = JSON.stringify(main_form.data);document.getElementById('display2').innerHTML = ds.stringify();
 
-$.post("./Services/SurveyControllerService.asmx/repeater", { formString: JSON.stringify(main_form.data), elementString: ds.stringify() },
+
+var myForm = document.createElement("form");
+  myForm.method="post" ;
+  myForm.action = "./Services/SurveyControllerService.asmx/repeater" ;
+  
+  var myInput = document.createElement("input") ;
+    myInput.setAttribute("name", "formString") ;
+    myInput.setAttribute("value", JSON.stringify(main_form.data) );
+    myForm.appendChild(myInput) ;
+  
+  var myInput2 = document.createElement("input") ;
+    myInput2.setAttribute("name", "elementString") ;
+    myInput2.setAttribute("value", ds.stringify() );
+    myForm.appendChild(myInput2) ;
+  
+  document.body.appendChild(myForm) ;
+  myForm.submit() ;
+  document.body.removeChild(myForm) ;
+  
+/*$.post("./Services/SurveyControllerService.asmx/repeater", { formString: JSON.stringify(main_form.data), elementString: ds.stringify() },
    function(data) {
      alert("Data Loaded: " + data);
    });
-   
+  */ 
 
    
 
