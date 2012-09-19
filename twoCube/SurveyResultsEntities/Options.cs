@@ -15,6 +15,7 @@ namespace twoCube.SurveyResultsEntities
         public Options()
         {
             noOfRespondents=0;
+            //responseStr = "";
         }
     }
 }

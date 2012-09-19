@@ -38,10 +38,10 @@ namespace twoCube.Services
                         i++;
                         switch (question.surveyQuestionType)
                         {
+                            //multiple choices and checkboxes
                             case 0:
                             case 1:
                             case 5:
-                                //multiple choices and checkboxes
                                 int count = 0;
                                 foreach (var option in question.surveyQuestionOptionList)
                                 {
@@ -67,11 +67,12 @@ namespace twoCube.Services
                             case 4: //date
                                 foreach (var response in question.surveyQuestionResponseList)
                                 {
-                                    var questionOption = new Options { responseStr= response.responseStringValue};
+                                    var questionOption = new Options {responseStr = response.responseStringValue};
 
                                     resultQn.optionList.Add(questionOption);
                                    
                                 }
+                                result.questionList.Add(resultQn);
                                 break;
                         }
                         
@@ -84,6 +85,6 @@ namespace twoCube.Services
             }
         }
 
-        public string responseStr { get; set; }
+      // public string responseStr { get; set; }
     }
 }
