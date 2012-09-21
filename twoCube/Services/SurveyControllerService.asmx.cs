@@ -6,6 +6,7 @@ using System.Web.Services;
 using System.Web.Script.Serialization;
 using System.Web.Script.Services;
 using Newtonsoft.Json.Linq;
+using twoCube.Entities;
 
 namespace twoCube.Services
 {
@@ -36,6 +37,69 @@ namespace twoCube.Services
                 Context.Response.Write(js.Serialize(survey));
 
             }
+        }
+
+        [WebMethod(Description = "takes in a jsonobject containing the completed survey done by respondent")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public void repeater(string formString, string elementString)
+        {
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    JObject jsonObject = JObject.Parse(formString);
+                    var survey = new Entities.Survey { surveyTitle = jsonObject.SelectToken("name").ToString(), surveyDescription = jsonObject.SelectToken("description").ToString() };
+                    JToken jToken;
+                    jsonObject = JObject.Parse(elementString);
+                    var questionList = jsonObject.SelectToken("elements").ToList();
+                    foreach (var question in questionList)
+                    {
+                        switch (question.SelectToken("type").ToString())
+                        {
+                            case "number":
+                                {
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 3 };
+                                    surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "" });
+                                    survey.surveyQuestionList.Add(surveyQuestion);
+                                    break;
+                                }
+                            case "radio":
+                                {
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 0 };
+                                    foreach (var option in question.SelectToken("options").ToList())
+                                    {
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = option.SelectToken("option").ToString() });
+                                    }
+                                    survey.surveyQuestionList.Add(surveyQuestion);
+                                    break;
+                                }
+                            case "checkbox":
+                                {
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 1 };
+                                    foreach (var option in question.SelectToken("options").ToList())
+                                    {
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = option.SelectToken("option").ToString() });
+                                    }
+                                    survey.surveyQuestionList.Add(surveyQuestion);
+                                    break;
+                                }
+                            case "date":
+                                {
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 4 };
+                                    surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "" });
+                                    survey.surveyQuestionList.Add(surveyQuestion);
+                                    break;
+                                }
+                        }
+                    }
+                    var member = Member.GetById(session,1);
+                    member.AddSurvey(survey);
+                    session.SaveOrUpdate(member);
+                    transaction.Commit();
+                }
+
+            }
+
         }
 
         [WebMethod(Description = "takes in a jsonobject containing the completed survey done by respondent")]

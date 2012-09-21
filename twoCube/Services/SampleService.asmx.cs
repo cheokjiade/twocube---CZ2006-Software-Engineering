@@ -469,22 +469,22 @@ namespace twoCube.Services
         public string response;
     }
 
-    public class Survey
-    {
-        public string surveyTitle;
-        public string surveyDescription;
-        public List<SurveyQuestion> surveyQuestionList;
-    }
-    public class SurveyQuestion
-    {
-        public string surveyQuestionTitle;
-        public int surveyQuestionType;
-        public List<SurveyQuestionOption> surveyQuestionOptionList;
-    }
-    public class SurveyQuestionOption
-    {
-        public string surveyQuestionOptionTitle;
-        public int surveyQuestionOptionType;
-        public string surveyQuestionOptionRange;
-    }
+    //public class Survey
+    //{
+    //    public string surveyTitle;
+    //    public string surveyDescription;
+    //    public List<SurveyQuestion> surveyQuestionList;
+    //}
+    //public class SurveyQuestion
+    //{
+    //    public string surveyQuestionTitle;
+    //    public int surveyQuestionType;
+    //    public List<SurveyQuestionOption> surveyQuestionOptionList;
+    //}
+    //public class SurveyQuestionOption
+    //{
+    //    public string surveyQuestionOptionTitle;
+    //    public int surveyQuestionOptionType;
+    //    public string surveyQuestionOptionRange;
+    //}
 }

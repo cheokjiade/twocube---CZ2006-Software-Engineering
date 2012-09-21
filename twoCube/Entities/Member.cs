@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using NHibernate;
+using NHibernate.Criterion;
 
 namespace twoCube.Entities
 {
@@ -28,6 +30,12 @@ namespace twoCube.Entities
         public virtual void AddSurvey(Survey survey)
         {
             memberSurveyList.Add(survey);
+        }
+        public static Member GetById(ISession session, int id)
+        {
+            return session.CreateCriteria(typeof(Member))
+                .Add(Expression.Eq("Id", id))
+                .UniqueResult<Member>();
         }
     }
 }
