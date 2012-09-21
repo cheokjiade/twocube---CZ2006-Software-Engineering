@@ -21,13 +21,13 @@ namespace twoCube.Services
 
         [WebMethod]
         //public void getSurvey(int surveyID)
-        public void getSurvey()
+        public void getSurvey(int id)
         {
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    var survey = Entities.Survey.GetById(session, 2);
+                    var survey = Entities.Survey.GetById(session, id);
                     var result = new SurveyResults();
                     result.surveyTitle = survey.surveyTitle;
                     result.noOfRespondents = survey.respondentList.Count;

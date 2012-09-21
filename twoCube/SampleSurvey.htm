@@ -11,18 +11,22 @@
 </head>
 <body>
     <form id="testForm" action="javascript:test()">
-        <div id="survey" style="width: 600px; display: block;">
-        </div>
-    
+    <div id="survey" style="width: 600px; display: block;">
+    </div>
     <input type="submit" />
-    <a href="./Services/SampleService.asmx/ViewStatistics" target="_blank">View Statastics for this survey</a>
+    <a href="./Services/SampleService.asmx/ViewStatistics" target="_blank">View Statastics
+        for this survey</a>
     </form>
-    
     <pre><code id="testArea"></code></pre>
     <script>
+$.urlParam = function(name){
+    var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    return results[1] || 0;
+}
+
 $.getJSON("./Services/SurveyControllerService.asmx/getSurveyById",
   {
-    Id: "2",
+    Id: $.urlParam('s'),
   },
 function(data) {
   console.log(data);
