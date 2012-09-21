@@ -29,13 +29,15 @@ namespace twoCube.Services
                 {
                     var survey = Entities.Survey.GetById(session, 2);
                     var result = new SurveyResults();
-
+                    result.surveyTitle = survey.surveyTitle;
+                    result.noOfRespondents = survey.respondentList.Count;
                     int i = 0;
 
                     foreach (var question in survey.surveyQuestionList)
                     {
                         var resultQn = new Questions();
                         i++;
+                        resultQn.questionTitle = question.surveyQuestionTitle;
                         switch (question.surveyQuestionType)
                         {
                             //multiple choices and checkboxes

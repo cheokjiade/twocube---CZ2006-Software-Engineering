@@ -7,6 +7,7 @@ namespace twoCube.SurveyResultsEntities
 {
     public class Options
     {
+        public string optionTitle { get; set; }
         public int noOfRespondents { get; set; }
 
         public String responseStr { get; set; }
