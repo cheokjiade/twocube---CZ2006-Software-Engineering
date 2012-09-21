@@ -69,7 +69,7 @@ namespace twoCube.Services
                                 {
                                     foreach (var response in question.surveyQuestionResponseList)
                                     {
-                                        var questionOption = new Options { responseStr = response.responseIntegerValue.ToString() };
+                                        var questionOption = new Options { responseStr = response.responseIntegerValue.ToString() , noOfRespondents=1};
                                         bool add = true;
                                         foreach(var tempOption in resultQn.optionList)
                                         {
@@ -89,7 +89,7 @@ namespace twoCube.Services
                             case 4: //date
                                 foreach (var response in question.surveyQuestionResponseList)
                                 {
-                                    var questionOption = new Options {responseStr = response.responseStringValue};
+                                    var questionOption = new Options {responseStr = response.responseStringValue, noOfRespondents=1};
                                     bool add = true;
                                         foreach(var tempOption in resultQn.optionList)
                                         {
