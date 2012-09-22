@@ -55,12 +55,13 @@ namespace twoCube.Services
 
         [WebMethod(Description = "View User. Take in string username, string password")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
-        public void ViewUserDetails(string jsonString)
+        public void ViewUserDetails(string userName, string password)
         {
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
-                { }
+                {
+                }
             }
         }
 
