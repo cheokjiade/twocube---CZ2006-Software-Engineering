@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using twoCube.Services;
 
 namespace twoCube
 {
@@ -14,6 +15,8 @@ namespace twoCube
         {
             // Code that runs on application startup
             FluentNHibernateConfiguration.InitFactory.create();
+            SampleService ss = new SampleService();
+            ss.Insert();
         }
 
         void Application_End(object sender, EventArgs e)

@@ -89,6 +89,7 @@
     <Content Include="css\index.css" />
     <Content Include="css\layout.css" />
     <Content Include="css\skeleton.css" />
+    <Content Include="HTMLPage2.htm" />
     <Content Include="images\address.gif" />
     <Content Include="images\address_bg.gif" />
     <Content Include="images\appnitro_logo.png" />

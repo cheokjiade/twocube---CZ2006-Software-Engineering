@@ -7,6 +7,7 @@ using System.Web.Script.Services;
 using System.Web.Script.Serialization;
 using System.IO;
 using twoCube.Entities;
+using Newtonsoft.Json.Linq;
 
 namespace twoCube.Services
 {
@@ -369,6 +370,21 @@ namespace twoCube.Services
                 //return retJSON;
                 Context.Response.Write(js.Serialize(Entities.Survey.GetById(session,Id)));
 
+            }
+        }
+
+        [WebMethod(Description = "View User. Take in string username, string password")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public void ViewUserDetails(string jsonString)
+        {
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    JObject jsonObject = JObject.Parse(jsonString);
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    Context.Response.Write(js.Serialize(Entities.Member.GetByLogin(session, jsonObject.SelectToken("username").ToString(), jsonObject.SelectToken("password").ToString())));
+                }
             }
         }
 
