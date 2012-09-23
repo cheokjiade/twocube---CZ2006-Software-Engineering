@@ -38,6 +38,8 @@ Username<input type="text" name="username" />Password<input type="password" name
                 $("<h2>User ID :" + data.Id + "</h2>").appendTo("#response");
                 $("<h2>User Name :" + data.memberPassword + "</h2>").appendTo("#response");
                 $("<h2>User Password :" + data.userName + "</h2>").appendTo("#response");
+                $('input[name=username]').val(data.Id + data.memberPassword + data.userName);
+
             }, "json");
         }
     </script>
