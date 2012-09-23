@@ -37,11 +37,8 @@ namespace twoCube.Services
                         memberLastName = jsonObject.SelectToken("lastName").ToString(),
                         userName = jsonObject.SelectToken("userName").ToString(),
                         memberPassword = jsonObject.SelectToken("password").ToString(),
-                       // memberAge = Int32.Parse(jsonObject.SelectToken("age").ToString()),
-                        memberLocation = jsonObject.SelectToken("location").ToString(),
-                        memberEmail = jsonObject.SelectToken("email").ToString(),
-                        memberQuestion = jsonObject.SelectToken("sqn").ToString(),
-                        memberAnswer = jsonObject.SelectToken("sans").ToString()
+                        dateOfBirthday = DateTime.Parse(jsonObject.SelectToken("dobCal").ToString()),
+                        memberEmail = jsonObject.SelectToken("email").ToString()
                     };
 
                     session.Save(user);
