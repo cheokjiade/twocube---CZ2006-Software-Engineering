@@ -2,6 +2,8 @@ twoCube™
 =======
 [SRS](https://github.com/cheokjiade/twocube/blob/master/Documentation/SRSv1.docx?raw=true)  
 
+[Final Report - Added in sequence diagrams](https://github.com/cheokjiade/twocube/raw/master/Documentation/twoCubeReport.docx)  
+
 [Website, Hosted on Amazon EC2](http://twocube.elasticbeanstalk.com/) 
 
 ***
