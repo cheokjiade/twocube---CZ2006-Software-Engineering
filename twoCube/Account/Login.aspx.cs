@@ -14,10 +14,5 @@ namespace twoCube.Account
             RegisterHyperLink.NavigateUrl = "AddUser.aspx?ReturnUrl=" + HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
         }
 
-        protected void fbLogin(object sender, EventArgs e)
-        {
-            Response.Redirect("http://twocube.elasticbeanstalk.com/FB.htm", false);
-        }
-
     }
 }
