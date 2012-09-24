@@ -48,7 +48,7 @@ namespace twoCube.Services
                                 foreach (var option in question.surveyQuestionOptionList)
                                 {
                                     var questionOption = new Options();
-
+                                    questionOption.optionTitle = option.surveyQuestionOptionTitle;
                                     foreach (var response in question.surveyQuestionResponseList)
                                     {
                                         if (response.responseIntegerValue == count)

@@ -7,7 +7,7 @@
     <h2>
         Welcome to twocube™</h2>
     <p>
-        <a href="SampleSurvey.htm" title="SampleSurvey">Sample Survey</a>
+        <a href="SampleSurvey.htm?s=2" title="SampleSurvey">Sample Survey</a>
         <br />
         <a href="HTMLPage1.htm" title="SampleSurveyCreator">Sample Survey Creator</a>
         <br />
