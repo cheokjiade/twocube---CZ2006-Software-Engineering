@@ -7,56 +7,6 @@
     <script src="https://raw.github.com/SamWM/jQuery-Plugins/master/numeric/jquery.numeric.js"></script>
     <script src="https://raw.github.com/maxatwork/form2js/master/src/form2js.js"></script>
     <script src="Scripts/json2.js"></script>
-    <script type="text/javascript">
-
-        function checkForm(form) {
-            re = /^\w+$/;
-            if (!re.test(form.userName.value)) {
-                alert("Error: Username must contain only letters, numbers and underscores!");
-                form.userName.focus();
-                return false;
-            }
-
-            if (form.password.value != "" && form.password.value == form.cpassword.value) {
-                if (form.password.value.length < 6) {
-                    alert("Error: Password must contain at least six characters!");
-                    form.password.focus();
-                    return false;
-                }
-                if (form.password.value == form.userName.value) {
-                    alert("Error: Password must be different from Username!");
-                    form.password.focus();
-                    return false;
-                }
-                re = /[0-9]/;
-                if (!re.test(form.password.value)) {
-                    alert("Error: password must contain at least one number (0-9)!");
-                    form.password.focus();
-                    return false;
-                }
-                re = /[a-z]/;
-                if (!re.test(form.password.value)) {
-                    alert("Error: password must contain at least one lowercase letter (a-z)!");
-                    form.password.focus();
-                    return false;
-                }
-                re = /[A-Z]/;
-                if (!re.test(form.password.value)) {
-                    alert("Error: password must contain at least one uppercase letter (A-Z)!");
-                    form.password.focus();
-                    return false;
-                }
-            } else {
-                alert("Error: Please check that you've entered and confirmed your password!");
-                form.password.focus();
-                return false;
-            }
-
-            alert("You entered a valid password: " + form.password.value);
-            return true;
-        }
-
-</script>
     <!-- 
 
 	Copyright 2009 Itamar Arjuan
@@ -147,7 +97,7 @@
     this.cpassword.focus();
     return false;
   }
-  alert('Success!  The form has been completed, validated and is ready to be submitted...');
+  alert('Success! ');
 " action="javascript:test()">
     <div>
         <table>
@@ -183,7 +133,7 @@
             </tr>
             <tr>
                 <td>
-                    Username (For Login):
+                    User Name (For Login):
                 </td>
                 <td>
                     <input id="Text4" type="text" name="userName" onchange="this.value = this.value.replace(/^\s+|\s+$/g, ''); valid_name3.checked = this.value;" />

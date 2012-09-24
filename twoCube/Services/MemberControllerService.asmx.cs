@@ -58,6 +58,7 @@ namespace twoCube.Services
             {
                 using (var transaction = session.BeginTransaction())
                 {
+                    
                 }
             }
         }
@@ -80,7 +81,8 @@ namespace twoCube.Services
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
-                { }
+                {
+                }
             }
         }
 
