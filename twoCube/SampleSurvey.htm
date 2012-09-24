@@ -28,6 +28,7 @@ $.getJSON("./Services/SurveyControllerService.asmx/getSurveyById",
   {
     Id: $.urlParam('s'),
   },
+
 function(data) {
   console.log(data);
     $("<h2>" + data.surveyTitle + "</h2>").appendTo("#survey");
