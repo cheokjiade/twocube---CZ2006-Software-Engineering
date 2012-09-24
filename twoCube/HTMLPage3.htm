@@ -34,20 +34,17 @@
           function(data) {
               $.each(data.questionList, function (i, item) {
                 $("<div id=\"chart" + i + "\" style=\"height:300px; width:500px;\"></div>").appendTo("#maindiv");
-
-            });
-
-            $(function () {
-                var stuff = [
+                $(function () {
+                    var stuff = [
     ['June', 300], ['Wei Leng', 9], ['Wesley', 14],
     ['Lim Guan', 16], ['Tiffany', 7], ['Jia De', 1]
   ];
 
-                var total = 0;
-                $(stuff).map(function () { total += this[1]; })
+                    var total = 0;
+                    $(stuff).map(function () { total += this[1]; })
 
-                myLabels = $.makeArray($(stuff).map(function () { return this[1] + " " + Math.round(this[1] / total * 100) + "%"; }));
-                var plot1 = jQuery.jqplot('chart1', [stuff],
+                    myLabels = $.makeArray($(stuff).map(function () { return this[1] + " " + Math.round(this[1] / total * 100) + "%"; }));
+                    var plot1 = jQuery.jqplot('chart'+i, [stuff],
     {
         seriesDefaults: {
             // Make this a pie chart.
@@ -64,7 +61,10 @@
         legend: { show: true, location: 'e' }
     }
   );
-            })
+                })
+            });
+
+            
         });
     </script>
 
