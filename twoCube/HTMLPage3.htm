@@ -10,7 +10,9 @@
     <script type="text/javascript" src="Scripts/plugins/jqplot.barRenderer.js"></script>
     <script type="text/javascript" src="Scripts/plugins/jqplot.categoryAxisRenderer.js"></script>
     <script type="text/javascript" src="Scripts/plugins/jqplot.categoryAxisRenderer.js"></script>
+    <script type="text/javascript" src="../src/plugins/jqplot.donutRenderer.min.js"></script>
     <link rel="Stylesheet" type="text/css" href="Styles/jquery.jqplot.min.css" />
+
 </head>
 <body>
 <div id="maindiv" style="width: 800px;"></div>
@@ -32,8 +34,21 @@
               id: "2"
           },
           function (data) {
+              $("<h2>" + data.surveyTitle + "</h2>").appendTo("#maindiv");
+              $("<h4>" + data.surveyDescription + "</h4>").appendTo("#maindiv");
+
               $.each(data.questionList, function (question, questionList) {
-                  $("<div id=\"chart" + question + "\" style=\"height:300px; width:500px;\"></div>").appendTo("#maindiv");
+                  // $("<h2>" + questionList.questionTitle + "</h2>").appendTo("#maindiv");
+
+                /*  if (questionList.questionOption == 0 || questionList.questionOption == 1 || questionList.questionOption == 5) {
+                  
+                  }
+                  else if (questionList.questionOption == 2 || questionList.surveyOption == 3) {
+                  }
+                  else {
+                  }*/
+
+                  $("<div id=\"chartPie" + question + "\" style=\"height:350px; width:600px;\"></div>").appendTo("#maindiv");
                   $(function () {
                       var stuff = [];
                       $.each(questionList.optionList, function (option, optionList) {
@@ -50,12 +65,20 @@
                       $(stuff).map(function () { total += this[1]; })
 
                       myLabels = $.makeArray($(stuff).map(function () { return this[1] + " " + Math.round(this[1] / total * 100) + "%"; }));
-                      var plot1 = jQuery.jqplot('chart' + question, [stuff],
+                      var plot1 = jQuery.jqplot('chartPie' + question, [stuff],
     {
+
+
+
+        title: question + 1 + ". " + questionList.questionTitle,
         seriesDefaults: {
             // Make this a pie chart.
             renderer: jQuery.jqplot.PieRenderer,
             rendererOptions: {
+                fill: true,
+                shadowOffset: 2,
+                shadowDepth: 5,
+                sliceMargin: 2,
                 dataLabels: myLabels,
                 dataLabelThreshold: 0,
                 dataLabelNudge: 20,
@@ -67,11 +90,14 @@
         legend: { show: true, location: 'e' }
     }
   );
+
+
                   })
               });
 
 
           });
+
     </script>
 
 </body>
