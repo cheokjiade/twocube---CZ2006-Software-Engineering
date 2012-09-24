@@ -12,13 +12,38 @@
 </head>
 <body>
 <form id="testForm" action="javascript:test()">
-Username<input type="text" name="username" />Password<input type="password" name="password"/>
+Username<input type="text" name="username" onblur="javascript:test1()"/>Password<input type="password" name="password"/>
     <input type="submit" />
     </form>
     <pre><code id="testArea"></code></pre>
     <div id="response"></div>
     <script>
         function test() {
+            var formData = form2js('testForm', '.', true,
+				function (node) {
+				    if (node.id && node.id.match(/callbackTest/)) {
+				        return { name: node.id, value: node.innerHTML };
+				    }
+				});
+
+            document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
+            $.post("./Services/SampleService.asmx/ViewUserDetails",
+          {
+              jsonString: JSON.stringify(formData, null, '\t')
+          },
+            function (data) {
+                console.log(data);
+                var json = $.parseJSON(data);
+
+                $("<h2>User ID :" + data.Id + "</h2>").appendTo("#response");
+                $("<h2>User Name :" + data.memberPassword + "</h2>").appendTo("#response");
+                $("<h2>User Password :" + data.userName + "</h2>").appendTo("#response");
+                $('input[name=username]').val(data.Id + data.memberPassword + data.userName);
+
+            }, "json");
+        }
+
+        function test1() {
             var formData = form2js('testForm', '.', true,
 				function (node) {
 				    if (node.id && node.id.match(/callbackTest/)) {
