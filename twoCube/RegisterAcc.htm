@@ -97,7 +97,6 @@
     this.cpassword.focus();
     return false;
   }
-  alert('Success! ');
 " action="javascript:test()">
     <div>
         <table>
@@ -136,7 +135,7 @@
                     User Name (For Login):
                 </td>
                 <td>
-                    <input id="Text4" type="text" name="userName" onchange="this.value = this.value.replace(/^\s+|\s+$/g, ''); valid_name3.checked = this.value;" />
+                    <input id="Text4" type="text" name="userName"  onchange="this.value = this.value.replace(/^\s+|\s+$/g, ''); valid_name3.checked = this.value;" />
                     <input type="checkbox" disabled="disabled" name="valid_name3" />
                 </td>
                 <td>
@@ -225,7 +224,8 @@
             });
             return o;
         };
-        function test() {
+
+        function test() { //returned null if not found. returned user info when it is in db //test = function
             var formData = form2js('testForm', '.', true,
 				function (node) {
 				    if (node.id && node.id.match(/callbackTest/)) {
@@ -233,18 +233,73 @@
 				    }
 				});
 
-            document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
-            $.post("./Services/MemberControllerService.asmx/AddUser",
+            document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t'); //formData = object
+            $.post("./Services/MemberControllerService.asmx/listOfUsers",
+          {
+              jsonString: JSON.stringify(formData, null, '\t')
+          },
+            function (data) { //print out null or record found //data = undefined
+                console.log(data);
+                var json = $.parseJSON(data);
+                if (parseInt(data.userExists) == 0) {
+                    emailCheck();
+                    data.userExists == 1;
+                } else {
+                    alert('Username has already been taken. Please try again.');
+                }
+            }, "json");
+
+        }
+
+        function emailCheck() { //returned null if not found. returned user info when it is in db //test = function
+            var formData = form2js('testForm', '.', true,
+				function (node) {
+				    if (node.id && node.id.match(/callbackTest/)) {
+				        return { name: node.id, value: node.innerHTML };
+				    }
+				});
+
+            document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t'); //formData = object
+            $.post("./Services/MemberControllerService.asmx/checkEmailExist",
+          {
+              jsonString: JSON.stringify(formData, null, '\t')
+          },
+            function (data) { //print out null or record found //data = undefined
+                console.log(data);
+                var json = $.parseJSON(data);
+                if (parseInt(data.emailExists) == 0) {
+                    test1();
+                    data.emailExists == 1;
+                } else {
+                    alert('Email address has already been used. Please try again.');
+                }
+            }, "json");
+
+        }
+       
+      function test1() { 
+          var formData = form2js('testForm', '.', true,
+				function (node) {
+				    if (node.id && node.id.match(/callbackTest/)) {
+				        return { name: node.id, value: node.innerHTML };
+				    }
+				});
+
+          document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
+          $.post("./Services/MemberControllerService.asmx/AddUser",
           {
               jsonString: JSON.stringify(formData, null, '\t')
           },
             function (data) {
                 console.log(data);
-            });
-        }
+                var json = $.parseJSON(data);
+            }, "json");
+            alert('Congratulations! Account created! Please login now!');
+      }
+
 
     </script>
-    <!-- Script by hscripts.com -->
+    <!-- Script by hscripts.com --> 
     &nbsp;<!-- Script by hscripts.com -->
 </body>
 </html>

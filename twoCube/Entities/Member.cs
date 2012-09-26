@@ -44,5 +44,19 @@ namespace twoCube.Entities
                 .Add(Expression.Eq("memberPassword", password))
                 .UniqueResult<Member>();
         }
+
+        public static Member GetByUserName(ISession session, string userName)
+        {
+            return session.CreateCriteria(typeof(Member))
+                .Add(Expression.Eq("userName", userName))
+                .UniqueResult<Member>();
+        }
+
+        public static Member GetByEmail(ISession session, string memberEmail)
+        {
+            return session.CreateCriteria(typeof(Member))
+                .Add(Expression.Eq("memberEmail", memberEmail))
+                .UniqueResult<Member>();
+        }
     }
 }
