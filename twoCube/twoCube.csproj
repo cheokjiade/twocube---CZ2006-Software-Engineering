@@ -111,14 +111,6 @@
     <Content Include="images\filesave.gif" />
     <Content Include="images\file_upload.gif" />
     <Content Include="images\file_upload_bg.gif" />
-    <Content Include="images\icons\add.gif" />
-    <Content Include="images\icons\arrow.gif" />
-    <Content Include="images\icons\delete.gif" />
-    <Content Include="images\icons\duplicate.gif" />
-    <Content Include="images\icons\filesave.gif" />
-    <Content Include="images\icons\pencil.gif" />
-    <Content Include="images\icons\star.gif" />
-    <Content Include="images\icons\stardim.gif" />
     <Content Include="images\input_bg.gif" />
     <Content Include="images\key.gif" />
     <Content Include="images\locksmall.gif" />
