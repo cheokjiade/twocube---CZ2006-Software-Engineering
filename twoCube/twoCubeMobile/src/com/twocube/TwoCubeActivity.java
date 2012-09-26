@@ -8,9 +8,14 @@ import com.twocube.entities.Survey;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class TwoCubeActivity extends Activity {
@@ -32,17 +37,49 @@ public class TwoCubeActivity extends Activity {
 			JSONObject jsonobj = new JSONObject(jsonString);
 			survey = new Survey();
 			TextView tvSurveyTitle =(TextView)findViewById(R.id.tv_title_main);
+			TextView tvSurveyDescription =(TextView)findViewById(R.id.tv_description_main);
 			tvSurveyTitle.setText(jsonobj.getString("surveyTitle"));
+			tvSurveyDescription.setText(jsonobj.getString("surveyDescription"));
 			JSONArray questionArray = new JSONArray(jsonobj.getString("surveyQuestionList"));
 			for (int i = 0; i < questionArray.length(); i++) {
 				JSONObject tempQuestion = questionArray.getJSONObject(i);
 				View v = inflater.inflate(R.layout.question_layout, null); 
+				LinearLayout llQuestion = (LinearLayout)v.findViewById(R.id.ll_question);
 				((TextView)v.findViewById(R.id.tv_title_question)).setText(tempQuestion.getString("surveyQuestionTitle"));
 				
-				if(tempQuestion.getInt("surveyQuestionType") ==1){
-					JSONArray optionArray = new JSONArray(jsonobj.getString("surveyQuestionOptionList"));
+				if(tempQuestion.getInt("surveyQuestionType") == 1){
+					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
 					for (int j = 0; j < optionArray.length(); j++) {
-						
+						JSONObject tempOption = optionArray.getJSONObject(j);
+						CheckBox cb = new CheckBox(this);
+						cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+						llQuestion.addView(cb);
+					}
+				}else if(tempQuestion.getInt("surveyQuestionType") == 2){
+					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
+					for (int j = 0; j < optionArray.length(); j++) {
+						JSONObject tempOption = optionArray.getJSONObject(j);
+						SeekBar sb = new SeekBar(this);
+						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+						llQuestion.addView(sb);
+					}
+				}else if(tempQuestion.getInt("surveyQuestionType") == 3){
+					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
+					for (int j = 0; j < optionArray.length(); j++) {
+						JSONObject tempOption = optionArray.getJSONObject(j);
+						EditText et = new EditText(this);
+						et.setInputType(InputType.TYPE_CLASS_NUMBER);
+						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+						llQuestion.addView(et);
+					}
+				}else if(tempQuestion.getInt("surveyQuestionType") == 4){
+					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
+					for (int j = 0; j < optionArray.length(); j++) {
+						JSONObject tempOption = optionArray.getJSONObject(j);
+						DatePicker dp = new DatePicker(this);
+						//et.setInputType(InputType.TYPE_DATETIME_VARIATION_DATE);
+						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+						llQuestion.addView(dp);
 					}
 				}
 				
