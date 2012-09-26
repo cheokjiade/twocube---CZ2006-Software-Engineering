@@ -8,29 +8,11 @@
     <script src="https://raw.github.com/maxatwork/form2js/master/src/form2js.js"></script>
     <script src="Scripts/json2.js"></script>
     <!-- 
-
 	Copyright 2009 Itamar Arjuan
 	jsDatePick is distributed under the terms of the GNU General Public License.
-	
-	****************************************************************************************
-
-	Copy paste these 2 lines of code to every page you want the calendar to be available at
 -->
     <link rel="stylesheet" type="text/css" media="all" href="jsDatePick_ltr.min.css" />
-    <!-- 
-	OR if you want to use the calendar in a right-to-left website
-	just use the other CSS file instead and don't forget to switch g_jsDatePickDirectionality variable to "rtl"!
-	
-	<link rel="stylesheet" type="text/css" media="all" href="jsDatePick_ltr.css" />
--->
     <script type="text/javascript" src="jsDatePick.min.1.3.js"></script>
-    <!-- 
-	After you copied those 2 lines of code , make sure you take also the files into the same folder :-)
-    Next step will be to set the appropriate statement to "start-up" the calendar on the needed HTML element.
-    
-    The first example of Javascript snippet is for the most basic use , as a popup calendar
-    for a text field input.
--->
     <script type="text/javascript">
         window.onload = function () {
             new JsDatePick({
@@ -56,48 +38,7 @@
     </style>
 </head>
 <body>
-    <form id="testForm" method="post" onsubmit="
-  if(this.firstName.value == '') {
-    alert('Please enter your first name in the form');
-    this.firstName.focus();
-    return false;
-  }
-  if(this.lastName.value == '') {
-    alert('Please enter your last name in the form');
-    this.lastName.focus();
-    return false;
-  }
-  if(this.userName.value == '') {
-    alert('Please enter your user name in the form');
-    this.userName.focus();
-    return false;
-  }
-  if(this.email.value == '') {
-    alert('Please enter your email in the form');
-    this.email.focus();
-    return false;
-  }
-  if(this.dobCal.value == '') {
-    alert('Please enter your date of birth in the form');
-    this.dobCal.focus();
-    return false;
-  }
-  if(this.password.value == '') {
-    alert('Please enter your password in the form');
-    this.password.focus();
-    return false;
-  }
-  if(this.cpassword.value == '') {
-    alert('Please confirm your password');
-    this.cpassword.focus();
-    return false;
-  }
-   if(this.cpassword.value != this.password.value) {
-    alert('password dont match!');
-    this.cpassword.focus();
-    return false;
-  }
-" action="javascript:test()">
+    <form id="testForm" method="post" onsubmit="return validateForm()" action="javascript:test()">
     <div>
         <table>
             <tr>
@@ -135,7 +76,7 @@
                     User Name (For Login):
                 </td>
                 <td>
-                    <input id="Text4" type="text" name="userName"  onchange="this.value = this.value.replace(/^\s+|\s+$/g, ''); valid_name3.checked = this.value;" />
+                    <input id="Text4" type="text" name="userName" onchange="this.value = this.value.replace(/^\s+|\s+$/g, ''); valid_name3.checked = this.value;" />
                     <input type="checkbox" disabled="disabled" name="valid_name3" />
                 </td>
                 <td>
@@ -276,17 +217,17 @@
             }, "json");
 
         }
-       
-      function test1() { 
-          var formData = form2js('testForm', '.', true,
+
+        function test1() { //add user successfully
+            var formData = form2js('testForm', '.', true,
 				function (node) {
 				    if (node.id && node.id.match(/callbackTest/)) {
 				        return { name: node.id, value: node.innerHTML };
 				    }
 				});
 
-          document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
-          $.post("./Services/MemberControllerService.asmx/AddUser",
+            document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
+            $.post("./Services/MemberControllerService.asmx/AddUser",
           {
               jsonString: JSON.stringify(formData, null, '\t')
           },
@@ -295,11 +236,58 @@
                 var json = $.parseJSON(data);
             }, "json");
             alert('Congratulations! Account created! Please login now!');
-      }
+        }
+
+        function validateForm() {
+            var firstName = document.forms["testForm"]["firstName"].value
+            if (firstName == '' || firstName == null) {
+                alert('Please enter your first name!');
+                return false;
+            }
+            var lastName = document.forms["testForm"]["lastName"].value
+            if (lastName == '' || lastName == null) {
+                alert('Please enter your last name!');
+                return false;
+            }
+            var userName = document.forms["testForm"]["userName"].value
+            if (userName == '' || userName == null) {
+                alert('Please enter your user name!');
+                return false;
+            }
+            var email = document.forms["testForm"]["email"].value
+            var reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (reg.test(email) == false || email == '' || email == null) {
+                alert('Please enter a valid email address!');
+                return false;
+            }
+            var dobCal = document.forms["testForm"]["dobCal"].value
+            if (dobCal == '' || dobCal == null) {
+                alert('Please enter your date of birth!');
+                return false;
+            }
+            var password = document.forms["testForm"]["password"].value
+            if (password == '' || password == null) {
+                alert('Please enter your password!');
+                return false;
+            }
+            var cpassword = document.forms["testForm"]["cpassword"].value
+            if (cpassword == '' || cpassword == null) {
+                alert('Please confirm your password!');
+                return false;
+            }
+            if (cpassword != password) {
+                alert('password dont match!');
+                return false;
+            }
+        }
 
 
     </script>
-    <!-- Script by hscripts.com --> 
-    &nbsp;<!-- Script by hscripts.com -->
+    <!-- 
+    Email invalid when...
+    mysite.ourearth.com [@ is not present]
+    my@own@site@.org [only one @ is allowed]
+    @you.me.net [No character before @]
+    ourearth@ [No character after @]-->
 </body>
 </html>

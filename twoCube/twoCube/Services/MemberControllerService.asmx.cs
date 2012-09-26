@@ -30,7 +30,7 @@ namespace twoCube.Services
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    JObject jsonObject = JObject.Parse(jsonString);   
+                    JObject jsonObject = JObject.Parse(jsonString);
                     var user = new Entities.Member
                     {
                         memberFirstName = jsonObject.SelectToken("firstName").ToString(),
@@ -46,9 +46,9 @@ namespace twoCube.Services
                     //print
 
                     JavaScriptSerializer js = new JavaScriptSerializer();
- 
+
                     Context.Response.Write(js.Serialize(user));
-                   
+
                 }
             }
         }
@@ -62,13 +62,14 @@ namespace twoCube.Services
                 using (var transaction = session.BeginTransaction())
                 {
                     JavaScriptSerializer js = new JavaScriptSerializer();
-                    JObject jsonObject = JObject.Parse(jsonString);   
+                    JObject jsonObject = JObject.Parse(jsonString);
                     var member = Member.GetByUserName(session, jsonObject.SelectToken("userName").ToString());
                     if (member == null)
                     {
-                        Context.Response.Write(js.Serialize(new Response {userExists = 0}));
+                        Context.Response.Write(js.Serialize(new Response { userExists = 0 }));
                     }
-                    else {
+                    else
+                    {
                         Context.Response.Write(js.Serialize(new Response { userExists = 1 }));
                     }
                 }
@@ -116,7 +117,7 @@ namespace twoCube.Services
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    
+
                 }
             }
         }
