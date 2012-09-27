@@ -15,6 +15,8 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -47,7 +49,20 @@ public class TwoCubeActivity extends Activity {
 				LinearLayout llQuestion = (LinearLayout)v.findViewById(R.id.ll_question);
 				((TextView)v.findViewById(R.id.tv_title_question)).setText(tempQuestion.getString("surveyQuestionTitle"));
 				
-				if(tempQuestion.getInt("surveyQuestionType") == 1){
+				if(tempQuestion.getInt("surveyQuestionType") == 0){
+					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
+					RadioGroup rg = new RadioGroup(this);
+					for (int j = 0; j < optionArray.length(); j++) {
+						JSONObject tempOption = optionArray.getJSONObject(j);
+						RadioButton rb = new RadioButton(this);
+						rb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+						rg.addView(rb);
+						//CheckBox cb = new CheckBox(this);
+						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+						
+					}
+					llQuestion.addView(rg);
+				}else if(tempQuestion.getInt("surveyQuestionType") == 1){
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
 					for (int j = 0; j < optionArray.length(); j++) {
 						JSONObject tempOption = optionArray.getJSONObject(j);
