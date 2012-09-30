@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script src="https://raw.github.com/SamWM/jQuery-Plugins/master/numeric/jquery.numeric.js"></script>
+    <script src="https://raw.github.com/maxatwork/form2js/master/src/form2js.js"></script>
+    <script src="Scripts/json2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var username = "username1";
+            var password = "password";
+
+            $.post("./Services/MemberControllerService.asmx/ViewUserDetails",
+            {
+                jsonString: '{"username": "' + username + '", "password": "' + password + '"}'
+            },
+            function (data) {
+                console.log(data);
+                var json = $.parseJSON(data);
+                document.getElementById('userName').value = data.userName;
+                document.getElementById('firstName').value = data.memberFirstName;
+                document.getElementById('lastName').value = data.memberLastName;
+                document.getElementById('email').value = data.memberEmail;
+            }, "json");
+
+        });
+    </script>
+</head>
+<body>
+<h1>View Account Details</h1>
+<form id="updateForm" action="javascript:update()">
+    <label>User Name:&nbsp;&nbsp;&nbsp;&nbsp; </label><input type="text" name="username" id="userName" 
+        readonly="readonly" /><br />
+    <label>First Name:</label>&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="firstName" id="firstName" 
+        readonly="readonly"/><br />
+    <label>Last Name:</label>&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="lastName" id="lastName" 
+        readonly="readonly"/><br />
+    <label>Date Of Birth:</label> <input type="text" name="dateofbirth" id="DOB" 
+        readonly="readonly"/><br />
+    <label>Email:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="email" id="email" 
+        readonly="readonly"/><br />
+    <br />
+    <input type="submit" value="Edit Profile"/>&nbsp;
+</form>
+<div id="response"></div>
+</body>
+</html>
+

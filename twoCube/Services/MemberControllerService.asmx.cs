@@ -110,25 +110,39 @@ namespace twoCube.Services
 
         [WebMethod(Description = "View User. Take in string username, string password")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
-        public void ViewUserDetails(string userName, string password)
+        public void ViewUserDetails(string jsonString)
         {
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    
+                    JObject jsonObject = JObject.Parse(jsonString);
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    Context.Response.Write(js.Serialize(Entities.Member.GetByLogin(session, jsonObject.SelectToken("username").ToString(), jsonObject.SelectToken("password").ToString())));
                 }
             }
         }
 
-        [WebMethod(Description = "Update User, String firstName, String lastName, String userName, Stirng password, int age, String location, String email, String qn, String answer")]
+
+        [WebMethod(Description = "Update User. Take in string username, string password")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void UpdateUserDetails(string jsonString)
         {
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
-                { }
+                {
+                    JObject jsonObject = JObject.Parse(jsonString);
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    var user = Entities.Member.GetByLogin(session, jsonObject.SelectToken("username").ToString(), jsonObject.SelectToken("password").ToString());
+                    user.memberFirstName = jsonObject.SelectToken("firstName").ToString();
+                    user.memberLastName = jsonObject.SelectToken("lastName").ToString();
+                    //user.dateOfBirthday = DateTime.Parse(jsonObject.SelectToken("dob").ToString());
+                    user.memberEmail = jsonObject.SelectToken("email").ToString();
+                    session.SaveOrUpdate(user);
+                    transaction.Commit();
+                    //Context.Response.Write(js.Serialize();
+                }
             }
         }
 

@@ -89,6 +89,7 @@
     <Content Include="css\index.css" />
     <Content Include="css\layout.css" />
     <Content Include="css\skeleton.css" />
+    <Content Include="EditUserDetails.htm" />
     <Content Include="HTMLPage2.htm" />
     <Content Include="HTMLPage3.htm" />
     <Content Include="images\address.gif" />
@@ -222,6 +223,7 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="ViewUserDetails.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
