@@ -37,7 +37,6 @@ namespace twoCube.Services
                         memberLastName = jsonObject.SelectToken("lastName").ToString(),
                         userName = jsonObject.SelectToken("userName").ToString(),
                         memberPassword = jsonObject.SelectToken("password").ToString(),
-                        dateOfBirthday = DateTime.Parse(jsonObject.SelectToken("dobCal").ToString()),
                         memberEmail = jsonObject.SelectToken("email").ToString()
                     };
 
