@@ -38,6 +38,7 @@ namespace twoCube.Services
                         var resultQn = new Questions();
                         i++;
                         resultQn.questionTitle = question.surveyQuestionTitle;
+                        resultQn.questionType = question.surveyQuestionType;
                         switch (question.surveyQuestionType)
                         {
                             //multiple choices and checkboxes

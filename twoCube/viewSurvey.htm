@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script language="javascript" type="text/javascript" src="Scripts/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="Scripts/plugins/jqplot.pieRenderer.js"></script>
+    <script type="text/javascript" src="Scripts/plugins/jqplot.barRenderer.js"></script>
+    <script type="text/javascript" src="Scripts/plugins/jqplot.categoryAxisRenderer.js"></script>
+    <script type="text/javascript" src="Scripts/plugins/jqplot.categoryAxisRenderer.js"></script>
+    <script type="text/javascript" src="../src/plugins/jqplot.donutRenderer.min.js"></script>
+    <link rel="Stylesheet" type="text/css" href="Styles/jquery.jqplot.min.css" />
+</head>
+<body>
+    <div id="maindiv" style="width: 800px;">
+    </div>
+    <div class="code prettyprint">
+        <pre class="code prettyprint brush: js"></pre>
+        <style type="text/css">
+            .note
+            {
+                font-size: 0.8em;
+            }
+            .jqplot-yaxis-tick
+            {
+                white-space: nowrap;
+            }
+        </style>
+        <script class="code" type="text/javascript">
+            $.getJSON("./Services/SurveyResults.asmx/getSurvey",
+          {
+              id: "2"
+          },
+          function (data) {
+              $("<center><h2>" + data.surveyTitle + "</h2></center>").appendTo("#maindiv");
+              $("<h4>" + data.surveyDescription + "</h4>").appendTo("#maindiv");
+
+              $.each(data.questionList, function (question, questionList) {
+                  // $("<h2>" + questionList.questionTitle + "</h2>").appendTo("#maindiv");
+
+                  if (questionList.questionType == 0 || questionList.questionType == 5) { //radio button, scale radio
+
+                      $("<div id=\"chartPie" + question + "\" style=\"height:350px; width:600px;\"></div>").appendTo("#maindiv");
+                      $(function () {
+                          var stuff = [];
+                          $.each(questionList.optionList, function (option, optionList) {
+                              var stuffItem = [];
+                              stuffItem.push(optionList.optionTitle);
+                              stuffItem.push(parseInt(optionList.noOfRespondents));
+                              //stuffItem[optionList.optionTitle] = parseInt(optionList.noOfRespondents);
+                              stuff.push(stuffItem);
+
+
+                          });
+
+                          var total = 0;
+                          $(stuff).map(function () { total += this[1]; })
+
+                          myLabels = $.makeArray($(stuff).map(function () { return this[1] + " " + Math.round(this[1] / total * 100) + "%"; }));
+                          var plot1 = jQuery.jqplot('chartPie' + question, [stuff],
+
+                      {
+                          title: question + 1 + ". " + questionList.questionTitle + questionList.questionType,
+                          seriesDefaults: {
+                              // Make this a pie chart.
+                              renderer: jQuery.jqplot.PieRenderer,
+                              rendererOptions: {
+                                  fill: true,
+                                  shadowOffset: 2,
+                                  shadowDepth: 5,
+                                  sliceMargin: 2,
+                                  dataLabels: myLabels,
+                                  dataLabelThreshold: 0,
+                                  dataLabelNudge: 20,
+                                  // Put data labels on the pie slices.
+                                  // By default, labels show the percentage of the slice.
+                                  showDataLabels: true
+                              }
+                          },
+                          legend: { show: true, location: 'e' }
+                      });
+
+                      })
+                  }
+
+                  else if (questionList.questionType == 2) { //slider
+
+                      $("<div id=\"lineChart" + question + "\" style=\"height:350px; width:600px;\"></div>").appendTo("#maindiv");
+                      $(function () {
+                          var stuff = [];
+                          $.each(questionList.optionList, function (option, optionList) {
+                              var stuffItem = [];
+                              stuffItem.push(optionList.optionTitle);
+                              stuffItem.push(parseInt(optionList.noOfRespondents));
+                              stuff.push(stuffItem);
+
+
+                          });
+
+                          var total = 0;
+                          $(stuff).map(function () { total += this[1]; })
+
+                          myLabels = $.makeArray($(stuff).map(function () { return this[1] + " " + Math.round(this[1] / total * 100) + "%"; }));
+                          var plot2 = jQuery.jqplot('lineChart' + question, [stuff],
+
+                          {
+
+                              title: question + 1 + ". " + questionList.questionTitle + questionList.questionType,
+                              axesDefaults: {
+                                  // Make this a line chart.
+                                  labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+                              },
+                              axes: {
+                                  xaxis: {
+                                      label: "X axis",
+                                      pad: 0
+                                  },
+                                  yaxis: {
+                                      label: "Y axis"
+                                  }
+                              },
+                              legend: { show: true, location: 'e' }
+                          });
+
+                      })
+                  }
+
+                  else if (questionList.questionType == 1) { //checkbox
+                      $("<div id=\"barChart" + question + "\" style=\"height:370px; width:600px;\"></div>").appendTo("#maindiv");
+                      $(function () {
+                          var stuff = [];
+                          var labelX = [];
+                          $.each(questionList.optionList, function (option, optionList) {
+                              var stuffItem = [];
+                              stuffItem.push(optionList.optionTitle);
+                              stuffItem.push(parseInt(optionList.noOfRespondents));
+                              //stuff.push(stuffItem);
+                              stuff.push(optionList.noOfRespondents);
+                              labelX.push(optionList.optionTitle);
+
+                          });
+
+                          var total = 0;
+                          $(stuff).map(function () { total += this[1]; })
+
+                          myLabels = $.makeArray($(stuff).map(function () { return this[1] + " " + Math.round(this[1] / total * 100) + "%"; }));
+                          
+                          
+                          var plot3 = jQuery.jqplot('barChart' + question, [stuff],
+                          
+                          {
+
+                              title: question + 1 + ". " + questionList.questionTitle + questionList.questionType,
+                              seriesDefaults: {
+                                  // Make this a bar chart.
+                                  renderer: jQuery.jqplot.BarRenderer,
+                                  rendererOptions: {
+                                      barPadding: 1,
+                                      barMargin: 15,
+                                      barDirection: 'vertical',
+                                      barWidth: 50
+                                  },
+                                  pointLables: { show: true }
+                              },
+                              axes: {
+                                  xaxis: {
+                                      renderer: jQuery.jqplot.CategoryAxisRenderer,
+                                      ticks: labelX,
+                                  },
+                                  yaxis: {
+                                      //label: "Y axis"
+                                  }
+                              },
+                              legend: { show: false, location: 'e' }
+                          });
+
+                      })
+                  }
+                  else if (questionList.questionType == 3) {
+
+                  }
+
+              });
+
+
+
+          });
+
+        </script>
+</body>
+</html>
