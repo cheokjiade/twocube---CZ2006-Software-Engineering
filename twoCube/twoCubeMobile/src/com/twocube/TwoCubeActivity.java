@@ -1,23 +1,37 @@
 package com.twocube;
 
+import java.io.IOException;
+import java.io.StringWriter;
+import java.util.Calendar;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.simple.JSONValue;
 
 import com.twocube.entities.Survey;
+import com.twocube.entities.SurveyQuestion;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 public class TwoCubeActivity extends Activity {
@@ -52,6 +66,9 @@ public class TwoCubeActivity extends Activity {
 				if(tempQuestion.getInt("surveyQuestionType") == 0){
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
 					RadioGroup rg = new RadioGroup(this);
+					int pos = i;
+					final SurveyQuestion sq =  new SurveyQuestion(0);
+					survey.getQuestionList().add(sq);
 					for (int j = 0; j < optionArray.length(); j++) {
 						JSONObject tempOption = optionArray.getJSONObject(j);
 						RadioButton rb = new RadioButton(this);
@@ -61,6 +78,15 @@ public class TwoCubeActivity extends Activity {
 						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
 						
 					}
+					rg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+						
+						@Override
+						public void onCheckedChanged(RadioGroup group, int checkedId) {
+							if(checkedId == -1){}
+							else sq.setNumAns(group.indexOfChild(findViewById(group.getCheckedRadioButtonId())));
+							
+						}
+					});
 					llQuestion.addView(rg);
 				}else if(tempQuestion.getInt("surveyQuestionType") == 1){
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
@@ -72,9 +98,33 @@ public class TwoCubeActivity extends Activity {
 					}
 				}else if(tempQuestion.getInt("surveyQuestionType") == 2){
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
+					final SurveyQuestion sq =  new SurveyQuestion(2);
+					survey.getQuestionList().add(sq);
 					for (int j = 0; j < optionArray.length(); j++) {
 						JSONObject tempOption = optionArray.getJSONObject(j);
 						SeekBar sb = new SeekBar(this);
+						sb.setMax(100);
+						sb.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+							
+							@Override
+							public void onStopTrackingTouch(SeekBar seekBar) {
+								// TODO Auto-generated method stub
+								
+							}
+							
+							@Override
+							public void onStartTrackingTouch(SeekBar seekBar) {
+								// TODO Auto-generated method stub
+								
+							}
+							
+							@Override
+							public void onProgressChanged(SeekBar seekBar, int progress,
+									boolean fromUser) {
+								sq.setNumAns(progress);
+								
+							}
+						});
 						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
 						llQuestion.addView(sb);
 					}
@@ -89,11 +139,31 @@ public class TwoCubeActivity extends Activity {
 					}
 				}else if(tempQuestion.getInt("surveyQuestionType") == 4){
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
+					final SurveyQuestion sq =  new SurveyQuestion(4);
+					survey.getQuestionList().add(sq);
 					for (int j = 0; j < optionArray.length(); j++) {
 						JSONObject tempOption = optionArray.getJSONObject(j);
-						DatePicker dp = new DatePicker(this);
+						final DatePicker dp = new DatePicker(this);
+						final Calendar c = Calendar.getInstance();
+						dp.init(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH), new OnDateChangedListener() {
+							
+							@Override
+							public void onDateChanged(DatePicker view, int year, int monthOfYear,
+									int dayOfMonth) {
+								sq.setStrAns(Integer.toString(monthOfYear+1)+"/"+Integer.toString(dayOfMonth)+"/"+Integer.toString(year));
+								
+							}
+						});
 						//et.setInputType(InputType.TYPE_DATETIME_VARIATION_DATE);
 						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+						dp.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								sq.setStrAns(Integer.toString(dp.getMonth()+1)+"/"+Integer.toString(dp.getDayOfMonth())+"/"+Integer.toString(dp.getYear()));
+								Log.w("dp", Integer.toString(dp.getMonth()+1)+"/"+Integer.toString(dp.getDayOfMonth())+"/"+Integer.toString(dp.getYear()));
+							}
+						});
 						llQuestion.addView(dp);
 					}
 				}
@@ -101,6 +171,40 @@ public class TwoCubeActivity extends Activity {
 				((LinearLayout)findViewById(R.id.ll_main)).addView(v);
 				
 			}
+			Button bnSubmit = new Button(this);
+			bnSubmit.setText("Submit");
+			//final 
+
+			bnSubmit.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Map main=new LinkedHashMap();
+					Map obj=new LinkedHashMap();
+					int i = 0;
+					for(SurveyQuestion question:survey.getQuestionList()){
+						if(question.getQuestionType()==0)
+							obj.put(Integer.toString(i), question.getNumAns());
+						else if(question.getQuestionType()==2)
+							obj.put(Integer.toString(i), question.getNumAns());
+						else if (question.getQuestionType()==4)
+							obj.put(Integer.toString(i), question.getStrAns());
+						i++;
+					}
+					main.put("s", obj);
+					StringWriter out = new StringWriter();
+					   try {
+						JSONValue.writeJSONString(main, out);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					   String jsonText = out.toString();
+					   Log.w("JSON", jsonText);
+
+				}
+			});
+			((LinearLayout)findViewById(R.id.ll_main)).addView(bnSubmit);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
