@@ -24,16 +24,20 @@ $.urlParam = function(name){
     return results[1] || 0;
 }
 
+var start = new Date().getTime();
+
 $.getJSON("./Services/SurveyControllerService.asmx/getSurveyById",
   {
     Id: $.urlParam('s'),
   },
+
 
 function(data) {
   console.log(data);
     $("<h2>" + data.surveyTitle + "</h2>").appendTo("#survey");
     $("<strong>" + data.surveyDescription + "</strong>").appendTo("#survey");
     $("<input type=\"hidden\" name=\"surveyId\" value=\""+ data.Id + "\">").appendTo("#survey");
+    $("<input type=\"hidden\" name=\"surveyTime\" value=\"\">").appendTo("#survey");
 
     $.each(data.surveyQuestionList, function(qnvali,qnval){
 	  $("<p>" + qnval.surveyQuestionTitle + "</p>").appendTo("#survey");
@@ -112,6 +116,9 @@ function(data) {
 
 function test()
 	{
+        var end = new Date().getTime()
+        var timeTaken = end - start;
+        $('input[name=surveyTime]').val(timeTaken);
 		var formData = form2js('testForm', '.', true,
 				function(node)
 				{

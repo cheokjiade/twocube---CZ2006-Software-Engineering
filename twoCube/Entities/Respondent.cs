@@ -8,6 +8,7 @@ namespace twoCube.Entities
     public class Respondent
     {
         public virtual int Id { get; set; }
+        public virtual int respondentTime { get; set; }
         public virtual string respondentIPAddress { get; set; }
         public virtual string respondentSessionID { get; set; }
         public virtual IList<SurveyQuestionResponse> surveyQuestionResponseList { get; set; }

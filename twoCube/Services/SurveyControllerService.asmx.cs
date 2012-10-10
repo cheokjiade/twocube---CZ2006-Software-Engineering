@@ -129,8 +129,11 @@ namespace twoCube.Services
                             else if (!String.IsNullOrEmpty(HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"]))
                                 ipAddress = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
                             else ipAddress = System.Web.HttpContext.Current.Request.UserHostAddress;
+                            JToken time;
+                            jsonObject.TryGetValue("surveyTime", out time);
+                            int timeTaken = Int32.Parse(time.ToString());
 
-                            var respondent = new Entities.Respondent { respondentIPAddress = ipAddress, respondentSessionID = "fromworkingresponse" };
+                            var respondent = new Entities.Respondent { respondentIPAddress = ipAddress, respondentSessionID = "fromworkingresponse" , respondentTime = timeTaken};
                             jsonObject = JObject.Parse(jToken.ToString());
                             int i = 0;
                             foreach (var question in survey.surveyQuestionList)
