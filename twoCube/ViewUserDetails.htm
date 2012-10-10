@@ -25,7 +25,7 @@
                 document.getElementById('firstName').value = data.memberFirstName;
                 document.getElementById('lastName').value = data.memberLastName;
                 document.getElementById('email').value = data.memberEmail;
-                document.getElementById('dob').value = parseDate(data.dateOfBirthday);
+               // document.getElementById('dob').value = parseDate(data.dateOfBirthday);
             }, "json");
 
         });
@@ -65,8 +65,6 @@
     <label>First Name:</label>&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="firstName" id="firstName" 
         readonly="readonly"/><br />
     <label>Last Name:</label>&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="lastName" id="lastName" 
-        readonly="readonly"/><br />
-    <label>Date Of Birth:</label> <input type="text" name="dob" id="dob" 
         readonly="readonly"/><br />
     <label>Email:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="email" id="email" 
         readonly="readonly"/><br />
