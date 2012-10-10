@@ -11,8 +11,8 @@
     <script src="Scripts/json2.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var username = "username1";
-            var password = "password";
+            var username = "weileng91";
+            var password = "123";
 
             $.post("./Services/MemberControllerService.asmx/ViewUserDetails",
             {
@@ -25,9 +25,36 @@
                 document.getElementById('firstName').value = data.memberFirstName;
                 document.getElementById('lastName').value = data.memberLastName;
                 document.getElementById('email').value = data.memberEmail;
+                document.getElementById('dob').value = parseDate(data.dateOfBirthday);
             }, "json");
 
         });
+
+        function parseDate(str) {
+            var str1 = str.replace("/", "");
+            var str2 = str1.replace("Date", "");
+            var str3 = str2.replace("(", "");
+            var str4 = str3.replace(")", "");
+            var str4 = str3.replace(")", "");
+            var str5 = str4.replace("/", "");
+            var myDate = new Date(parseInt(str5));
+
+            var month = new Array();
+            month[0] = "1";
+            month[1] = "2";
+            month[2] = "3";
+            month[3] = "4";
+            month[4] = "5";
+            month[5] = "6";
+            month[6] = "7";
+            month[7] = "8";
+            month[8] = "9";
+            month[9] = "10";
+            month[10] = "11";
+            month[11] = "12";
+
+            return myDate.getDate() + "/" + month[myDate.getMonth()] + "/" + myDate.getFullYear();
+        }
     </script>
 </head>
 <body>
@@ -39,7 +66,7 @@
         readonly="readonly"/><br />
     <label>Last Name:</label>&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="lastName" id="lastName" 
         readonly="readonly"/><br />
-    <label>Date Of Birth:</label> <input type="text" name="dateofbirth" id="DOB" 
+    <label>Date Of Birth:</label> <input type="text" name="dob" id="dob" 
         readonly="readonly"/><br />
     <label>Email:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="email" id="email" 
         readonly="readonly"/><br />
@@ -49,4 +76,3 @@
 <div id="response"></div>
 </body>
 </html>
-

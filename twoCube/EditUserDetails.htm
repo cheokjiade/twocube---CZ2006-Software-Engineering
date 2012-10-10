@@ -11,8 +11,8 @@
     <script src="Scripts/json2.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var username = "username1";
-            var password = "password";
+            var username = "weileng91";
+            var password = "123";
 
             $.post("./Services/MemberControllerService.asmx/ViewUserDetails",
             {
@@ -25,9 +25,36 @@
                 document.getElementById('firstName').value = data.memberFirstName;
                 document.getElementById('lastName').value = data.memberLastName;
                 document.getElementById('email').value = data.memberEmail;
+                document.getElementById('dob').value = parseDate(data.dateOfBirthday);
             }, "json");
 
         });
+
+        function parseDate(str) {
+            var str1 = str.replace("/", "");
+            var str2 = str1.replace("Date", "");
+            var str3 = str2.replace("(", "");
+            var str4 = str3.replace(")", "");
+            var str4 = str3.replace(")", "");
+            var str5 = str4.replace("/", "");
+            var myDate = new Date(parseInt(str5));
+
+            var month = new Array();
+            month[0] = "1";
+            month[1] = "2";
+            month[2] = "3";
+            month[3] = "4";
+            month[4] = "5";
+            month[5] = "6";
+            month[6] = "7";
+            month[7] = "8";
+            month[8] = "9";
+            month[9] = "10";
+            month[10] = "11";
+            month[11] = "12";
+
+            return myDate.getDate() + "/" + month[myDate.getMonth()] + "/" + myDate.getFullYear();
+        }
 
         $.fn.serializeObject = function () {
             var o = {};
@@ -45,6 +72,106 @@
             return o;
         };
 
+        function checkfirstname() {
+            var contin = true;
+            if (updateForm.firstName.value == "") {
+                contin = false;
+            }
+
+            return contin;
+        }
+
+        function checklastname() {
+            var contin = true;
+            if (updateForm.lastName.value == "") {
+                contin = false;
+            }
+
+            return contin;
+        }
+
+        function checkemail() {
+            var contin = true;
+            if (updateForm.email.value == "") {
+                contin = false;
+            }
+
+            return contin;
+        }
+
+        function checkpassword() {
+            var contin = true;
+            if (updateForm.password.value == "") {
+                contin = false;
+            }
+
+            return contin;
+        }
+        function checkFields() {
+            if (checkfirstname() && checklastname() && checkemail() && checkpassword()) {
+                emailCheck();
+            }
+            else {
+                alert('Please enter all the fields');
+            }
+        }
+
+
+        function checkpw() {
+            var formData = form2js('updateForm', '.', true,
+				function (node) {
+				    if (node.id && node.id.match(/callbackTest/)) {
+				        return { name: node.id, value: node.innerHTML };
+				    }
+				});
+
+            document.getElementById('response').innerHTML = JSON.stringify(formData, null, '\t');
+            $.post("./Services/MemberControllerService.asmx/validatecpw",
+          {
+              jsonString: JSON.stringify(formData, null, '\t')
+          },
+            function (data) {
+                console.log(data);
+                var json = $.parseJSON(data);
+
+
+                if (parseInt(data.pwExists) == 1) {
+                    update();
+                    data.pwExists == 0;
+
+                } else {
+                    alert('Username and password not match');
+                }
+
+
+            }, "json");
+        }
+
+        function emailCheck() { //returned null if not found. returned user info when it is in db //test = function
+            var formData = form2js('updateForm', '.', true,
+				function (node) {
+				    if (node.id && node.id.match(/callbackTest/)) {
+				        return { name: node.id, value: node.innerHTML };
+				    }
+				});
+
+            document.getElementById('response').innerHTML = JSON.stringify(formData, null, '\t');
+            $.post("./Services/MemberControllerService.asmx/checkEmailExist",
+          {
+              jsonString: JSON.stringify(formData, null, '\t')
+          },
+            function (data) { //print out null or record found //data = undefined
+                console.log(data);
+                var json = $.parseJSON(data);
+                if (parseInt(data.emailExists) == 0) {
+                    checkpw();
+                    data.emailExists == 1;
+                } else {
+                    alert('Email address has already been used. Please try again.');
+                }
+            }, "json");
+
+        }
 
         function update() {
             var formData = form2js('updateForm', '.', true,
@@ -62,19 +189,22 @@
             function (data) {
                 console.log(data);
             });
+            alert('Information Updated!');
         }
     </script>
 </head>
 <body>
 <h1>Update Account Details</h1>
-<form id="updateForm" action="javascript:update()">
+<form id="updateForm" action="javascript:checkFields()">
     <label>User Name:&nbsp;&nbsp; </label>
     <input type="text" name="username" id="userName" readonly="readonly" /><br />
+    <label>Date Of Birth:</label> <input type="text" name="dob" id="dob" 
+        readonly="readonly"/><br />
     <label>First Name:</label>&nbsp;&nbsp;&nbsp; <input type="text" name="firstName" id="firstName"/><br />
     <label>Last Name:</label>&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="lastName" id="lastName"/><br />
-    <label>Date Of Birth:</label> <input type="text" name="dob" id="DOB"/><br />
+    
     <label>Email:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="email" id="email"/><br />
-     <label>Password:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input id="Password"  type="password" name="password" id="password"/><br /
+     <label>Password:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="Password"  type="password" name="password" id="password"/><br /
     <br />
     <input type="submit" value="Update" />&nbsp;
 </form>
