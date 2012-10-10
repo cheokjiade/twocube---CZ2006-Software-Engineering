@@ -7,7 +7,6 @@
     <script src="https://raw.github.com/SamWM/jQuery-Plugins/master/numeric/jquery.numeric.js"></script>
     <script src="https://raw.github.com/maxatwork/form2js/master/src/form2js.js"></script>
     <script src="Scripts/json2.js"></script>
-   
     <style type="text/css">
         #inputField
         {
@@ -26,43 +25,48 @@
 <body>
     <form id="testForm" method="post" onsubmit="
   if(this.firstName.value == '') {
-    alert('Please enter your first name in the form');
+    alert('Please enter your first name!');
     this.firstName.focus();
     return false;
   }
   if(this.lastName.value == '') {
-    alert('Please enter your last name in the form');
+    alert('Please enter your last name!');
     this.lastName.focus();
     return false;
   }
   if(this.userName.value == '') {
-    alert('Please enter your user name in the form');
+    alert('Please enter your user name!');
     this.userName.focus();
     return false;
   }
   if(this.email.value == '') {
-    alert('Please enter your email in the form');
+    alert('Please enter your email!');
     this.email.focus();
     return false;
   }
   if(this.password.value == '') {
-    alert('Please enter your password in the form');
+    alert('Please enter your password!');
     this.password.focus();
     return false;
   }
   if(this.cpassword.value == '') {
-    alert('Please confirm your password');
-    this.cpassword.focus();
-    return false;
-  }
-   if(this.cpassword.value != this.password.value) {
-    alert('password dont match!');
+    alert('Please confirm your password!');
     this.cpassword.focus();
     return false;
   }
 " action="javascript:test()">
     <div>
         <table>
+            <tr>
+                <td>
+                    <strong>Sign up here!</strong></td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+                <td>
+                    &nbsp;</td>
+            </tr>
             <tr>
                 <td class="style1">
                     <strong>Personal Information:</strong>
@@ -98,15 +102,15 @@
                     User Name (For Login):
                 </td>
                 <td>
-                    <input id="Text4" type="text" name="userName"  onchange="this.value = this.value.replace(/^\s+|\s+$/g, ''); valid_name3.checked = this.value;" />
-                    <input type="checkbox" disabled="disabled" name="valid_name3" />
+                    <input id="Text4" type="text" name="userName" onchange="this.value = this.value.replace(/^\s+|\s+$/g, ''); valid_name3.checked = this.value;" />
+                    <input type="checkbox" disabled="disabled" name="valid_name3" id="username1"/>
                 </td>
                 <td>
                     Email:
                 </td>
                 <td>
                     <input id="Text6" type="text" name="email" onchange="this.value = this.value.replace(/^\s+|\s+$/g, ''); valid_name4.checked = this.value;" />
-                    <input type="checkbox" disabled="disabled" name="valid_name4" />
+                    <input type="checkbox" disabled="disabled" name="valid_name4" id="email1" />
                 </td>
             </tr>
             <tr>
@@ -127,15 +131,16 @@
                     Password:
                 </td>
                 <td>
+
                     <input id="Password2" type="password" name="password" onchange="this.value = this.value.replace(/^\s+|\s+$/g, ''); valid_name7.checked = this.value;" />
-                    <input type="checkbox" disabled="disabled" name="valid_name7" />
+                    <input type="checkbox" disabled="disabled" name="valid_name7" id="pw2" />
                 </td>
                 <td>
                     Confirm Password:
                 </td>
                 <td>
                     <input id="Password1" type="password" name="cpassword" onchange="this.value = this.value.replace(/^\s+|\s+$/g, ''); valid_name8.checked = this.value;" />
-                    <input type="checkbox" disabled="disabled" name="valid_name8" />
+                    <input type="checkbox" disabled="disabled" name="valid_name8" id="pw1" />
                 </td>
             </tr>
             <tr>
@@ -194,6 +199,7 @@
                     emailCheck();
                     data.userExists == 1;
                 } else {
+                    document.getElementById('username1').checked = false;
                     alert('Username has already been taken. Please try again.');
                 }
             }, "json");
@@ -201,7 +207,7 @@
         }
 
         function emailCheck() { //returned null if not found. returned user info when it is in db //test = function
-                        var formData = form2js('testForm', '.', true,
+            var formData = form2js('testForm', '.', true,
 				function (node) {
 				    if (node.id && node.id.match(/callbackTest/)) {
 				        return { name: node.id, value: node.innerHTML };
@@ -217,25 +223,27 @@
                 console.log(data);
                 var json = $.parseJSON(data);
                 if (parseInt(data.emailExists) == 0) {
-                    test1();
+                    validatePwd();
                     data.emailExists == 1;
-                } else {                    
+
+                } else {
+                    document.getElementById('email1').checked = false;
                     alert('Email address has already been used. Please try again.');
                 }
             }, "json");
 
         }
-       
-      function test1() { 
-          var formData = form2js('testForm', '.', true,
+
+        function test1() {
+            var formData = form2js('testForm', '.', true,
 				function (node) {
 				    if (node.id && node.id.match(/callbackTest/)) {
 				        return { name: node.id, value: node.innerHTML };
 				    }
 				});
 
-          document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
-          $.post("./Services/MemberControllerService.asmx/AddUser",
+            document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
+            $.post("./Services/MemberControllerService.asmx/AddUser",
           {
               jsonString: JSON.stringify(formData, null, '\t')
           },
@@ -243,31 +251,48 @@
                 console.log(data);
                 var json = $.parseJSON(data);
             }, "json");
+
             alert('Congratulations! Account created! Please login now!');
-      }
+
+        }
+
+        function validatePwd() {
+            var invalid = " "; // Invalid character is a space
+            var minLength = 6; // Minimum length
+            var pw1 = document.getElementById('Password2').value;
+            var pw2 = document.getElementById('Password1').value;
+            // check for a value in both fields.
+            if (pw1 == '' || pw2 == '') {
+                alert('Please confirm your password');
+                return false;
+            }
+            // check for minimum length
+            if (pw1.length < minLength) {
+                alert('Your password must be at least ' + minLength + ' characters long. Try again.');
+                document.getElementById('pw1').checked = false;
+                document.getElementById('pw2').checked = false;
+                return false;
+            }
+            //          // check for spaces
+            //          if (pw1.item.indexOf(invalid) > -1) {
+            //              alert("Sorry, spaces are not allowed.");
+            //              return false;
+            //          }
+            else {
+                if (pw1 != pw2) {
+                    alert("You did not enter the same new password twice. Please re-enter your password.");
+                    document.getElementById('pw1').checked = false;
+                    document.getElementById('pw2').checked = false;
+                    return false;
+                }
+                else {
+                    test1();
+                    return true;
+                }
+            }
+        }
 
 
     </script>
-    <!-- Script by hscripts.com --> 
-    &nbsp;<!-- Script by hscripts.com -->
-
-
-    <!--function CheckText()
-
-{
-
-    var elem = document.getElementById('<% = this.yourTextbox.ClientID %>');
-
-    if(elem)
-
-      {
-
-              if(elem.value.length == 0)
-
-                 elem.style.backgroundColor = '#FE2900'; //put color code here
-
-      }
-
-}-->
 </body>
 </html>
