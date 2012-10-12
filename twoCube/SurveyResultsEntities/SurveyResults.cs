@@ -10,6 +10,7 @@ namespace twoCube.SurveyResultsEntities
         public string surveyTitle { get; set; }
         public string surveyDescription { get; set; }
         public int noOfRespondents { get; set; }
+        public int avgTime { get; set; }
         public List<Questions> questionList { get; set; }
 
         public SurveyResults()

@@ -37,9 +37,21 @@
           function (data) {
               $("<center><h2>" + data.surveyTitle + "</h2></center>").appendTo("#maindiv");
               $("<h4>" + data.surveyDescription + "</h4>").appendTo("#maindiv");
-
+              $("<h4>" + data.noOfRespondents + " people responded</h4>").appendTo("#maindiv");
+              $("<h4>" + data.avgTime + "seconds was the avg time</h4>").appendTo("#maindiv");
               $.each(data.questionList, function (question, questionList) {
                   // $("<h2>" + questionList.questionTitle + "</h2>").appendTo("#maindiv");
+
+                  if(questionList.questionType == 2 || questionList.questionType == 3 || questionList.questionType == 4)
+                  {
+                      $("<div id=\"list" + question + "\" style=\"height:350px; width:600px;\"></div>").appendTo("#maindiv"); 
+                      
+                      $("<h1>" + questionList.questionTitle + "</h1>").appendTo("#list"+question);
+                      $.each(questionList.optionList, function (option, optionList) {
+                                
+                              $("<h2>" + optionList.noOfRespondents + " responded: " + optionList.responseStr + "</h2>").appendTo("#list"+question);
+                          });
+                  }
 
                   if (questionList.questionType == 0 || questionList.questionType == 5) { //radio button, scale radio
 
@@ -52,7 +64,6 @@
                               stuffItem.push(parseInt(optionList.noOfRespondents));
                               //stuffItem[optionList.optionTitle] = parseInt(optionList.noOfRespondents);
                               stuff.push(stuffItem);
-
 
                           });
 

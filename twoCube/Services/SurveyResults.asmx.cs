@@ -32,6 +32,12 @@ namespace twoCube.Services
                     result.surveyTitle = survey.surveyTitle;
                     result.noOfRespondents = survey.respondentList.Count;
                     int i = 0;
+                    int totalTime = 0;
+                    foreach (var respondent in survey.respondentList)
+                    {
+                        totalTime += respondent.respondentTime;
+                    }
+                    result.avgTime = (totalTime / result.noOfRespondents)/1000;
 
                     foreach (var question in survey.surveyQuestionList)
                     {
