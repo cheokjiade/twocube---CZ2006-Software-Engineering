@@ -31,9 +31,9 @@ namespace twoCube.Services
                 using (var transaction = session.BeginTransaction())
                 {
                     var user = new Entities.Member { userName = "username1", memberPassword = "password" };
-                    
+
                     var survey = new Entities.Survey { surveyDescription = "A Random Sample Survey. This is just a sample of how json can be used to render a survey.", surveyTitle = "Sample Survey", surveyQuestionList = new List<Entities.SurveyQuestion>() };
-                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "What is your favourite color?", surveyQuestionType = 0, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
+                    survey.surveyQuestionList.Add(new Entities.SurveyQuestion { surveyQuestionTitle = "What is your, favourite, color?", surveyQuestionType = 0, surveyQuestionOptionList = new List<Entities.SurveyQuestionOption>() });
                     survey.surveyQuestionList.ElementAt(0).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "White" });
                     survey.surveyQuestionList.ElementAt(0).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Yellow" });
                     survey.surveyQuestionList.ElementAt(0).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "Blue" });
@@ -75,9 +75,9 @@ namespace twoCube.Services
                     survey.surveyQuestionList.ElementAt(7).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "http://graph.facebook.com/bingsheng.he/picture?type=square" });
                     survey.surveyQuestionList.ElementAt(7).surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "http://graph.facebook.com/limws.brandon/picture?type=square" });
 
-                    var respondent = new Entities.Respondent {respondentIPAddress="127.0.0.1", respondentSessionID="randomid"};
+                    var respondent = new Entities.Respondent { respondentIPAddress = "127.0.0.1", respondentSessionID = "randomid" };
 
-                    var responseqn0 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1,responseIntegerValue = 1 };
+                    var responseqn0 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 1 };
                     respondent.surveyQuestionResponseList.Add(responseqn0);
                     survey.surveyQuestionList.ElementAt(0).surveyQuestionResponseList.Add(responseqn0);
                     var responseqn1 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 3 };
@@ -95,10 +95,10 @@ namespace twoCube.Services
                     survey.surveyQuestionList.ElementAt(3).surveyQuestionResponseList.Add(responseqn30);
                     survey.surveyQuestionList.ElementAt(3).surveyQuestionResponseList.Add(responseqn31);
                     survey.surveyQuestionList.ElementAt(3).surveyQuestionResponseList.Add(responseqn32);
-                    var responseqn4 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 2 };
+                    var responseqn4 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 2, responseStringValue = "100" };
                     respondent.surveyQuestionResponseList.Add(responseqn4);
                     survey.surveyQuestionList.ElementAt(4).surveyQuestionResponseList.Add(responseqn4);
-                    var responseqn5 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 2, responseIntegerValue = 3 };
+                    var responseqn5 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 2, responseIntegerValue = 3, responseStringValue = "345" };
                     respondent.surveyQuestionResponseList.Add(responseqn5);
                     survey.surveyQuestionList.ElementAt(5).surveyQuestionResponseList.Add(responseqn5);
                     var responseqn6 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 2, responseStringValue = "09/05/2012" };
@@ -129,10 +129,10 @@ namespace twoCube.Services
                     survey.surveyQuestionList.ElementAt(3).surveyQuestionResponseList.Add(responseqn130);
                     survey.surveyQuestionList.ElementAt(3).surveyQuestionResponseList.Add(responseqn131);
                     survey.surveyQuestionList.ElementAt(3).surveyQuestionResponseList.Add(responseqn132);
-                    var responseqn14 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 2 };
+                    var responseqn14 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 1, responseIntegerValue = 2, responseStringValue = "10" };
                     respondent1.surveyQuestionResponseList.Add(responseqn14);
                     survey.surveyQuestionList.ElementAt(4).surveyQuestionResponseList.Add(responseqn14);
-                    var responseqn15 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 2, responseIntegerValue = 3 };
+                    var responseqn15 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 2, responseIntegerValue = 3, responseStringValue = "43" };
                     respondent1.surveyQuestionResponseList.Add(responseqn15);
                     survey.surveyQuestionList.ElementAt(5).surveyQuestionResponseList.Add(responseqn15);
                     var responseqn16 = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 2, responseStringValue = "09/05/2012" };
@@ -234,67 +234,131 @@ namespace twoCube.Services
         }
 
 
-        [WebMethod(Description = "Your Description")]
+        [WebMethod(Description = "takes in a jsonobject containing the completed survey done by respondent")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
-        //public void createCSV(String strFilePath)
-        public void createCSV()
+        public void createCSV1(string jsonString)
         {
-            //StreamWriter sw = new StreamWriter(strFilePath, false);
-            StreamWriter sw = new StreamWriter("c:\\csvData.csv", false);
+            System.Web.HttpResponse csvresponse = System.Web.HttpContext.Current.Response;
+            csvresponse.Clear();
+            csvresponse.AddHeader("content-disposition", "attachment; filename=surveyResults.csv");
+            csvresponse.ContentType = "text/csv";
+            csvresponse.Write("Question No: ,Question: ,Option: ,Responses: ,No of Responses: ,");
+            csvresponse.Write(Environment.NewLine);
 
-
-            // lets get the dataColumn's titles first
-            sw.WriteLine("Question,Option,Response,");
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
-                // retreive all stores and display them
-                using (session.BeginTransaction())
+                using (var transaction = session.BeginTransaction())
                 {
-                    var users = session.CreateCriteria(typeof(Entities.Member))
-                        .List<Entities.Member>();
                     JavaScriptSerializer js = new JavaScriptSerializer();
+                    var foo = js.Deserialize<Dictionary<string, object>>(jsonString);
+                    dynamic json = JValue.Parse(jsonString);
+                    JObject jsonObject = JObject.Parse(jsonString);
+                    JToken jToken;
+                    Entities.Survey survey;
 
-                    // and then we go for the data
-                    foreach (var user in users)
+                    if (jsonObject.TryGetValue("surveyId", out jToken))
                     {
-                        var survey = user.memberSurveyList.ElementAt(0);
-                        var listofquestions = survey.surveyQuestionList;
+                        int surveyID = Int32.Parse(jToken.ToString());
+                        survey = Entities.Survey.GetById(session, surveyID);
+                        //Context.Response.Write(jToken);
                         int i = 0;
-                        foreach (var question in listofquestions)
+                        foreach (var question in survey.surveyQuestionList)
                         {
-
-                            int count = 0;
-
-                            foreach (var option in question.surveyQuestionOptionList)
+                            switch (question.surveyQuestionType)
                             {
-                                string fileRow = "";
-                                string cell = "";
-                                cell += "Question " + (i + 1).ToString() + ",";
-                                cell += option.surveyQuestionOptionTitle + ",";
-                                int choices = 0;
-
-                                foreach (var response in question.surveyQuestionResponseList)
-                                {
-                                    if (response.responseIntegerValue == count)
+                                case 0:
+                                case 1:
+                                case 5:
                                     {
-                                        choices++;
+                                        int optionNo = 0;
+                                        foreach (var option in question.surveyQuestionOptionList)
+                                        {
+                                            string fileRow = "";
+                                            string cell = "";
+                                            cell += "Question " + (i + 1).ToString() + ",";
+                                            if (question.surveyQuestionTitle.Contains(","))
+                                            {
+                                                cell += "\"" + question.surveyQuestionTitle + "\"" + ",";
+                                            }
+                                            else
+                                            {
+                                                cell += question.surveyQuestionTitle + ",";
+                                            }
+                                            if (option.surveyQuestionOptionTitle.Contains(","))
+                                            {
+                                                cell += "\"" + option.surveyQuestionOptionTitle + "\"" + ",";
+                                            }
+                                            else
+                                            {
+                                                cell += option.surveyQuestionOptionTitle + ",";
+                                            }
+
+                                            cell += "N.A" + ",";
+                                            int choices = 0;
+                                            foreach (var response in question.surveyQuestionResponseList)
+                                            {
+                                                if (response.responseIntegerValue == optionNo)
+                                                {
+                                                    choices++;
+                                                }
+                                            }
+                                            optionNo++;
+                                            cell += choices + ",";
+                                            fileRow += cell + ",";
+                                            csvresponse.Write(fileRow);
+                                            csvresponse.Write(Environment.NewLine);
+                                        }
+                                        i++;
+                                        break;
                                     }
 
-                                }
-                                cell += choices + ",";
-                                fileRow += cell + ",";
-                                sw.WriteLine(fileRow);
-                            }
-                            i++;
-                            count++;
+                                case 2:
+                                case 3:
+                                case 4:
+                                    {
+                                        foreach (var option in question.surveyQuestionOptionList)
+                                        {
+                                            foreach (var response in question.surveyQuestionResponseList)
+                                            {
+                                                string fileRow = "";
+                                                string cell = "";
+                                                cell += "Question " + (i + 1).ToString() + ",";
+                                                if (question.surveyQuestionTitle.Contains(","))
+                                                {
+                                                    cell += "\"" + question.surveyQuestionTitle + "\"" + ",";
+                                                }
+                                                else
+                                                {
+                                                    cell += question.surveyQuestionTitle + ",";
+                                                }
+                                                cell += "N.A" + ",";
+                                                if (response.responseStringValue.Contains(","))
+                                                {
+                                                    cell += "\"" + response.responseStringValue + "\"" + ",";
+                                                }
+                                                else
+                                                {
+                                                    cell += response.responseStringValue + ",";
+                                                }
+                                                cell += "1" + ",";
+                                                fileRow += cell + ",";
+                                                csvresponse.Write(fileRow);
+                                                csvresponse.Write(Environment.NewLine);
 
+                                            }
+
+                                        }
+                                        i++;
+                                        break;
+                                    }
+                            }
                         }
                     }
                 }
-
             }
-            sw.Close();
+            csvresponse.End();
         }
+
 
 
         [WebMethod(Description = "Your Description")]
