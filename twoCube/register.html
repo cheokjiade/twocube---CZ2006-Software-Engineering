@@ -280,10 +280,11 @@ ddsmoothmenu.init({
             function (data) {
                 console.log(data);
                 var json = $.parseJSON(data);
+                localStorage.setItem("twocubeSSO", data.twocubeSSO);
             }, "json");
 
-            alert('Congratulations! Account created! Please login now!');
-
+            alert('Congratulations! Account created! Proceding to log you in!');
+            $(location).attr('href', "./");
         }
 
         function validatePwd() {

@@ -40,13 +40,15 @@ namespace twoCube.Services
                         memberEmail = jsonObject.SelectToken("email").ToString()
                     };
 
-                    session.Save(user);
-                    transaction.Commit();
+                    
                     //print
 
                     JavaScriptSerializer js = new JavaScriptSerializer();
- 
-                    Context.Response.Write(js.Serialize(user));
+                    DateTime dt = new DateTime();
+                    user.memberHash = util.UtilityMethods.CalculateMD5Hash(user.userName + dt.ToShortTimeString());
+                    Context.Response.Write(new Response3 { LogIn = 1, twocubeSSO = user.memberHash });
+                    session.Save(user);
+                    transaction.Commit();
                    
                 }
             }
