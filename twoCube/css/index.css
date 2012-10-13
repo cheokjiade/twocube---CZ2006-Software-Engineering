@@ -13,21 +13,6 @@ body {
 * html body {
 	font-size: small; 
 }
-#container { 
-	text-align: left;
-	
-    text-decoration: none;
-    padding: 5px 10px;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    background: rgb(98,99,100);
-    -moz-box-shadow: inset 0 0 8px rgba(0,0,0, 0.25);
-    -webkit-box-shadow: inset 0 0 8px rgba(0,0,0, 0.25);
-	
-	-moz-box-shadow: 5px 5px 5px gray;
-    -webkit-box-shadow: 5px 5px 5px gray;
-}
 #header { 
 	background: rgb(20, 66, 130) none repeat; position: relative; height: 100px; 
 }
@@ -36,7 +21,6 @@ body {
 	height: 100px; }
 #panel { 
 	border-style: none; 
-	background: rgb(255, 255, 255) none repeat; 
 	overflow: hidden;
 	width: 100%;
 }
@@ -668,7 +652,7 @@ ul.protected {
 	font-size: 120% ! important; 
 }
 
-#form_builder #main { 
+#form_builder #mainForm { 
 	padding: 0pt 0pt 20px; 
 	float: left; 
 	width: 490px
@@ -685,14 +669,14 @@ ul.protected {
 	width: 360px; 
 	min-height: 500px; 
 }
-#form_builder #main form { 
+#form_builder #mainForm form { 
 	margin: 10px 0pt 0pt 22px; 
 	width: 466px; 
 }
-#form_builder #main form ul { 
+#form_builder #mainForm form ul { 
 	width: 100%; 
 }
-#form_builder #main form li { 
+#form_builder #mainForm form li { 
 	margin: 0pt 0pt 8px; 
 	width: 100%; 
 }
@@ -742,8 +726,16 @@ input[disabled], select[disabled] { color: rgb(102, 102, 102) ! important; }
 #add_elements { padding: 15px; clear: both; }
 #add_elements[id] { margin: 25px 0pt 0pt; position: fixed; }
 #element_buttons ul { float: left; list-style-type: none; list-style-image: none; list-style-position: outside; }
-#first_column li { margin: 5px 5px 5px 0pt; text-align:right; padding: 0px }
-#second_column li { margin: 5px 0pt 5px 5px; text-align:right; padding: 0px}
+#first_column li { margin: 5px 5px 5px 0pt; text-align:right; padding: 0px; width:150px; height:30px;  }
+
+#second_column li { margin: 5px 5pt 5px 5px; text-align:right; padding: 0px; width:150px; height:30px; }
+
+#first_column li a, #second_column li a {float:left; }
+#first_column li img , #second_column li img{float:left;margin-left:-20px;}
+#first_column li span, #second_column li span{float:left;margin-left:10px; margin-top:2px;}
+
+
+
 #element_buttons a { 
 	border-style: solid; 
 	border-color: rgb(238, 238, 238) rgb(222, 222, 222) rgb(222, 222, 222) rgb(238, 238, 238); 
@@ -1042,4 +1034,3 @@ form li.highlighted
   padding-left: 10px;
   padding-top: 5px;
 }
-
