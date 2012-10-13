@@ -73,7 +73,7 @@
     
      <div id="middle">
      <!-- Start Top -->
-		<div id="maindiv" style="width: 800px;">
+		<div id="maindiv" align="center" style="width:100%;">
     </div>
     <div class="code prettyprint">
         <pre class="code prettyprint brush: js"></pre>
@@ -111,21 +111,25 @@
               userhash: data
           },
           function (data) {
-              $("<center><h2>" + data.surveyTitle + "</h2></center>").appendTo("#maindiv");
+              $("<u><h1>" + data.surveyTitle + "</h1></u>").appendTo("#maindiv");
               $("<h4>" + data.surveyDescription + "</h4>").appendTo("#maindiv");
-              $("<h4>" + data.noOfRespondents + " people responded</h4>").appendTo("#maindiv");
-              $("<h4>" + data.avgTime + "seconds was the avg time</h4>").appendTo("#maindiv");
+              $("<h5>" + data.noOfRespondents + " people responded.</h4>").appendTo("#maindiv");
+              $("<h5>" + data.avgTime + " seconds was the average time taken.</h4><br>").appendTo("#maindiv");
+
               $.each(data.questionList, function (question, questionList) {
                   // $("<h2>" + questionList.questionTitle + "</h2>").appendTo("#maindiv");
-
+                  $("<br>").appendTo("#maindiv");
                   if(questionList.questionType == 2 || questionList.questionType == 3 || questionList.questionType == 4)
                   {
                       $("<div id=\"list" + question + "\"></div>").appendTo("#maindiv"); 
                       
-                      $("<h3><font face=\"times new roman\" color=\"grey\">" + (question + 1) + ". " + questionList.questionTitle + questionList.questionType + "</font></h3>").appendTo("#list"+question);
+                      $("<font size=\"3\" color=\"#585858\">" + (question + 1) + ". " + questionList.questionTitle + questionList.questionType + "</font><p>").appendTo("#list"+question);
+                      
                       $.each(questionList.optionList, function (option, optionList) {
-                              $("<table border=\"1\" width=\"600px\"><tr><td><h4>" + optionList.noOfRespondents + " responded: " + optionList.responseStr + "</h4></td></tr></table>").appendTo("#list"+question);
+                               $("<div style=\"width:585px; border:1px solid grey;\"><font color=\"#585858\"><h5>" + (optionList.noOfRespondents/data.noOfRespondents)*100 + "% of the respondents responded: " + "<b>" + optionList.responseStr + "</b></font></h5></div>").appendTo("#list"+question);
+                             //  $("<table cellpadding=\"8\" cellspacing=\"0\" border=\"1\" width=\"585px\"><tr><td><h5>" + optionList.noOfRespondents + " responded: " + optionList.responseStr + "</h5></td></tr></table>").appendTo("#list"+question);
                           });
+                     
                   }
 
                   else if (questionList.questionType == 0 || questionList.questionType == 5) { //radio button, scale radio
