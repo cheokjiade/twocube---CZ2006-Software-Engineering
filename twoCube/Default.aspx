@@ -25,18 +25,37 @@
             if ($.urlParam('s') != 0) window.location = "./dosurvey.html?s=" + $.urlParam('s');
         }
         function loadMenu() {
+            var data = localStorage.getItem("twocubeSSO") || 0;
+            
+
             var menu = "<ul>\
                 <li><a href='index.html'>Home</a></li>\
                 <li><a href='index.html'>Create Survey</a></li>\
                 <li><a href='#'>About twoCube</a></li>\
-				<li><a href='#'>Login</a></li>\
+				<li><a href='./Login.htm'>Login</a></li>\
             </ul>\
             <br style='clear: left' />";
 
-            document.getElementById('menu').innerHTML = menu;
+            var loginedmenu = "<ul>\
+                <li><a href='index.html'>Home</a></li>\
+                <li><a href='index.html'>Create Survey</a></li>\
+                <li><a href='#'>About twoCube</a></li>\
+                <li><a href='#'>View Created Surveys</a></li>\
+				<li><a href='#' onclick='logout();'>Logout</a></li>\
+            </ul>\
+            <br style='clear: left' />";
+
+            if (data == 0)
+                document.getElementById('menu').innerHTML = menu;
+            else
+                document.getElementById('menu').innerHTML = loginedmenu;
         }
         function loadFooter() {
             document.getElementById('footer').innerHTML = "Copyright © 2013 twoCube<div class='cleaner'></div>";
+        }
+        function logout() {
+            localStorage.clear();
+            window.location.reload();
         }
     </script>  
 </head>
