@@ -85,8 +85,9 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="Copy %282%29 of template%28Do Not Overwrite%29.html" />
-    <Content Include="Copy of template%28Do Not Overwrite%29.html" />
+    <Content Include="register.html" />
+    <Content Include="index.html" />
+    <Content Include="dosurvey.html" />
     <Content Include="css\base.css" />
     <Content Include="css\index.css" />
     <Content Include="css\layout.css" />
@@ -144,7 +145,7 @@
     <Content Include="images\time_bg.gif" />
     <Content Include="images\website_bg.gif" />
     <Content Include="images\web_site.gif" />
-    <Content Include="index.html" />
+    <Content Include="indexold.html" />
     <Content Include="js\base.js" />
     <Content Include="js\machform.js" />
     <Content Include="js\unpacked.js" />
@@ -345,6 +346,7 @@
     <Compile Include="SurveyResultsEntities\Options.cs" />
     <Compile Include="SurveyResultsEntities\Questions.cs" />
     <Compile Include="SurveyResultsEntities\SurveyResults.cs" />
+    <Compile Include="util\UtilityMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

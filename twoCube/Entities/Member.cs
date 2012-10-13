@@ -20,6 +20,7 @@ namespace twoCube.Entities
         public virtual string memberEmail { get; set; }
         public virtual string memberQuestion { get; set; } //Forget password
         public virtual string memberAnswer { get; set; } //Forget password
+        public virtual string memberHash { get; set; }
         public virtual IList<Survey> memberSurveyList { get; set; }
 
         public Member() 

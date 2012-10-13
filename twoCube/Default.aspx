@@ -1,37 +1,70 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeBehind="Default.aspx.cs" Inherits="twoCube._Default" %>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>twoCube - Home</title>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/SamWM/jQuery-Plugins/master/numeric/jquery.numeric.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/maxatwork/form2js/master/src/form2js.js"></script>
+    <script type="text/javascript" src="Scripts/json2.js"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+    <script type="text/javascript">
+        $.urlParam = function (name) {
+            var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            return results[1] || 0;
+        }
+        function onload() {
+            loadMenu();
+            loadFooter();
+            if ($.urlParam('s') != 0) window.location = "./dosurvey.html?s=" + $.urlParam('s');
+        }
+        function loadMenu() {
+            var menu = "<ul>\
+                <li><a href='index.html'>Home</a></li>\
+                <li><a href='index.html'>Create Survey</a></li>\
+                <li><a href='#'>About twoCube</a></li>\
+				<li><a href='#'>Login</a></li>\
+            </ul>\
+            <br style='clear: left' />";
 
-<asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
-</asp:Content>
-<asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-    <h2>
-        Welcome to twocube™</h2>
-    <p>
-        <a href="SampleSurvey.htm?s=2" title="SampleSurvey">Sample Survey</a>
-        <br />
-        <a href="HTMLPage1.htm" title="SampleSurveyCreator">Sample Survey Creator</a>
-        <br />
-        <a href="SampleResults.aspx" title="Sample Results">Sample Results</a>
-    </p>
+            document.getElementById('menu').innerHTML = menu;
+        }
+        function loadFooter() {
+            document.getElementById('footer').innerHTML = "Copyright © 2013 twoCube<div class='cleaner'></div>";
+        }
+    </script>  
+</head>
+<body onload="onload()">
 
-    <asp:Image ID="Image1" runat="server" 
-        ImageUrl="http://graph.facebook.com/junequak/picture?type=large" />
-    <asp:Image ID="Image2" runat="server" 
-        ImageUrl="http://graph.facebook.com/weileng.peh/picture?type=large" />
-    <asp:Image ID="Image3" runat="server" 
-        ImageUrl="http://graph.facebook.com/Chen.Yuhui.Tiffany/picture?type=large" />
-    <asp:Image ID="Image4" runat="server" 
-        ImageUrl="http://graph.facebook.com/limguan/picture?type=large" />
-    <asp:Image ID="Image5" runat="server" 
-        ImageUrl="http://graph.facebook.com/cheeziie90/picture?type=large" />
-    <asp:Image ID="Image6" runat="server"
-        ImageUrl="http://graph.facebook.com/ai.xu.372/picture?type=large" />
-    <asp:Image ID="Image7" runat="server"
-        ImageUrl="http://graph.facebook.com/lonedune/picture?type=large" />
-    <asp:Image ID="Image8" runat="server"
-        ImageUrl="http://graph.facebook.com/wesley.djingga/picture?type=large" />
-    <asp:Image ID="Image9" runat="server"
-        ImageUrl="http://graph.facebook.com/cheokjiade/picture?type=square" />
-    <br />
+<div id="wrapper">
+	<div id="header">
+        <div id="site_title"><h1><a href="#"></a></h1></div>
+        <div id="menu" class="ddsmoothmenu">
+        </div> <!-- end of menu -->
+        <div class="cleaner"></div>
+    </div> <!-- end of header -->
+    
+     <div id="middle">
+     <!-- Start Top -->
+		<div id="mid_title">Our Company</div>
+            <p>Aliquam in odio ut ipsum mollis facilisis. Integer est sem, dignissim quis auctor vel, dapibus vel massa. Curabitur vulputate ligula vel mi semper tempus. Vivamus volutpat, elit non tempor vehicula. Suspendisse diam dolor, aliquam non facilisis sed, pharetra at mi.</p>
+            <div id="learn_more"><a href="#">Learn More</a></div>
+    <!-- End Top -->
+    <div class="cleaner"></div>
+	</div> <!-- end of middle -->
+    
+    <!-- end of main -->
+</div> <!-- wrapper -->
 
-    </asp:Content>
+<div id="footer_wrapper">
+	<div id="footer"></div>
+</div>
+
+</body>
+</html>

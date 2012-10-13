@@ -175,7 +175,11 @@ namespace twoCube.Services
                     }
                     else
                     {
-                        Context.Response.Write(js.Serialize(new Response3 { LogIn = 1 }));
+                        DateTime dt = new DateTime();
+                        member.memberHash = util.UtilityMethods.CalculateMD5Hash(member.userName+dt.ToShortTimeString());
+                        Context.Response.Write(js.Serialize(new Response3 { LogIn = 1, twocubeSSO = member.memberHash }));
+                        session.SaveOrUpdate(member);
+                        transaction.Commit();
                     }
                 }
             }
@@ -184,6 +188,7 @@ namespace twoCube.Services
         public class Response3
         {
             public int LogIn { get; set; }
+            public string twocubeSSO { get; set; }
         }
 
     }

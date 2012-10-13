@@ -100,6 +100,7 @@ Hi, <span id="auth-displayname"></span>(<a href="#" id="auth-logoutlink">logout<
                             alert('Username and Password not found!');
 
                         else {
+                            localStorage.setItem("twocubeSSO", data.twocubeSSO);
                             var url = "http://twocube.elasticbeanstalk.com/"; //Currently Unavailable!!
                             $(location).attr('href', url);
                         }
