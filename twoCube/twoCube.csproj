@@ -230,6 +230,7 @@
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="UpdatePassword.htm" />
+    <Content Include="viewsurveylist.htm" />
     <Content Include="ViewUserDetails.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -59,5 +59,11 @@ namespace twoCube.Entities
                 .Add(Expression.Eq("memberEmail", memberEmail))
                 .UniqueResult<Member>();
         }
+        public static Member GetByHash(ISession session, string memberHash)
+        {
+            return session.CreateCriteria(typeof(Member))
+                .Add(Expression.Eq("memberHash", memberHash))
+                .UniqueResult<Member>();
+        }
     }
 }

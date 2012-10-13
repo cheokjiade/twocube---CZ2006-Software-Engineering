@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using twoCube.SurveyResultsEntities;
 using System.Web.Script.Serialization;
+using twoCube.Entities;
 
 namespace twoCube.Services
 {
@@ -21,13 +22,18 @@ namespace twoCube.Services
 
         [WebMethod]
         //public void getSurvey(int surveyID)
-        public void getSurvey(int id)
+        public void getSurvey(int id, string userhash)
         {
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    var survey = Entities.Survey.GetById(session, id);
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    var member = Member.GetByHash(session,userhash);
+                    if (member == null)
+                        return;
+                    var survey = member.memberSurveyList.ToList<Survey>().Find(item => item.Id == id);
+                    //var survey = Entities.Survey.GetById(session, id);
                     var result = new SurveyResults();
                     result.surveyTitle = survey.surveyTitle;
                     result.noOfRespondents = survey.respondentList.Count;
@@ -117,7 +123,7 @@ namespace twoCube.Services
                     }
 
                     //print to webservice
-                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    
                     Context.Response.Write(js.Serialize(result));
                 }
             }
