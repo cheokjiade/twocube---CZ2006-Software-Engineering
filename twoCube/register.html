@@ -315,7 +315,7 @@
                 localStorage.setItem("twocubeSSO", data.twocubeSSO);
             }, "json");
 
-            alert('Congratulations! Account created! Proceding to log you in!');
+            alert('Congratulations! Account created! Proceeding to log you in!');
             $(location).attr('href', "./");
         }
 
@@ -349,9 +349,23 @@
                     return false;
                 }
                 else {
-                    test1();
+                    validateEmail();
                     return true;
                 }
+            }
+        }
+
+        function validateEmail() {
+            var x = document.getElementById('Text6').value;
+            var y = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (x.search(y) == -1) {
+                alert("Please enter a valid email address!");
+                document.getElementById('email1').checked = false;
+                return false;
+            }
+            else {
+                test1();
+                return true;
             }
         }
 
