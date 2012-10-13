@@ -120,16 +120,15 @@
 
                   if(questionList.questionType == 2 || questionList.questionType == 3 || questionList.questionType == 4)
                   {
-                      $("<div id=\"list" + question + "\" style=\"height:350px; width:600px;\"></div>").appendTo("#maindiv"); 
+                      $("<div id=\"list" + question + "\"></div>").appendTo("#maindiv"); 
                       
-                      $("<h1>" + questionList.questionTitle + "</h1>").appendTo("#list"+question);
+                      $("<h3><font face=\"times new roman\" color=\"grey\">" + (question + 1) + ". " + questionList.questionTitle + questionList.questionType + "</font></h3>").appendTo("#list"+question);
                       $.each(questionList.optionList, function (option, optionList) {
-                                
-                              $("<h2>" + optionList.noOfRespondents + " responded: " + optionList.responseStr + "</h2>").appendTo("#list"+question);
+                              $("<table border=\"1\" width=\"600px\"><tr><td><h4>" + optionList.noOfRespondents + " responded: " + optionList.responseStr + "</h4></td></tr></table>").appendTo("#list"+question);
                           });
                   }
 
-                  if (questionList.questionType == 0 || questionList.questionType == 5) { //radio button, scale radio
+                  else if (questionList.questionType == 0 || questionList.questionType == 5) { //radio button, scale radio
 
                       $("<div id=\"chartPie" + question + "\" style=\"height:350px; width:600px;\"></div>").appendTo("#maindiv");
                       $(function () {
@@ -169,48 +168,6 @@
                           },
                           legend: { show: true, location: 'e' }
                       });
-
-                      })
-                  }
-
-                  else if (questionList.questionType == 2) { //slider
-
-                      $("<div id=\"lineChart" + question + "\" style=\"height:350px; width:600px;\"></div>").appendTo("#maindiv");
-                      $(function () {
-                          var stuff = [];
-                          $.each(questionList.optionList, function (option, optionList) {
-                              var stuffItem = [];
-                              stuffItem.push(optionList.optionTitle);
-                              stuffItem.push(parseInt(optionList.noOfRespondents));
-                              stuff.push(stuffItem);
-
-
-                          });
-
-                          var total = 0;
-                          $(stuff).map(function () { total += this[1]; })
-
-                          myLabels = $.makeArray($(stuff).map(function () { return this[1] + " " + Math.round(this[1] / total * 100) + "%"; }));
-                          var plot2 = jQuery.jqplot('lineChart' + question, [stuff],
-
-                          {
-
-                              title: question + 1 + ". " + questionList.questionTitle + questionList.questionType,
-                              axesDefaults: {
-                                  // Make this a line chart.
-                                  labelRenderer: $.jqplot.CanvasAxisLabelRenderer
-                              },
-                              axes: {
-                                  xaxis: {
-                                      label: "X axis",
-                                      pad: 0
-                                  },
-                                  yaxis: {
-                                      label: "Y axis"
-                                  }
-                              },
-                              legend: { show: true, location: 'e' }
-                          });
 
                       })
                   }
