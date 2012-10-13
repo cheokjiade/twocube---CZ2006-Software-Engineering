@@ -85,12 +85,16 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Copy %282%29 of template%28Do Not Overwrite%29.html" />
+    <Content Include="Copy of template%28Do Not Overwrite%29.html" />
     <Content Include="css\base.css" />
     <Content Include="css\index.css" />
     <Content Include="css\layout.css" />
     <Content Include="css\skeleton.css" />
     <Content Include="EditUserDetails.htm" />
     <Content Include="HTMLPage2.htm" />
+    <Content Include="js\scripts.js" />
+    <Content Include="template%28Do Not Overwrite%29.html" />
     <Content Include="viewSurvey.htm" />
     <Content Include="Login.htm" />
     <Content Include="images\address.gif" />
