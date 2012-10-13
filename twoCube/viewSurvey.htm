@@ -13,9 +13,67 @@
     <script type="text/javascript" src="Scripts/plugins/jqplot.categoryAxisRenderer.js"></script>
     <script type="text/javascript" src="../src/plugins/jqplot.donutRenderer.min.js"></script>
     <link rel="Stylesheet" type="text/css" href="Styles/jquery.jqplot.min.css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+    <script type="text/javascript">
+        $.urlParam = function (name) {
+            var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            return results[1] || 0;
+        }
+        function onload() {
+            loadMenu();
+            loadFooter();
+            if ($.urlParam('s') != 0) window.location = "./dosurvey.html?s=" + $.urlParam('s');
+        }
+        function loadMenu() {
+            var data = localStorage.getItem("twocubeSSO") || 0;
+
+
+            var menu = "<ul>\
+                <li><a href='index.html'>Home</a></li>\
+                <li><a href='index.html'>Create Survey</a></li>\
+                <li><a href='#'>About twoCube</a></li>\
+				<li><a href='./Login.htm'>Login</a></li>\
+            </ul>\
+            <br style='clear: left' />";
+
+            var loginedmenu = "<ul>\
+                <li><a href='index.html'>Home</a></li>\
+                <li><a href='index.html'>Create Survey</a></li>\
+                <li><a href='#'>About twoCube</a></li>\
+                <li><a href='#'>View Created Surveys</a></li>\
+				<li><a href='#' onclick='logout();'>Logout</a></li>\
+            </ul>\
+            <br style='clear: left' />";
+
+            if (data == 0)
+                document.getElementById('menu').innerHTML = menu;
+            else
+                document.getElementById('menu').innerHTML = loginedmenu;
+        }
+        function loadFooter() {
+            document.getElementById('footer').innerHTML = "Copyright © 2013 twoCube<div class='cleaner'></div>";
+        }
+        function logout() {
+            localStorage.clear();
+            window.location = "./Default.aspx";
+        }
+    </script>  
 </head>
-<body>
-    <div id="maindiv" style="width: 800px;">
+<body onload="onload()">
+    <div id="wrapper">
+	<div id="header">
+        <div id="site_title"><h1><a href="#"></a></h1></div>
+        <div id="menu" class="ddsmoothmenu">
+        </div> <!-- end of menu -->
+        <div class="cleaner"></div>
+    </div> <!-- end of header -->
+    
+     <div id="middle">
+     <!-- Start Top -->
+		<div id="maindiv" style="width: 800px;">
     </div>
     <div class="code prettyprint">
         <pre class="code prettyprint brush: js"></pre>
@@ -29,6 +87,18 @@
                 white-space: nowrap;
             }
         </style>
+    <!-- End Top -->
+    <div class="cleaner"></div>
+	</div> <!-- end of middle -->
+    
+    <!-- end of main -->
+</div> <!-- wrapper -->
+
+<div id="footer_wrapper">
+	<div id="footer"></div>
+</div>
+</div>
+    
         <script class="code" type="text/javascript">
             var data = localStorage.getItem("twocubeSSO") || 0;
             $.urlParam = function (name) {
