@@ -4,10 +4,10 @@ function onload(){
 }
 function loadMenu(){
 	var menu = "<ul>\
-                <li><a href='index.html'>Home</a></li>\
+                <li><a href='./'>Home</a></li>\
                 <li><a href='index.html'>Create Survey</a></li>\
                 <li><a href='#'>About twoCube</a></li>\
-				<li><a href='#'>Login</a></li>\
+				<li><a href='./Login.htm'>Login</a></li>\
             </ul>\
             <br style='clear: left' />";
 			

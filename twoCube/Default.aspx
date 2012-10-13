@@ -29,18 +29,17 @@
             
 
             var menu = "<ul>\
-                <li><a href='index.html'>Home</a></li>\
-                <li><a href='index.html'>Create Survey</a></li>\
-                <li><a href='#'>About twoCube</a></li>\
+                <li><a href='./'>Home</a></li>\
+                <li><a href='./createsurvey.html'>Create Survey</a></li>\
                 <li><a href='./register.html'>Register</a></li>\
 				<li><a href='./Login.htm'>Login</a></li>\
             </ul>\
             <br style='clear: left' />";
 
             var loginedmenu = "<ul>\
-                <li><a href='index.html'>Home</a></li>\
-                <li><a href='index.html'>Create Survey</a></li>\
-                <li><a href='#'>About twoCube</a></li>\
+                <li><a href='./'>Home</a></li>\
+                <li><a href='./createsurvey.html'>Create Survey</a></li>\
+                <li><a href='./EditUserDetails.htm'>Account</a></li>\
                 <li><a href='#'>View Created Surveys</a></li>\
 				<li><a href='#' onclick='logout();'>Logout</a></li>\
             </ul>\

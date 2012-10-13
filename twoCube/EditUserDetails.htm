@@ -10,13 +10,17 @@
     <script src="https://raw.github.com/maxatwork/form2js/master/src/form2js.js"></script>
     <script src="Scripts/json2.js"></script>
     <script type="text/javascript">
+        $.urlParam = function (name) {
+            var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            return results[1] || 0;
+        }
         $(document).ready(function () {
-            var username = "weileng91";
-            var password = "123";
-
+            var data = localStorage.getItem("twocubeSSO") || 0;
+            if (data == 0)
+                window.location = "./";
             $.post("./Services/MemberControllerService.asmx/ViewUserDetails",
             {
-                jsonString: '{"username": "' + username + '", "password": "' + password + '"}'
+                jsonString: '{"memberHash": "' + data + '"}'
             },
             function (data) {
                 console.log(data);

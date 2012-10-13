@@ -86,7 +86,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="register.html" />
-    <Content Include="index.html" />
+    <Content Include="indexold.html" />
     <Content Include="dosurvey.html" />
     <Content Include="css\base.css" />
     <Content Include="css\index.css" />
@@ -145,7 +145,7 @@
     <Content Include="images\time_bg.gif" />
     <Content Include="images\website_bg.gif" />
     <Content Include="images\web_site.gif" />
-    <Content Include="indexold.html" />
+    <Content Include="createsurvey.html" />
     <Content Include="js\base.js" />
     <Content Include="js\machform.js" />
     <Content Include="js\unpacked.js" />
@@ -232,7 +232,9 @@
     <Content Include="UpdatePassword.htm" />
     <Content Include="viewsurveylist.htm" />
     <Content Include="ViewUserDetails.htm" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

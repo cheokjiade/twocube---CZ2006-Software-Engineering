@@ -46,7 +46,7 @@ namespace twoCube.Services
                     JavaScriptSerializer js = new JavaScriptSerializer();
                     DateTime dt = new DateTime();
                     user.memberHash = util.UtilityMethods.CalculateMD5Hash(user.userName + dt.ToShortTimeString());
-                    Context.Response.Write(new Response3 { LogIn = 1, twocubeSSO = user.memberHash });
+                    Context.Response.Write(js.Serialize(new Response3 { LogIn = 1, twocubeSSO = user.memberHash }));
                     session.Save(user);
                     transaction.Commit();
                    
@@ -109,7 +109,7 @@ namespace twoCube.Services
             public int emailExists { get; set; }
         }
 
-        [WebMethod(Description = "View User. Take in string username, string password")]
+        [WebMethod(Description = "View User. Take in string userhash")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void ViewUserDetails(string jsonString)
         {
@@ -119,7 +119,7 @@ namespace twoCube.Services
                 {
                     JObject jsonObject = JObject.Parse(jsonString);
                     JavaScriptSerializer js = new JavaScriptSerializer();
-                    Context.Response.Write(js.Serialize(Entities.Member.GetByLogin(session, jsonObject.SelectToken("username").ToString(), jsonObject.SelectToken("password").ToString())));
+                    Context.Response.Write(js.Serialize(Entities.Member.GetByHash(session, jsonObject.SelectToken("memberHash").ToString())));
                 }
             }
         }
