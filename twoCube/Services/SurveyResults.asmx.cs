@@ -127,6 +127,122 @@ namespace twoCube.Services
                 }
             }
         }
+
+        [WebMethod(Description = "takes in a jsonobject containing the completed survey done by respondent")]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public void createCSV1(int id, string userhash)
+        {
+            System.Web.HttpResponse csvresponse = System.Web.HttpContext.Current.Response;
+            csvresponse.Clear();
+            csvresponse.AddHeader("content-disposition", "attachment; filename=surveyResults.csv");
+            csvresponse.ContentType = "text/csv";
+            csvresponse.Write("Question No: ,Question: ,Option: ,Responses: ,No of Responses: ,");
+            csvresponse.Write(Environment.NewLine);
+
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    Entities.Survey survey;
+                    //getSurvey(id, userhash);
+                    survey = Entities.Survey.GetById(session, id);
+                    int i = 0;
+                    foreach (var question in survey.surveyQuestionList)
+                    {
+                        switch (question.surveyQuestionType)
+                        {
+                            case 0:
+                            case 1:
+                            case 5:
+                                {
+                                    int optionNo = 0;
+                                    foreach (var option in question.surveyQuestionOptionList)
+                                    {
+                                        string fileRow = "";
+                                        string cell = "";
+                                        cell += "Question " + (i + 1).ToString() + ",";
+                                        if (question.surveyQuestionTitle.Contains(","))
+                                        {
+                                            cell += "\"" + question.surveyQuestionTitle + "\"" + ",";
+                                        }
+                                        else
+                                        {
+                                            cell += question.surveyQuestionTitle + ",";
+                                        }
+                                        if (option.surveyQuestionOptionTitle.Contains(","))
+                                        {
+                                            cell += "\"" + option.surveyQuestionOptionTitle + "\"" + ",";
+                                        }
+                                        else
+                                        {
+                                            cell += option.surveyQuestionOptionTitle + ",";
+                                        }
+
+                                        cell += "N.A" + ",";
+                                        int choices = 0;
+                                        foreach (var response in question.surveyQuestionResponseList)
+                                        {
+                                            if (response.responseIntegerValue == optionNo)
+                                            {
+                                                choices++;
+                                            }
+                                        }
+                                        optionNo++;
+                                        cell += choices + ",";
+                                        fileRow += cell + ",";
+                                        csvresponse.Write(fileRow);
+                                        csvresponse.Write(Environment.NewLine);
+                                    }
+                                    i++;
+                                    break;
+                                }
+
+                            case 2:
+                            case 3:
+                            case 4:
+                                {
+                                    foreach (var option in question.surveyQuestionOptionList)
+                                    {
+                                        foreach (var response in question.surveyQuestionResponseList)
+                                        {
+                                            string fileRow = "";
+                                            string cell = "";
+                                            cell += "Question " + (i + 1).ToString() + ",";
+                                            if (question.surveyQuestionTitle.Contains(","))
+                                            {
+                                                cell += "\"" + question.surveyQuestionTitle + "\"" + ",";
+                                            }
+                                            else
+                                            {
+                                                cell += question.surveyQuestionTitle + ",";
+                                            }
+                                            cell += "N.A" + ",";
+                                            if (response.responseStringValue.Contains(","))
+                                            {
+                                                cell += "\"" + response.responseStringValue + "\"" + ",";
+                                            }
+                                            else
+                                            {
+                                                cell += response.responseStringValue + ",";
+                                            }
+                                            cell += "1" + ",";
+                                            fileRow += cell + ",";
+                                            csvresponse.Write(fileRow);
+                                            csvresponse.Write(Environment.NewLine);
+
+                                        }
+
+                                    }
+                                    i++;
+                                    break;
+                                }
+                        }
+                    }
+
+                }
+            }
+            csvresponse.End();
+        }
         
         public string responseStr { get; set; }
     }
