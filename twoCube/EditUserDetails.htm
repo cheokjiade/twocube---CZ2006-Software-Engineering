@@ -70,15 +70,16 @@
             {
                 jsonString: '{"memberHash": "' + data + '"}'
             },
-            function (data) {
-                console.log(data);
-                var json = $.parseJSON(data);
-                document.getElementById('userName').value = data.userName;
-                document.getElementById('firstName').value = data.memberFirstName;
-                document.getElementById('lastName').value = data.memberLastName;
-                document.getElementById('email').value = data.memberEmail;
-                document.getElementById('dob').value = parseDate(data.dateOfBirthday);
-            }, "json");
+             function (data) {
+                 console.log(data);
+                 var json = $.parseJSON(data);
+                 document.getElementById('userName').value = data.userName;
+                 document.getElementById('firstName').value = data.memberFirstName;
+                 document.getElementById('lastName').value = data.memberLastName;
+                 document.getElementById('email').value = data.memberEmail;
+                 email = data.memberEmail;
+                 document.getElementById('dob').value = parseDate(data.dateOfBirthday);
+             }, "json");
 
         });
 
@@ -160,8 +161,9 @@
             return contin;
         }
         function checkFields() {
-            if (checkfirstname() && checklastname() && checkemail() && checkpassword()) {
-                emailCheck();
+            if (checkfirstname() && checklastname() && checkpassword()) {
+                checkpw();
+                //emailCheck();
             }
             else {
                 alert('Please enter all the fields');
@@ -200,15 +202,16 @@
         }
 
         function emailCheck() { //returned null if not found. returned user info when it is in db //test = function
-            var formData = form2js('updateForm', '.', true,
+            if (checkemail()) {
+                var formData = form2js('updateForm', '.', true,
 				function (node) {
 				    if (node.id && node.id.match(/callbackTest/)) {
 				        return { name: node.id, value: node.innerHTML };
 				    }
 				});
 
-            document.getElementById('response').innerHTML = JSON.stringify(formData, null, '\t');
-            $.post("./Services/MemberControllerService.asmx/checkEmailExist",
+                document.getElementById('response').innerHTML = JSON.stringify(formData, null, '\t');
+                $.post("./Services/MemberControllerService.asmx/checkEmailExist",
           {
               jsonString: JSON.stringify(formData, null, '\t')
           },
@@ -216,12 +219,39 @@
                 console.log(data);
                 var json = $.parseJSON(data);
                 if (parseInt(data.emailExists) == 0) {
-                    checkpw();
+                    updateForm.emailEdit.disabled = false;
+                    updateForm.emailSave.disabled = true;
                     data.emailExists == 1;
                 } else {
                     alert('Email address has already been used. Please try again.');
                 }
             }, "json");
+
+            } else {
+
+                alert("Email address cannot be blank!");
+            }
+
+        }
+
+        function changeEmail() {
+            updateForm.email.readOnly = false;
+            updateForm.emailEdit.disabled = true;
+            updateForm.emailCancel.disabled = false;
+
+        }
+
+        function actSave() {
+            updateForm.emailSave.disabled = false;
+
+        }
+
+        function cancelEmail() {
+            updateForm.emailEdit.disabled = false;
+            updateForm.emailCancel.disabled = true;
+            updateForm.emailSave.disabled = true;
+            updateForm.email.readOnly = true;
+            document.getElementById('email').value = email;
 
         }
 
@@ -261,10 +291,10 @@
 <form id="updateForm" action="javascript:checkFields()">
     <label>User Name:&nbsp;&nbsp; </label>
     <input type="text" name="username" id="userName" readonly="readonly" /><br />
-    <label>First Name:</label>&nbsp;&nbsp;&nbsp; <input type="text" name="firstName" id="firstName"/><br />
-    <label>Last Name:</label>&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="lastName" id="lastName"/><br />
-    <label>Email:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="email" id="email"/><br />
-     <label>Password:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="password" id="password"/><br />
+    <label>First Name:</label>&nbsp;&nbsp;&nbsp;<input type="text" name="firstName" id="firstName"/><br />
+    <label>Last Name:</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="lastName" id="lastName"/><br />
+    <label>Email:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="email" id="email" readonly="readonly" onfocus="actSave();"/><input type="button" id="emailEdit" onclick="changeEmail();" value="Edit"/><input type="button" onclick="emailCheck();" id="emailSave" value="Save" disabled="true"/><input type="button" onclick="cancelEmail();" id="emailCancel" value="Cancel" disabled="true"/><br />
+     <label>Password:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="password" id="password"/><br />
     <br />
     <input type="submit" value="Update" />&nbsp;
 </form>

@@ -155,8 +155,42 @@ namespace twoCube.Services
             {
                 using (var transaction = session.BeginTransaction())
                 {
+                    JObject jsonObject = JObject.Parse(jsonString);
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    var user = Entities.Member.GetByLogin(session, jsonObject.SelectToken("username").ToString(), jsonObject.SelectToken("password").ToString());
+                    user.memberPassword = jsonObject.SelectToken("npassword").ToString();
+                    session.SaveOrUpdate(user);
+                    transaction.Commit();
                 }
             }
+        }
+
+        [WebMethod(Description = "Validate cpassword")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public void validatecpw(string jsonString)
+        {
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    JObject jsonObject = JObject.Parse(jsonString);
+                    var member = Entities.Member.GetByLogin(session, jsonObject.SelectToken("username").ToString(), jsonObject.SelectToken("password").ToString());
+                    if (member == null)
+                    {
+                        Context.Response.Write(js.Serialize(new pwResponse { pwExists = 0 }));
+                    }
+                    else
+                    {
+                        Context.Response.Write(js.Serialize(new pwResponse { pwExists = 1 }));
+                    }
+                }
+            }
+        }
+
+        public class pwResponse
+        {
+            public int pwExists { get; set; }
         }
 
         [WebMethod(Description = "Login, string username, string password")]
