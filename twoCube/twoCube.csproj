@@ -86,6 +86,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="colorbox.css" />
+    <Content Include="Copy of template%28Do Not Overwrite%29.html" />
     <Content Include="images\ie6\borderBottomCenter.png" />
     <Content Include="images\ie6\borderBottomLeft.png" />
     <Content Include="images\ie6\borderBottomRight.png" />
