@@ -316,7 +316,8 @@
             }, "json");
 
             alert('Congratulations! Account created! Proceeding to log you in!');
-            $(location).attr('href', "./");
+            parent.$.fn.colorbox.close();
+            //$(location).attr('href', "./");
         }
 
         function validatePwd() {

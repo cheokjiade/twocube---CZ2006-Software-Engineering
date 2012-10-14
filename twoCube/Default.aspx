@@ -2,9 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>twoCube - Home</title> 
+<title>twoCube - Home</title>
+    <link rel="stylesheet" href="http://www.jacklmoore.com/colorbox/example1/colorbox.css" /> 
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.jacklmoore.com/colorbox/colorbox/jquery.colorbox.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
     <script type="text/javascript" src="https://raw.github.com/SamWM/jQuery-Plugins/master/numeric/jquery.numeric.js"></script>
     <script type="text/javascript" src="https://raw.github.com/maxatwork/form2js/master/src/form2js.js"></script>
@@ -13,24 +15,28 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
     <script type="text/javascript">
+        var data = localStorage.getItem("twocubeSSO") || 0;
         $.urlParam = function (name) {
             var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
             return results[1] || 0;
         }
+        $(document).bind('cbox_closed', function () {
+            if (data != 0) $(location).attr('href', './');
+        });
         function onload() {
             loadMenu();
             loadFooter();
             if ($.urlParam('s') != 0) window.location = "./dosurvey.html?s=" + $.urlParam('s');
         }
         function loadMenu() {
-            var data = localStorage.getItem("twocubeSSO") || 0;
+            
             
 
             var menu = "<ul>\
                 <li><a href='./'>Home</a></li>\
                 <li><a href='./createsurvey.html'>Create Survey</a></li>\
-                <li><a href='./register.html'>Register</a></li>\
-				<li><a href='./Login.htm'>Login</a></li>\
+                <li><a href='#' onclick='register();'>Register</a></li>\
+				<li><a href='#' onclick='login();'>Login</a></li>\
             </ul>\
             <br style='clear: left' />";
 
@@ -54,6 +60,12 @@
         function logout() {
             localStorage.clear();
             $(location).attr('href', './');
+        }
+        function register() {
+            $.colorbox({ href: "../register.html" });
+        }
+        function login() {
+            $.colorbox({ href: "../Login.htm" });
         }
     </script>  
 </head>

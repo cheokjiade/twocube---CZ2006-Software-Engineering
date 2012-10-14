@@ -55,8 +55,9 @@
               {
                   memberHash: data
               },
-              function (data) {
-                  $.each(data, function (i, item) {
+              function (d) {
+                  if (jQuery.isEmptyObject(d)) $("<h2>No Surveys have been created.</h2>").appendTo("#mainDiv");
+                  $.each(d, function (i, item) {
                       $("<div id=\"row" + i + "\"/>").appendTo("#mainDiv");
                       $("<strong>" + item.surveyName + "<a href=\"./viewSurvey.htm?id=" + item.Id + "\">View Report</a><a href=\"./viewSurvey.htm?id=" + item.Id + "\">Download Report(CSV)</a></strong><br/><input type=\"text\" size=\"40\" value=\"http://twocube.elasticbeanstalk/?s="+item.Id+"\"/>").appendTo("#row" + i);
 

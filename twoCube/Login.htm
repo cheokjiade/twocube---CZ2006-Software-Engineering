@@ -102,7 +102,8 @@ Hi, <span id="auth-displayname"></span>(<a href="#" id="auth-logoutlink">logout<
                         else {
                             localStorage.setItem("twocubeSSO", data.twocubeSSO);
                             var url = "./"//"http://twocube.elasticbeanstalk.com/"; //Currently Unavailable!!
-                            $(location).attr('href', url);
+                            parent.$.fn.colorbox.close();
+                            //$(location).attr('href', url);
                         }
                     }, "json");
                 }
