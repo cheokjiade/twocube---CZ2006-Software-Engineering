@@ -21,14 +21,14 @@ namespace twoCube.Services
     {
         [WebMethod]
         //public void getSurvey(int surveyID)
-        public void getSurvey(int id, string userhash)
+        public void getSurvey(int id, string memberHash)
         {
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
                     JavaScriptSerializer js = new JavaScriptSerializer();
-                    var member = Member.GetByHash(session,userhash);
+                    var member = Member.GetByHash(session,memberHash);
                     if (member == null)
                         return;
                     var survey = member.memberSurveyList.ToList<Survey>().Find(item => item.Id == id);
@@ -130,7 +130,7 @@ namespace twoCube.Services
 
         [WebMethod(Description = "takes in a jsonobject containing the completed survey done by respondent")]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
-        public void createCSV1(int id, string userhash)
+        public void createCSV1(int id, string memberHash)
         {
             System.Web.HttpResponse csvresponse = System.Web.HttpContext.Current.Response;
             csvresponse.Clear();
