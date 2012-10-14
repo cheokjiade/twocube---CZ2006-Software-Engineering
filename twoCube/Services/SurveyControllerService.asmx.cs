@@ -39,6 +39,30 @@ namespace twoCube.Services
             }
         }
 
+        [WebMethod(Description = "Your Description")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public void getSurveyList(string memberHash)
+        {
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                var member = Entities.Member.GetByHash(session, memberHash);
+                List<Survey> surveyList = member.memberSurveyList.ToList();
+                List<SurveyResponse> surveyResponseList = new List<SurveyResponse>();
+                foreach (var survey in surveyList)
+                {
+                    surveyResponseList.Add(new SurveyResponse {Id = survey.Id, surveyName = survey.surveyTitle, surveyStatus = survey.surveyStatus });
+                }
+                //survey.respondentList = null;
+                //foreach (var question in survey.surveyQuestionList)
+                //{
+                //    question.surveyQuestionResponseList = null;
+                //}
+                Context.Response.Write(js.Serialize(surveyResponseList));
+
+            }
+        }
+
         [WebMethod(Description = "takes in a jsonobject containing the completed survey done by respondent")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void repeater(string formString, string elementString)
@@ -185,6 +209,12 @@ namespace twoCube.Services
                     }
                 }
             }
+        }
+        public class SurveyResponse
+        {
+            public int Id { get; set; }
+            public string surveyName { get; set; }
+            public bool surveyStatus { get; set; }
         }
     }
 }

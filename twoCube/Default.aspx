@@ -40,7 +40,7 @@
                 <li><a href='./'>Home</a></li>\
                 <li><a href='./createsurvey.html'>Create Survey</a></li>\
                 <li><a href='./EditUserDetails.htm'>Account</a></li>\
-                <li><a href='#'>View Created Surveys</a></li>\
+                <li><a href='./viewsurveylist.htm'>View Created Surveys</a></li>\
 				<li><a href='#' onclick='logout();'>Logout</a></li>\
             </ul>\
             <br style='clear: left' />";
@@ -55,7 +55,7 @@
         }
         function logout() {
             localStorage.clear();
-            window.location.reload();
+            $(location).attr('href', './');
         }
     </script>  
 </head>
@@ -71,8 +71,8 @@
     
      <div id="middle">
      <!-- Start Top -->
-		<div id="mid_title">Our Company</div>
-            <p>Aliquam in odio ut ipsum mollis facilisis. Integer est sem, dignissim quis auctor vel, dapibus vel massa. Curabitur vulputate ligula vel mi semper tempus. Vivamus volutpat, elit non tempor vehicula. Suspendisse diam dolor, aliquam non facilisis sed, pharetra at mi.</p>
+		<div id="mid_title">Welcome to twoCube</div>
+            <p>twoCube is a free survey creation service offered in a shallow attempt to get better marks on our CZ2006 project.</p>
             <div id="learn_more"><a href="#">Learn More</a></div>
     <!-- End Top -->
     <div class="cleaner"></div>
