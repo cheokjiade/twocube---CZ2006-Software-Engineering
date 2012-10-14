@@ -19,7 +19,6 @@ namespace twoCube.Services
     // [System.Web.Script.Services.ScriptService]
     public class surveyResults : System.Web.Services.WebService
     {
-
         [WebMethod]
         //public void getSurvey(int surveyID)
         public void getSurvey(int id, string userhash)
