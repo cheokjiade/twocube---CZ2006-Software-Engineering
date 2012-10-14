@@ -171,6 +171,18 @@
         }
 
 
+        function emailValidation() {
+            var email = updateForm.email.value;
+            var emailval = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (email.search(emailval) == -1) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+
         function checkpw() {
             var formData = form2js('updateForm', '.', true,
 				function (node) {
@@ -202,7 +214,7 @@
         }
 
         function emailCheck() { //returned null if not found. returned user info when it is in db //test = function
-            if (checkemail()) {
+            if (checkemail() && emailValidation()) {
                 var formData = form2js('updateForm', '.', true,
 				function (node) {
 				    if (node.id && node.id.match(/callbackTest/)) {
@@ -229,7 +241,7 @@
 
             } else {
 
-                alert("Email address cannot be blank!");
+                alert("Invalid Email address");
             }
 
         }
