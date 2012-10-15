@@ -53,4 +53,6 @@ function login() {
 $(document).bind('cbox_closed', function () {
     //$.colorbox.remove();
     //alert('closing');
+    data = localStorage.getItem("twocubeSSO") || 0;
+    if (data != 0) $(location).attr('href', "./");
 });
