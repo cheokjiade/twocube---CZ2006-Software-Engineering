@@ -217,7 +217,7 @@
                 </td>
                 <td>
                     &nbsp;
-                    <input type="submit" value="Create Account!" />
+                    <input type="submit" value="Create Account!" /><a href='#' onclick='parent.jQuery.colorbox.close(); return false;'>Close</a>
                 </td>
             </tr>
         </table>
@@ -317,6 +317,8 @@
 
             alert('Congratulations! Account created! Proceeding to log you in!');
             parent.$.colorbox.close();
+            parent.$("#cboxClose").click();
+            parent.jQuery.colorbox.close();
             //$(location).attr('href', "./");
         }
 

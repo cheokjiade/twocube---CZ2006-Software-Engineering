@@ -45,8 +45,12 @@ function logout() {
     $(location).attr('href', './');
 }
 function register() {
-    $.colorbox({ href: "../register.html" });
+    $.colorbox({ href: "../register.html", open: true, iframe: true, width: "80%", height: "80%" });
 }
 function login() {
-    $.colorbox({ href: "../Login.htm" });
+    $.colorbox({ href: "../Login.htm", open: true, iframe: true, width: "80%", height: "80%" });
 }
+$(document).bind('cbox_closed', function () {
+    //$.colorbox.remove();
+    //alert('closing');
+});
