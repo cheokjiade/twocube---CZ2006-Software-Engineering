@@ -87,6 +87,32 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="colorbox.css" />
     <Content Include="Copy of template%28Do Not Overwrite%29.html" />
+    <Content Include="css\ddsmoothmenu.css" />
+    <Content Include="css\style.css" />
+    <Content Include="images\body.jpg" />
+    <Content Include="images\content.png" />
+    <Content Include="images\footer.jpg" />
+    <Content Include="images\footer_wrapper.jpg" />
+    <Content Include="images\header.png" />
+    <Content Include="images\icon_address_bg.gif" />
+    <Content Include="images\icon_checkbox_bg.gif" />
+    <Content Include="images\icon_date_bg.gif" />
+    <Content Include="images\icon_dropdown_bg.gif" />
+    <Content Include="images\icon_file_upload_bg.gif" />
+    <Content Include="images\icon_input_bg.gif" />
+    <Content Include="images\icon_mail_bg.gif" />
+    <Content Include="images\icon_multiplechoice_bg.gif" />
+    <Content Include="images\icon_name_bg.gif" />
+    <Content Include="images\icon_number_bg.gif" />
+    <Content Include="images\icon_paragraph_text_bg.gif" />
+    <Content Include="images\icon_phone_bg.gif" />
+    <Content Include="images\icon_photo_bg.gif" />
+    <Content Include="images\icon_price_bg.gif" />
+    <Content Include="images\icon_section_break_bg.gif" />
+    <Content Include="images\icon_signature_bg.gif" />
+    <Content Include="images\icon_single_line_text_bg.gif" />
+    <Content Include="images\icon_time_bg.gif" />
+    <Content Include="images\icon_website_bg.gif" />
     <Content Include="images\ie6\borderBottomCenter.png" />
     <Content Include="images\ie6\borderBottomLeft.png" />
     <Content Include="images\ie6\borderBottomRight.png" />
@@ -95,11 +121,19 @@
     <Content Include="images\ie6\borderTopCenter.png" />
     <Content Include="images\ie6\borderTopLeft.png" />
     <Content Include="images\ie6\borderTopRight.png" />
+    <Content Include="images\image_01.png" />
+    <Content Include="images\image_02.png" />
+    <Content Include="images\image_03.png" />
+    <Content Include="images\list.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\middle.png" />
     <Content Include="images\regpopup\border.png" />
     <Content Include="images\regpopup\controls.png" />
     <Content Include="images\regpopup\loading.gif" />
     <Content Include="images\regpopup\loading_background.png" />
     <Content Include="images\regpopup\overlay.png" />
+    <Content Include="images\scale.gif" />
+    <Content Include="images\scale_bg.gif" />
     <Content Include="jquery.colorbox.js" />
     <Content Include="register.html" />
     <Content Include="indexold.html" />
@@ -377,6 +411,7 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="images\logo.psd" />
     <None Include="Properties\PublishProfiles\external.pubxml" />
     <None Include="Properties\PublishProfiles\twoCube.pubxml" />
   </ItemGroup>

@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
     <script type="text/javascript" src="Scripts/json2.js"></script>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
     <script type="text/javascript" src="js/scripts.js"></script>
 </head>
 <body onload="onload()">

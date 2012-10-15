@@ -108,7 +108,7 @@
             $.getJSON("./Services/SurveyResults.asmx/getSurvey",
           {
               id: $.urlParam('id'),
-              userhash: data
+              memberHash: data
           },
           function (data) {
               $("<u><h1>" + data.surveyTitle + "</h1></u>").appendTo("#maindiv");
