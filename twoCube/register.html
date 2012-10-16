@@ -363,6 +363,20 @@
                 return false;
             }
             else {
+                validateUserName();
+                return true;
+            }
+        }
+
+        function validateUserName() {
+            var e = document.getElementById('Text4').value;
+            var regexNum = /\d/;
+            var regexLetter = /[a-zA-z]/;
+            if (!regexNum.test(e) || !regexLetter.test(e)) {
+                alert('Please enter username with at least one letter and digit.');
+                return false;
+            }
+            else {
                 test1();
                 return true;
             }
