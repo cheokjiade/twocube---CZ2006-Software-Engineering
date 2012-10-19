@@ -9,7 +9,8 @@ $(document).bind('cbox_closed', function () {
 function onload() {
     loadMenu();
     loadFooter();
-    if ($.urlParam('s') != 0) window.location = "./dosurvey.html?s=" + $.urlParam('s');
+    if (window.location.href.indexOf("franky") = -1)
+        if ($.urlParam('s') != 0) window.location = "./dosurvey.html?s=" + $.urlParam('s');
 }
 function loadMenu() {
 
