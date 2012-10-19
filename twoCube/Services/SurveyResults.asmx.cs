@@ -42,7 +42,9 @@ namespace twoCube.Services
                     {
                         totalTime += respondent.respondentTime;
                     }
-                    result.avgTime = (totalTime / result.noOfRespondents)/1000;
+                    if (result.noOfRespondents > 0)
+                        result.avgTime = (totalTime / result.noOfRespondents) / 1000;
+                    else result.avgTime = 0;
 
                     foreach (var question in survey.surveyQuestionList)
                     {
