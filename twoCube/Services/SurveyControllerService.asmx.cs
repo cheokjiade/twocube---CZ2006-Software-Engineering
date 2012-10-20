@@ -114,6 +114,18 @@ namespace twoCube.Services
                                     survey.surveyQuestionList.Add(surveyQuestion);
                                     break;
                                 }
+                            case "slider":
+                                {
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 2 };
+                                    surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "" });
+                                    survey.surveyQuestionList.Add(surveyQuestion);
+                                    break;
+                                }
+                            case "scaler":
+                                {
+
+                                    break;
+                                }
                         }
                     }
                     //var member = Member.GetById(session,1);
