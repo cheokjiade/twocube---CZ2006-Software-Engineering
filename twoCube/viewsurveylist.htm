@@ -12,44 +12,9 @@
     <script type="text/javascript" src="Scripts/json2.js"></script>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
+    <script type="text/javascript" src="js/scripts.js"></script>
     <script type="text/javascript">
-        $.urlParam = function (name) {
-            var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
-            return results[1] || 0;
-        }
-        function onload() {
-            loadMenu();
-            loadFooter();
-            if ($.urlParam('s') != 0) window.location = "./dosurvey.html?s=" + $.urlParam('s');
-        }
-        function loadMenu() {
-            var data = localStorage.getItem("twocubeSSO") || 0;
 
-
-            var menu = "<ul>\
-                <li><a href='index.html'>Home</a></li>\
-                <li><a href='index.html'>Create Survey</a></li>\
-                <li><a href='#'>About twoCube</a></li>\
-				<li><a href='./Login.htm'>Login</a></li>\
-            </ul>\
-            <br style='clear: left' />";
-
-            var loginedmenu = "<ul>\
-                <li><a href='./'>Home</a></li>\
-                <li><a href='index.html'>Create Survey</a></li>\
-                <li><a href='#'>About twoCube</a></li>\
-                <li><a href='#'>View Created Surveys</a></li>\
-				<li><a href='#' onclick='logout();'>Logout</a></li>\
-            </ul>\
-            <br style='clear: left' />";
-
-            if (data == 0) {
-                alert('Please login before attempting to view this page.');
-                $(location).attr('href', './');
-                document.getElementById('menu').innerHTML = menu;
-            }
-            else
-                document.getElementById('menu').innerHTML = loginedmenu;
 
             $.getJSON("./Services/SurveyControllerService.asmx/getSurveyList",
               {
@@ -63,15 +28,6 @@
 
                   });
               });
-        }
-        function loadFooter() {
-            document.getElementById('footer').innerHTML = "Copyright © 2013 twoCube<div class='cleaner'></div>";
-        }
-        function logout() {
-            localStorage.clear();
-            $(location).attr('href', './');
-        }
-        
     </script>
 </head>
 <body onload="onload()">

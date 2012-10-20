@@ -9,7 +9,7 @@ $(document).bind('cbox_closed', function () {
 function onload() {
     loadMenu();
     loadFooter();
-    if (window.location.href.indexOf("franky") = -1)
+    if (window.location.href.indexOf("dosurvey") = -1)
         if ($.urlParam('s') != 0) window.location = "./dosurvey.html?s=" + $.urlParam('s');
 }
 function loadMenu() {
@@ -55,5 +55,7 @@ $(document).bind('cbox_closed', function () {
     //$.colorbox.remove();
     //alert('closing');
     data = localStorage.getItem("twocubeSSO") || 0;
-    if (data != 0) $(location).attr('href', "./");
+    if (data != 0)
+        if (window.location.href.indexOf("createsurvey") = -1) $(location).attr('href', "./");
+        else save_form_data();
 });

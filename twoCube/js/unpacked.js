@@ -156,10 +156,15 @@ function initNewSlider(){
 	
 }
 
-function save_form_data(){
-	
+function save_form_data() {
+    //$.colorbox({ href: "../register.html", open: true, iframe: true, width: "80%", height: "80%" });
+    var memberHash = localStorage.getItem("twocubeSSO") || 0;
 	document.getElementById('display').innerHTML = JSON.stringify(main_form.data);document.getElementById('display2').innerHTML = ds.stringify();
-
+	if (memberHash == 0) {
+	    alert("Please open Login or Register in a new window/tab and login/register. After that return here and click save another time xD");
+	    //$.colorbox({ href: "../register.html", open: true, iframe: true, width: "80%", height: "80%" });
+	    return;
+	}
 
 var myForm = document.createElement("form");
   myForm.method="post" ;
@@ -174,16 +179,20 @@ var myForm = document.createElement("form");
     myInput2.setAttribute("name", "elementString") ;
     myInput2.setAttribute("value", ds.stringify() );
     myForm.appendChild(myInput2) ;
-  
+
+  var myInput3 = document.createElement("input");
+    myInput3.setAttribute("name", "memberHash");
+    myInput3.setAttribute("value", memberHash);
+    myForm.appendChild(myInput2);
   document.body.appendChild(myForm) ;
   myForm.submit() ;
   document.body.removeChild(myForm) ;
-  
-  
-$.post("./Services/SurveyControllerService.asmx/repeater", { formString: JSON.stringify(main_form.data), elementString: ds.stringify() },
+
+
+  /*$.post("./Services/SurveyControllerService.asmx/repeater", { formString: JSON.stringify(main_form.data), elementString: ds.stringify(), memberHash: memberHash },
    function(data) {
      alert("Data Loaded: " + data);
-   });
+   });*/
   
 
 

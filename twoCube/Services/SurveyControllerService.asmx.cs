@@ -65,7 +65,7 @@ namespace twoCube.Services
 
         [WebMethod(Description = "takes in a jsonobject containing the completed survey done by respondent")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
-        public void repeater(string formString, string elementString)
+        public void repeater(string formString, string elementString, string memberHash)
         {
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
@@ -116,7 +116,8 @@ namespace twoCube.Services
                                 }
                         }
                     }
-                    var member = Member.GetById(session,1);
+                    //var member = Member.GetById(session,1);
+                    var member = Member.GetByHash(session, memberHash);
                     member.AddSurvey(survey);
                     session.SaveOrUpdate(member);
                     transaction.Commit();
