@@ -82,14 +82,14 @@ namespace twoCube.Services
                         {
                             case "number":
                                 {
-                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 3 };
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 3, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
                                     surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "" });
                                     survey.surveyQuestionList.Add(surveyQuestion);
                                     break;
                                 }
                             case "radio":
                                 {
-                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 0 };
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 0, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
                                     foreach (var option in question.SelectToken("options").ToList())
                                     {
                                         surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = option.SelectToken("option").ToString() });
@@ -99,7 +99,7 @@ namespace twoCube.Services
                                 }
                             case "checkbox":
                                 {
-                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 1 };
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 1, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
                                     foreach (var option in question.SelectToken("options").ToList())
                                     {
                                         surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = option.SelectToken("option").ToString() });
@@ -109,15 +109,15 @@ namespace twoCube.Services
                                 }
                             case "date":
                                 {
-                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 4 };
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 4, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
                                     surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "" });
                                     survey.surveyQuestionList.Add(surveyQuestion);
                                     break;
                                 }
                             case "slider":
                                 {
-                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 2 };
-                                    surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "" });
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 2, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
+                                    surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "", surveyQuestionOptionMaxText = question.SelectToken("size_max").ToString(), surveyQuestionOptionMinText = question.SelectToken("size_min").ToString() });
                                     survey.surveyQuestionList.Add(surveyQuestion);
                                     break;
                                 }
@@ -126,6 +126,38 @@ namespace twoCube.Services
 
                                     break;
                                 }
+
+                            case "text":
+                                {
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 6, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
+                                    surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "" });
+                                    survey.surveyQuestionList.Add(surveyQuestion);
+                                    break;
+                                }
+
+                            case "textarea":
+                                {
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 7, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
+                                    surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "" });
+                                    survey.surveyQuestionList.Add(surveyQuestion);
+                                    break;
+                                }
+                            case "signature":
+                                {
+
+                                    break;
+                                }
+                            case "photo":
+                                {
+
+                                    break;
+                                }
+                            case "section":
+                                {
+
+                                    break;
+                                }
+                        
                         }
                     }
                     //var member = Member.GetById(session,1);

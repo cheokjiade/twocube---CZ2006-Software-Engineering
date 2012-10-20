@@ -101,7 +101,7 @@ function(data) {
         });
       }else if (qnval.surveyQuestionType == 2){
         $.each(qnval.surveyQuestionOptionList, function(i,optval){
-	        $("<div id=\"slider"+qnvali+"\"></div><span style=\"float: left;\">Hardworking</span><span style=\"float: right;\">Most Hardworking</span><br/><input type=\"hidden\" name=\"s." + qnvali + "\" id=\"" + qnvali + "\">").appendTo("#survey");
+	        $("<div id=\"slider"+qnvali+"\"></div><span style=\"float: left;\">"+ optval.surveyQuestionOptionMinText +"</span><span style=\"float: right;\">"+ optval.surveyQuestionOptionMaxText +"</span><br/><input type=\"hidden\" name=\"s." + qnvali + "\" id=\"" + qnvali + "\">").appendTo("#survey");
             $("#slider"+qnvali).slider({
                 value:100,
                 min: 0,
@@ -133,6 +133,20 @@ function(data) {
         $("<div id=\""+qnvali+"\" style=\"clear:both\"></div>").appendTo("#survey");
         $.each(qnval.surveyQuestionOptionList, function(i,optval){
             $("<div class=\"rad\" style=\"display:inline-block; width:70px;\"><label for=\""+qnvali + i+"\" style=\"display:block; width:70px; text-align:center;\"><img src=\"" + optval.surveyQuestionOptionTitle + "\"></label><input type=\"radio\" style=\"width:70px; text-align:center;\" name=\"s."+qnvali+"\" value=\""+i+"\" id=\"" + qnvali + i + "\" /></div>").appendTo("#"+qnvali);
+        });
+      }else if (qnval.surveyQuestionType == 6){
+        $.each(qnval.surveyQuestionOptionList, function(i,optval){
+            $("<div id=\""+qnvali+"\" style=\"clear:both;\"></div>").appendTo("#survey");
+	        $("<input type=\"text\" name=\"s." + qnvali + "\"/><br/>").appendTo("#"+qnvali);
+            $("<img/>").attr("src",optval.surveyQuestionOptionTitle).appendTo("#"+qnvali);
+            $("<p style=\"clear:both;\"> </p>").appendTo("#"+qnvali);
+        });
+      }else if (qnval.surveyQuestionType == 7){
+        $.each(qnval.surveyQuestionOptionList, function(i,optval){
+            $("<div id=\""+qnvali+"\" style=\"clear:both;\"></div>").appendTo("#survey");
+	        $("<textarea rows=\"4\" cols=\"30\" name=\"s." + qnvali + "\"/><br/>").appendTo("#"+qnvali);
+            $("<img/>").attr("src",optval.surveyQuestionOptionTitle).appendTo("#"+qnvali);
+            $("<p style=\"clear:both;\"> </p>").appendTo("#"+qnvali);
         });
       }
     });
