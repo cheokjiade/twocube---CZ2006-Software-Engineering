@@ -183,7 +183,7 @@ var myForm = document.createElement("form");
   var myInput3 = document.createElement("input");
     myInput3.setAttribute("name", "memberHash");
     myInput3.setAttribute("value", memberHash);
-    myForm.appendChild(myInput2);
+    myForm.appendChild(myInput3);
   document.body.appendChild(myForm) ;
   myForm.submit() ;
   document.body.removeChild(myForm) ;
