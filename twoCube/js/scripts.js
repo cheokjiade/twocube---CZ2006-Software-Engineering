@@ -56,6 +56,6 @@ $(document).bind('cbox_closed', function () {
     //alert('closing');
     data = localStorage.getItem("twocubeSSO") || 0;
     if (data != 0)
-        if (window.location.href.indexOf("createsurvey") = -1) $(location).attr('href', "./");
+        if (window.location.href.indexOf("createsurvey") == -1) $(location).attr('href', "./");
         else save_form_data();
 });
