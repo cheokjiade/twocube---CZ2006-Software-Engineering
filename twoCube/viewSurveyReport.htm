@@ -75,7 +75,8 @@
               $.each(data.questionList, function (question, questionList) {
                   // $("<h2>" + questionList.questionTitle + "</h2>").appendTo("#maindiv");
                   $("<br>").appendTo("#maindiv");
-                  if(questionList.questionType == 2 || questionList.questionType == 3 || questionList.questionType == 4)
+                  //date, numerical input, text, textarea
+                  if(questionList.questionType == 2 || questionList.questionType == 3 || questionList.questionType == 4 || questionList.questionType == 6 || questionList.questionType == 7)
                   {
                       $("<div id=\"list" + question + "\"></div>").appendTo("#maindiv"); 
                       
@@ -182,9 +183,6 @@
                           });
 
                       })
-                  }
-                  else if (questionList.questionType == 3) {
-
                   }
 
               });

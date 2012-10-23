@@ -101,6 +101,8 @@ namespace twoCube.Services
                                     break;
                                 }
                             case 4: //date
+                            case 6: //text
+                            case 7: //textarea
                                 foreach (var response in question.surveyQuestionResponseList)
                                 {
                                     var questionOption = new Options {responseStr = response.responseStringValue, noOfRespondents=1};
