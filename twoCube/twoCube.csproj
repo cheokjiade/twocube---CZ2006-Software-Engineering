@@ -147,7 +147,7 @@
     <Content Include="js\scripts.js" />
     <Content Include="template%28Do Not Overwrite%29.html" />
     <Content Include="testpopup.htm" />
-    <Content Include="viewSurvey.htm" />
+    <Content Include="viewSurveyReport.htm" />
     <Content Include="Login.htm" />
     <Content Include="images\address.gif" />
     <Content Include="images\address_bg.gif" />
