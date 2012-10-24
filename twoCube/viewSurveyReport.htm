@@ -86,7 +86,7 @@
                       $("<font size=\"3\" color=\"#585858\">" + (question + 1) + ". " + questionList.questionTitle + "</font><p>").appendTo("#list"+question);
                       
                       $.each(questionList.optionList, function (option, optionList) {
-                               $("<div style=\"width:585px; border:1px solid grey;\"><font color=\"#585858\"><h5>" + (optionList.noOfRespondents/data.noOfRespondents)*100 + "% of the respondents responded: " + "<b>" + optionList.responseStr + "</b></font></h5></div>").appendTo("#list"+question);
+                               $("<div style=\"width:585px; border:1px solid grey;\"><font color=\"#585858\"><h5>" + ((optionList.noOfRespondents/data.noOfRespondents)*100).toFixed(1) + "% of the respondents responded: " + "<b>" + optionList.responseStr + "</b></font></h5></div>").appendTo("#list"+question);
                              //  $("<table cellpadding=\"8\" cellspacing=\"0\" border=\"1\" width=\"585px\"><tr><td><h5>" + optionList.noOfRespondents + " responded: " + optionList.responseStr + "</h5></td></tr></table>").appendTo("#list"+question);
                           });
                      
