@@ -68,9 +68,12 @@
           },
           function (data) {
               $("<u><h1>" + data.surveyTitle + "</h1></u>").appendTo("#maindiv");
-              $("<h4>" + data.surveyDescription + "</h4>").appendTo("#maindiv");
-              $("<h5>" + data.noOfRespondents + " people responded.</h4>").appendTo("#maindiv");
-              $("<h5>" + data.avgTime + " seconds was the average time taken.</h4><br>").appendTo("#maindiv");
+              if(data.surveyDescription!= null)
+              {
+                   $("<h4>" + data.surveyDescription + "</h4>").appendTo("#maindiv");
+              }
+              $("<h4> Number of Repondents: " + data.noOfRespondents + "</h4>").appendTo("#maindiv");
+              $("<h4> Average time taken for " + data.noOfRespondents + " respondent(s) to do the survey: " + data.avgTime + " seconds </h4><br>").appendTo("#maindiv");
 
               $.each(data.questionList, function (question, questionList) {
                   // $("<h2>" + questionList.questionTitle + "</h2>").appendTo("#maindiv");
@@ -80,7 +83,7 @@
                   {
                       $("<div id=\"list" + question + "\"></div>").appendTo("#maindiv"); 
                       
-                      $("<font size=\"3\" color=\"#585858\">" + (question + 1) + ". " + questionList.questionTitle + questionList.questionType + "</font><p>").appendTo("#list"+question);
+                      $("<font size=\"3\" color=\"#585858\">" + (question + 1) + ". " + questionList.questionTitle + "</font><p>").appendTo("#list"+question);
                       
                       $.each(questionList.optionList, function (option, optionList) {
                                $("<div style=\"width:585px; border:1px solid grey;\"><font color=\"#585858\"><h5>" + (optionList.noOfRespondents/data.noOfRespondents)*100 + "% of the respondents responded: " + "<b>" + optionList.responseStr + "</b></font></h5></div>").appendTo("#list"+question);
@@ -110,7 +113,7 @@
                           var plot1 = jQuery.jqplot('chartPie' + question, [stuff],
 
                       {
-                          title: question + 1 + ". " + questionList.questionTitle + questionList.questionType,
+                          title: question + 1 + ". " + questionList.questionTitle,
                           seriesDefaults: {
                               // Make this a pie chart.
                               renderer: jQuery.jqplot.PieRenderer,
