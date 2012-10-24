@@ -24,7 +24,7 @@
                   if (jQuery.isEmptyObject(d)) $("<h2>No Surveys have been created.</h2>").appendTo("#mainDiv");
                   $.each(d, function (i, item) {
                       $("<div id=\"row" + i + "\"/>").appendTo("#mainDiv");
-                      $("<strong>" + item.surveyName + "<a href=\"./viewSurveyReport.htm?id=" + item.Id + "\">View Report</a><a href=\"./Services/SurveyResults.asmx/createCSV1?id=" + item.Id + "&memberHash="+data+"\">Download Report(CSV)</a></strong><br/><input type=\"text\" size=\"40\" value=\"http://twocube.elasticbeanstalk/?s=" + item.Id + "\"/>").appendTo("#row" + i);
+                      $("<strong>" + item.surveyName + "<a href=\"./viewSurveyReport.htm?id=" + item.Id + "\">View Report</a><a href=\"./Services/SurveyResults.asmx/createCSV1?id=" + item.Id + "&memberHash=" + data + "\">Download Report(CSV)</a></strong><br/><input type=\"text\" size=\"40\" value=\"http://twocube1.elasticbeanstalk.com/dosurvey.html?s=" + item.Id + "\"/>").appendTo("#row" + i);
 
                   });
               });

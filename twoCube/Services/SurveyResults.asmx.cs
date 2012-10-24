@@ -134,7 +134,7 @@ namespace twoCube.Services
 
         [WebMethod(Description = "takes in a jsonobject containing the completed survey done by respondent")]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
-        public void createCSV1(int id, string memberHash)
+        public void createCSV(int id, string memberHash)
         {
             System.Web.HttpResponse csvresponse = System.Web.HttpContext.Current.Response;
             csvresponse.Clear();
@@ -204,6 +204,8 @@ namespace twoCube.Services
                             case 2:
                             case 3:
                             case 4:
+                            case 6:
+                            case 7:
                                 {
                                     foreach (var option in question.surveyQuestionOptionList)
                                     {
