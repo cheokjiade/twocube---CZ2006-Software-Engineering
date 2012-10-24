@@ -35,6 +35,7 @@ namespace twoCube.Services
                     //var survey = Entities.Survey.GetById(session, id);
                     var result = new SurveyResults();
                     result.surveyTitle = survey.surveyTitle;
+                    result.surveyDescription = survey.surveyDescription;
                     result.noOfRespondents = survey.respondentList.Count;
                     int i = 0;
                     int totalTime = 0;
