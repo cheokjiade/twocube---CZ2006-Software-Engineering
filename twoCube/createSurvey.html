@@ -60,6 +60,7 @@
         <li><a href="javascript:insert_element('section');" title="Organize your form."><img src="images/icon_section_break_bg.gif"><span>Section Break</span></a></li>
         <li><a href="javascript:insert_element('slider');"><img src="images/icon_slider_bg.gif"><span>Slider</span></a></li>
         <li><a href="javascript:insert_element('signature');"><img src="images/icon_signature_bg.gif"><span>Signature</span></a></li>
+        <li><a href="javascript:insert_element('satisfactory');"><img src="images/icon_satisfactory.gif"><span>Satisfactory</span></a></li>
         
         <!--
         <li><a id="single_line_text" href="javascript:insert_element('text')"><img src="images/single_line_text.gif"></a></li>
@@ -204,11 +205,11 @@
         <label class="desc" for="field_size">Min value
         </label>
         <!--<input id="tb_slider_size_min" class="text medium" value="1" tabindex="1" maxlength="10" onkeyup="updateSlider();" type="text">-->
-        <input id="tb_slider_size_min" class="text medium" value="" tabindex="1" maxlength="10" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;size_min&#39;)"/>
+        <input id="tb_slider_size_min" class="text medium" value="1" tabindex="1" maxlength="10" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;size_min&#39;)"/>
 
         <label class="desc" for="field_size">Max value</label>
         <!--<input id="tb_slider_size_max" class="text medium" value="10" tabindex="1" maxlength="10" onkeyup="updateSlider();" type="text"/>-->
-        <input id="tb_slider_size_max" class="text medium" value="" tabindex="1" maxlength="10" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;size_max&#39;)" type="text"/>
+        <input id="tb_slider_size_max" class="text medium" value="10" tabindex="1" maxlength="10" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;size_max&#39;)" type="text"/>
         </li>
 <!-- slider -->      
 
@@ -222,6 +223,30 @@
         <input id="tb_scaler_maxtext" class="text medium" value="Best" tabindex="1" maxlength="10" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;maxtext&#39;);"/>
         </li>
 <!-- scaler --> 
+
+<!-- Satisfactory -->        
+        <li class="left half clear" id="prop_satisfactory">
+        <select class="select full" id="satisfactory_format" autocomplete="off" onchange="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;satisfactory_format&#39;);">
+        <option id="satisfactory_text" value="satisfactory_text">Show Text</option>
+        <option id="satisfactory_image" value="satisfactory_image">Show Picture</option>
+        </select>
+        
+        <label class="desc" for="field_size">Very Unsatisfactory Text</label>
+        <input id="tb_satisfactory_vUnsatisfactory" class="text long" value="Very Unsatisfactory " tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;satisfactory_vUnsatisfactory&#39;);"/>
+        <label class="desc" for="field_size">Unsatisfactory Text</label>
+        <input id="tb_satisfactory_Unsatisfactory" class="text long" value="Unsatisfactory" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;satisfactory_Unsatisfactory&#39;);"/>
+        <label class="desc" for="field_size">Neutral Text</label>
+        <input id="tb_satisfactory_Neutral" class="text long" value="Neutral" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;satisfactory_Neutral&#39;);"/>
+        <label class="desc" for="field_size">Satisfactory Text</label>
+        <input id="tb_satisfactory_Satisfactory" class="text long" value="Satisfactory" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;satisfactory_Satisfactory&#39;);"/>
+        <label class="desc" for="field_size">Very Satisfactory Text</label>
+        <input id="tb_satisfactory_vSatisfactory" class="text long" value="Very Satisfactory" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;satisfactory_vSatisfactory&#39;);"/>
+        
+        
+        
+        </li>
+<!-- Satisfactory --> 
+
 		<li class="left half clear" id="prop_photo">
         
         </li>
@@ -623,6 +648,7 @@
 
 <div id="debug"></div>
 
+<a href="javascript:loginScreen('show')">Login</a>
 
 <h3>Form</h3>
 <div id="display"></div>
@@ -637,6 +663,14 @@ var json_elements = {"elements":[]};
 
 </div><!-- wrapper -->
 <div id="footer_wrapper">
-	<div id="footer"></div>
+	<div id="footer"><</div>
 </div>
+
+<div class="overlay" id="loginScreen">
+<div class="contain">
+<iframe src="http://twocube1.elasticbeanstalk.com/Login.htm" frameborder="0" width="780" height="450" style="overflow:hidden"></iframe>
+<a href="javascript:loginScreen('hide')">Close</a>
+</div>
+</div>
+
 </body></html>
