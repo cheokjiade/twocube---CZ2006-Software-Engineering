@@ -234,6 +234,8 @@ namespace twoCube.Services
 
                                                 break;
                                             }
+                                        case 6:
+                                        case 7:
                                         case 4:
                                             {
                                                 var response = new Entities.SurveyQuestionResponse { responseIsAnswered = true, responseType = 2, responseStringValue = jToken.ToString() };
