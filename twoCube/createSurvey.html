@@ -60,6 +60,7 @@
         <li><a href="javascript:insert_element('section');" title="Organize your form."><img src="images/icon_section_break_bg.gif"><span>Section Break</span></a></li>
         <li><a href="javascript:insert_element('slider');"><img src="images/icon_slider_bg.gif"><span>Slider</span></a></li>
         <li><a href="javascript:insert_element('signature');"><img src="images/icon_signature_bg.gif"><span>Signature</span></a></li>
+        <li><a href="javascript:insert_element('img_radio');"><img src="images/icon_multiplechoice_bg.gif"><span>Image Radio</span></a></li>
         <li><a href="javascript:insert_element('satisfactory');"><img src="images/icon_satisfactory.gif"><span>Satisfactory</span></a></li>
         
         <!--
@@ -86,6 +87,7 @@
         <li><a href="javascript:insert_element('file');"><img src="images/icon_file_upload_bg.gif"><span>File Upload</span></a></li>
         <li><a href="javascript:insert_element('scaler');"><img src="images/icon_scaler_bg.gif"><span>Scaler</span></a></li>
         <li><a href="javascript:insert_element('photo');"><img src="images/icon_photo_bg.gif"><span>Photo</span></a></li>
+        <li><a href="javascript:insert_element('img_checkbox');"><img src="images/icon_checkbox_bg.gif"><span>Image Checkbox</span></a></li>
         <!--
         <li><a id="number" href="javascript:insert_element('number');"><img src="images/number.gif"></a></li>
         <li><a id="checkboxes" href="javascript:insert_element('checkbox');"><img src="images/checkboxes.gif"></a></li>
@@ -242,10 +244,41 @@
         <label class="desc" for="field_size">Very Satisfactory Text</label>
         <input id="tb_satisfactory_vSatisfactory" class="text long" value="Very Satisfactory" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;satisfactory_vSatisfactory&#39;);"/>
         
-        
-        
         </li>
 <!-- Satisfactory --> 
+
+<!-- img_radio -->        
+        <li class="left half clear" id="prop_img_radio">
+        
+        <label class="desc" for="field_size">First Image URL</label>
+        <input id="tb_img_radio_vUnsatisfactory" class="text long" value="images/faces_1.PNG" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;img_radio_vUnsatisfactory&#39;);"/>
+        <label class="desc" for="field_size">Second Image URL</label>
+        <input id="tb_img_radio_Unsatisfactory" class="text long" value="images/faces_2.PNG" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;img_radio_Unsatisfactory&#39;);"/>
+        <label class="desc" for="field_size">Third Image URL</label>
+        <input id="tb_img_radio_Neutral" class="text long" value="images/faces_3.PNG" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;img_radio_Neutral&#39;);"/>
+        <label class="desc" for="field_size">Fourth Image URL</label>
+        <input id="tb_img_radio_Satisfactory" class="text long" value="images/faces_4.PNG" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;img_radio_Satisfactory&#39;);"/>
+        <label class="desc" for="field_size">Fifth Image URL</label>
+        <input id="tb_img_radio_vSatisfactory" class="text long" value="images/faces_5.PNG" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;img_radio_vSatisfactory&#39;);"/>
+        
+        </li>
+<!-- img_radio --> 
+
+<!-- img_checkbox -->        
+        <li class="left half clear" id="prop_img_checkbox">
+        <label class="desc" for="field_size">First Image URL</label>
+        <input id="tb_img_checkbox_vUnsatisfactory" class="text long" value="images/faces_1.PNG" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;satisfactory_vUnsatisfactory&#39;);"/>
+        <label class="desc" for="field_size">Second Image URL</label>
+        <input id="tb_img_checkbox_Unsatisfactory" class="text long" value="images/faces_2.PNG" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;satisfactory_Unsatisfactory&#39;);"/>
+        <label class="desc" for="field_size">Third Image URL</label>
+        <input id="tb_img_checkbox_Neutral" class="text long" value="images/faces_3.PNG" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;satisfactory_Neutral&#39;);"/>
+        <label class="desc" for="field_size">Fourth Image URL</label>
+        <input id="tb_img_checkbox_Satisfactory" class="text long" value="images/faces_4.PNG" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;satisfactory_Satisfactory&#39;);"/>
+        <label class="desc" for="field_size">Fifth Image URL</label>
+        <input id="tb_img_checkbox_vSatisfactory" class="text long" value="images/faces_5.PNG" tabindex="1" onkeyup="set_properties(JJ(this).val(), &#39;constraint&#39;);set_properties(JJ(this).val(), &#39;satisfactory_vSatisfactory&#39;);"/>
+        
+        </li>
+<!-- img_checkbox --> 
 
 		<li class="left half clear" id="prop_photo">
         

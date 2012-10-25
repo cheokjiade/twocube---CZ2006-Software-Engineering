@@ -4,7 +4,9 @@ JJ("#prop_slider_size").css("display","none");
 JJ("#prop_scaler_size").css("display","none");
 JJ("#prop_photo").css("display","none");
 JJ("#prop_signature").css("display","none");
-JJ("#prop_satisfactory_size").css("display","none");
+JJ("#prop_satisfactory").css("display","none");
+JJ("#prop_img_checkbox").css("display","none");
+JJ("#prop_img_radio").css("display","none");
 
 
 JJ("#element_inactive").css("display","none");JJ("#all_properties").css("display","none");JJ("#element_label").val(ds.get(this.id,"title"));for(var x=0;x<components[ds.get(this.id,"type")].length;x++){this[components[ds.get(this.id,"type")][x]]()}JJ("#element_instructions").val(ds.get(this.id,"guidelines"));JJ("#element_position").html(parseInt(ds.get(this.id,"position"))+1);JJ("#all_properties").css("display","block");JJ("#element_position").css("display","block");JJ("#list_buttons").css("display","block");JJ("#element_label").select().focus()},types:function(){JJ("#prop_element_type").css("display","block");if(ds.get(this.id,"is_db_live")=="1"){JJ("#element_type").attr("disabled","disabled")}else{JJ("#element_type").attr("disabled","")}var a=ds.get(this.id,"type");if(a=="name"){a="simple_name"}else{if(a=="simple_phone"){a="phone"}else{if(a=="europe_date"){a="date"}}}element_types=document.getElementById("element_type");for(var i=0;i<element_types.options.length;i++){if(element_types.options[i].value==a){element_types.selectedIndex=i}}},required:function(){JJ("#prop_options").css("display","block");if(ds.get(active_element,"is_required")=="1"){JJ("#element_required").attr("checked","checked")}else{JJ("#element_required").attr("checked","")}var a=ds.get(active_element,"type");if(a=="checkbox"||a=="radio"){this.switch_unique("hide")}else{this.switch_unique("show")}},switch_unique:function(a){if(a=="hide"){JJ("#element_unique").css("visibility","hidden")}else{JJ("#element_unique").css("visibility","visible")}var b=ds.get(active_element,"type");if(b=="radio"||b=="checkbox"||b=="select"||b=="simple_name"||b=="name"||b=="address"||b=="file"){JJ("#element_unique_span").css("display","none")}else{JJ("#element_unique_span").css("display","block")}},size:function(){JJ("#prop_element_size").css("display","block");var a=ds.get(this.id,"size");field_sizes=document.getElementById("field_size");for(var i=0;i<field_sizes.options.length;i++){if(field_sizes.options[i].value==a){field_sizes.selectedIndex=i}}},choices:function(){JJ("#prop_choices").css("display","block");JJ("#element_choices").html("");options=ds.get(this.id,"options");field_type=ds.get(this.id,"type");all_markup=new Array();for(var i=0;i<options.length;i++){el_val=options[i].option.replace(/\"/g,"&quot;");if(options[i].is_default==1){loc="images/icons/star.gif";msg="Default"}else{loc="images/icons/stardim.gif";msg="Make Default"}all_markup[i]="<li>"+"<input id=\"choice"+i+"\" class=\"text\" type=\"text\" maxlength=\"250\" autocomplete=\"off\" value=\""+el_val+"\" "+"onkeyup=\"set_properties(this.value, 'choices', "+i+")\" "+"onkeypress=\"choices_event(event,"+i+")\" />"+" <img class=\"button\" src=\"images/icons/add.gif\" alt=\"Add\" title=\"Add\" onclick=\"insert_choice("+(i+1)+")\" /> "+"<img class=\"button\" src=\"images/icons/delete.gif\" alt=\"Delete\" title=\"Delete\" onclick=\"delete_checkbox("+options[i].id+", "+options[i].is_db_live+", '"+field_type+"', "+i+")\" /> "+"<img class=\"button\" src=\""+loc+"\" alt=\""+msg+"\" title=\""+msg+"\" onclick=\"set_choice_default("+i+")\" />"+"</li>"}JJ("#element_choices").html(all_markup.join(""))},unique:function(){if(ds.get(active_element,"is_unique")=="1"){JJ("#element_unique").attr("checked","checked")}else{JJ("#element_unique").attr("checked","")}},is_private:function(){JJ("#prop_access_control").css("display","block");if(ds.get(active_element,"is_private")=="1"){JJ("#fieldPrivate").attr("checked","checked")}else{JJ("#fieldPublic").attr("checked","checked")}},phone_default:function(){JJ("#prop_phone_default").css("display","block");el_val=ds.get(this.id,"default_value");JJ("#element_phone_default1").val(el_val.substring(0,3));JJ("#element_phone_default2").val(el_val.substring(3,6));JJ("#element_phone_default3").val(el_val.substring(6,10))},address_default:function(){JJ("#prop_default_country").css("display","block");el_val=ds.get(this.id,"default_value");countries=document.getElementById("element_countries");for(var i=0;i<countries.options.length;i++){if(countries.options[i].value==el_val){countries.selectedIndex=i}}},randomize:function(){JJ("#prop_randomize").css("display","block");if(ds.get(active_element,"constraint")=="random"){JJ("#element_random").attr("checked","checked")}else{JJ("#element_not_random").attr("checked","checked")}},text_default:function(){JJ("#prop_default_value").css("display","block");JJ("#element_default").val(ds.get(this.id,"default_value"))},date:function(){JJ("#prop_date_format").css("display","block");date_type=ds.get(active_element,"type");dates=document.getElementById("date_type");for(var i=0;i<dates.options.length;i++){if(dates.options[i].value==date_type){dates.selectedIndex=i}}},name:function(){JJ("#prop_name_format").css("display","block");if(ds.get(this.id,"is_db_live")=="1"){JJ("#name_format").attr("disabled","disabled")}else{JJ("#name_format").attr("disabled","")}name_type=ds.get(active_element,"type");name_format=document.getElementById("name_format");for(var i=0;i<name_format.options.length;i++){if(name_format.options[i].value==name_type){name_format.selectedIndex=i}}},
@@ -16,6 +18,8 @@ scaler:function(){JJ("#prop_scaler_size").css("display","block");},
 photo:function(){JJ("#prop_photo").css("display","block");},
 signature:function(){JJ("#prop_signature").css("display","block");},
 satisfactory:function(){JJ("#prop_satisfactory").css("display","block");},
+img_checkbox:function(){JJ("#prop_img_checkbox").css("display","block");},
+img_radio:function(){JJ("#prop_img_radio").css("display","block");},
 
 currency:function(){JJ("#prop_currency_format").css("display","block");constraint=ds.get(active_element,"constraint");money_format=document.getElementById("money_format");for(var i=0;i<money_format.options.length;i++){if(money_format.options[i].value==constraint){money_format.selectedIndex=i}}}};var field=function(){};field.prototype={initialize:function(a){this.id=a},
 
@@ -26,7 +30,7 @@ slider:function(){size_max=ds.get(this.id,"size_max");size_min=ds.get(this.id,"s
 photo:function(){return "<div><table bgcolor='#999999' width='200px' height='100px' border='1'><tr><td align='center'>Upload Photo Here</td></tr></table></div>"},
 signature:function(){return "<div><table bgcolor='#fffffff' width='200px' height='100px' border='1'><tr><td align='center'>Your Signature Here</td></tr></table></div>"},
 
-satisfactory:function(){satisfactory_format=ds.get(this.id,"satisfactory_format");tb_satisfactory_vUnsatisfactory=ds.get(this.id,"tb_satisfactory_vUnsatisfactory");
+satisfactory:function(){satisfactory_format=ds.get(this.id,"satisfactory_format");
 
 var satOne = document.getElementById("tb_satisfactory_vUnsatisfactory").value;
 var satTwo = document.getElementById("tb_satisfactory_Unsatisfactory").value;
@@ -42,8 +46,6 @@ if(document.getElementById("satisfactory_format").value == "satisfactory_image")
 	satFive = "<img src='"+satFive+"' width='50px'/>";
 }
 
-//<span id = 'slider_min'>" + (document.getElementById("satisfactory_format").value) + "</span><span style='float:right' id = 'slider_max'>" + (document.getElementById("tb_satisfactory_vUnsatisfactory").value) + "</span>
-
 return "<div><table width='450px'><tr><td align='center' width='90px'><input type='radio' name='satisfactory'><br/>" + (satOne) + "</td><td align='center' width='90px'><input type='radio' name='satisfactory'><br/>" + (satTwo) + "</td><td align='center' width='90px'><input type='radio' name='satisfactory' ><br/>" + (satThree) + "</td><td align='center' width='90px'><input type='radio' name='satisfactory' ><br/>" + (satFour) + "</td><td align='center' width='90px'><input type='radio' name='satisfactory' ><br/>" + (satFive) + "</td></tr></table></div>"},
 
 scaler:function(){size=ds.get(this.id,"size");
@@ -52,23 +54,52 @@ scaler:function(){size=ds.get(this.id,"size");
 	loopSize = document.getElementById("tb_scaler_size").value;
 	if(loopSize < 11 && loopSize > 0){
 		for(var i=1;i<=loopSize;i++){
-			display += "<input type='button' value='&nbsp;"+i+"&nbsp;' style='margin-right:10px;'/>";
+			display += "<td><input type='button' value='&nbsp;"+i+"&nbsp;' style='margin-right:10px;'/></td>";
 		}
 	}
 	else if(loopSize > 10){
 		for(var i=1;i<=10;i++){
-			display += "<input type='button' value='&nbsp;"+i+"&nbsp;' style='margin-right:10px;'/>";
+			display += "<td><input type='button' value='&nbsp;"+i+"&nbsp;' style='margin-right:10px;'/></td>";
 		}
 	}
 	else{
 		for(var i=1;i<=5;i++){
-			display += "<input type='button' value='&nbsp;"+i+"&nbsp;' style='margin-right:10px;'/>";
+			display += "<td><input type='button' value='&nbsp;"+i+"&nbsp;' style='margin-right:10px;'/></td>";
 		}
 	}
-return "<div><table><tr><td>"+display+"<br/><span id = 'scaler_min' style='font-size:12px'>" + (document.getElementById("tb_scaler_mintext").value) + "</span><span style='float:right;font-size:12px;margin-right:10px;' id = 'scaler_max'>" + (document.getElementById("tb_scaler_maxtext").value) + "</span></td></tr></table></div>"},//<span id = 'slider_min'>" + (document.getElementById("tb_scaler_size").value) + "</span>
+return "<div><table><tr>"+display+"</tr><td colspan='10'><span id = 'scaler_min' style='font-size:12px'>" + (document.getElementById("tb_scaler_mintext").value) + "</span><span style='float:right;font-size:12px;margin-right:10px;' id = 'scaler_max'>" + (document.getElementById("tb_scaler_maxtext").value) + "</span></td></tr></table></div>"},
 
-//function(){size_max=ds.get(this.id,"size_max");size_min=ds.get(this.id,"size_min");return"<div><input type='range' name='Slider' min='1' max='10' /><span>"+size_min+"</span><span>"+size_max+"</span></div>"}
+img_checkbox:function(){
 
+var satOne = document.getElementById("tb_img_checkbox_vUnsatisfactory").value;
+var satTwo = document.getElementById("tb_img_checkbox_Unsatisfactory").value;
+var satThree = document.getElementById("tb_img_checkbox_Neutral").value;
+var satFour = document.getElementById("tb_img_checkbox_Satisfactory").value;
+var satFive = document.getElementById("tb_img_checkbox_vSatisfactory").value;
+
+	satOne = "<img src='"+satOne+"' width='50px'/>";
+	satTwo = "<img src='"+satTwo+"' width='50px'/>";
+	satThree = "<img src='"+satThree+"' width='50px'/>";
+	satFour = "<img src='"+satFour+"' width='50px'/>";
+	satFive = "<img src='"+satFive+"' width='50px'/>";
+
+return "<div><table width='100px'><tr><td align='center' width='90px'><input type='checkbox' name='check'>" + (satOne) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check'>" + (satTwo) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check'>" + (satThree) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check'>" + (satFour) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check'>" + (satFive) + "</td></tr></table></div>"},
+
+img_radio:function(){
+
+var satOner = document.getElementById("tb_img_radio_vUnsatisfactory").value;
+var satTwor = document.getElementById("tb_img_radio_Unsatisfactory").value;
+var satThreer = document.getElementById("tb_img_radio_Neutral").value;
+var satFourr = document.getElementById("tb_img_radio_Satisfactory").value;
+var satFiver = document.getElementById("tb_img_radio_vSatisfactory").value;
+
+	satOner = "<img src='"+satOner+"' width='50px'/>";
+	satTwor = "<img src='"+satTwor+"' width='50px'/>";
+	satThreer = "<img src='"+satThreer+"' width='50px'/>";
+	satFourr = "<img src='"+satFourr+"' width='50px'/>";
+	satFiver = "<img src='"+satFiver+"' width='50px'/>";
+
+return "<div><table width='100px'><tr><td height='60px' width='90px'><input type='radio' name='satisfactory'>" + (satOner) + "</td></tr><tr><td height='60px' width='90px'><input type='radio' name='satisfactory'>" + (satTwor) + "</td></tr><tr><td height='60px' width='90px'><input type='radio' name='satisfactory' >" + (satThreer) + "</td></tr><tr><td height='60px' width='90px'><input type='radio' name='satisfactory' >" + (satFourr) + "</td></tr><tr><td height='60px' width='90px'><input type='radio' name='satisfactory' >" + (satFiver) + "</td></tr></table></div>"},
 
 simple_phone:function(){return"<div class=\"full\"><input readonly=\"readonly\" id=\"field"+this.id+"\" class=\"text medium\" type=\"text\"></div>"},address:function(){return"<div class=\"full\"><div class=\"full\"><input readonly=\"readonly\" class=\"text large\" type=\"text\"><label>Street Address</label></div><div class=\"full\"><input readonly=\"readonly\" class=\"text large\" type=\"text\"><label>Address Line 2</label></div><div class=\"left\"><input readonly=\"readonly\" class=\"text medium\" type=\"text\"><label>City</label></div><div class=\"right\"><input readonly=\"readonly\" class=\"text medium\" type=\"text\"><label>State / Province / Region</label></div><div class=\"left\"><input readonly=\"readonly\" class=\"text medium\" type=\"text\"><label>Zip / Postal Code</label></div><div class=\"right\"><select class=\"select medium\" name=\"\"><option value=\"\"></option></select><label>Country</label></div></div>"},
 
@@ -81,6 +112,8 @@ case"scaler":title="Scaler";break;
 case"signature":title="Signature";break;
 case"photo":title="Photo";break;
 case"satisfactory":title="Satisfactory";break;
+case"img_checkbox":title="Image Checkbox";break;
+case"img_radio":title="Image Radio";break;
 
 
 case"simple_phone":title="Phone";break;case"address":title="Address";break;case"money":title="Price";break;case"url":title="Web Site";break;case"email":title="Email";break;case"number":title="Number";break;case"file":title="Upload a File";break;case"section":title="Section Break";break}this.data["elements"].push({"title":title,"guidelines":"","size":"medium","is_required":"0","is_unique":"0","is_private":"0","type":a,"object":c,"position":b,"id":b,"is_db_live":"0","default_value":"","constraint":"","options":[{"option":"First option","is_default":0,"is_db_live":"0","id":"0"},{"option":"Second option","is_default":0,"is_db_live":"0","id":"0"},{"option":"Third option","is_default":0,"is_db_live":"0","id":"0"}]})},get:function(a,b){for(var i=0;i<this.data["elements"].length;i++){var c=this.data["elements"][i];if(a==c.id){el=c;break}}return el[b]},set:function(c,d,e){jQuery.each(this.data["elements"],function(a,b){if(e.replace){e=e.replace(/\\\"/g,"\\ \"")}if(b.id==c){b[d]=e}})},set_option:function(c,d,e){if(d.replace){d=d.replace(/\\\"/g,"\\ \"")}jQuery.each(this.data["elements"],function(a,b){if(b.id==c){b.options[e].option=d}})},set_default_option:function(e,f){jQuery.each(this.data["elements"],function(c,d){if(d.id==f){jQuery.each(d.options,function(a,b){if(a==e&&b.is_default==0){b.is_default=1}else{if(a==e&&b.is_default==1){b.is_default=0}else{if(d.type!="checkbox"){b.is_default=0}}}})}})},remove_element:function(a){for(var i=0;i<this.data["elements"].length;i++){var c=this.data["elements"][i];if(a==c.id){ds.data["elements"].splice(i,1);break}}},get_element:function(c,d){var e;jQuery.each(this.data["elements"],function(a,b){if(b.position==c){(d)?e=b[d]:e=a}});return e},stringify:function(){save_elements=new Array();jQuery.each(this.data["elements"],function(a,b){save_elements.push(b.object);b.object=""});ret=JSON.stringify(this.data);jQuery.each(this.data["elements"],function(a,b){b.object=save_elements[a]});return ret}};var form=function(){};form.prototype={initialize:function(){this.data={id:"0",name:"Untitled Form",description:"This is your form description. Click here to edit.",redirect:"",success_message:"Success! Your submission has been saved!",password:"",frame_height:"",unique_ip:"0",captcha:"0"}},display:function(){this.li=document.createElement("li");JJ(this.li).attr("id","active_form").addClass("info");this.li.innerHTML="<img src=\"images/icons/arrow.gif\" alt=\"\" class=\"arrow\"><a href=\"#\" onclick=\"return false;\" class=\"hover_ready\" title=\"Click to edit.\"><h2 id=\"form_name\">"+this.data["name"]+"</h2><p id=\"form_desc\">"+this.data["description"].replace(/\n/g,"<br />")+"</p></a>";return this.li},selected:function(){JJ(this.li).addClass("current_edit")},unselect:function(){JJ(this.li).removeClass("current_edit")}};var components={"text":["types","size","required","unique","is_private","text_default"],"textarea":["types","size","required","unique","is_private","text_default"],"select":["types","size","required","choices","is_private"],"radio":["types","choices","required","randomize","is_private"],"checkbox":["types","choices","required","is_private"],"name":["types","required","is_private","name"],"simple_name":["types","required","is_private","name"],"date":["types","required","unique","is_private","date"],"europe_date":["types","required","unique","is_private","date"],"time":["types","required","unique","is_private"],"phone":["types","required","unique","is_private","phone","phone_default"],
@@ -90,7 +123,11 @@ case"simple_phone":title="Phone";break;case"address":title="Address";break;case"
 "scaler":["types","required","unique","is_private","scaler","text_default"],
 "signature":["types","required","unique","is_private","signature","text_default"],
 "photo":["types","required","unique","is_private","photo","text_default"],
-"satisfactory":["types","required","unique","is_private","photo","text_default"],
+"satisfactory":["types","required","unique","is_private","satisfactory","text_default"],
+"img_checkbox":["types","required","unique","is_private","img_checkbox","text_default"],
+"img_radio":["types","required","unique","is_private","img_radio","text_default"],
+
+
 
 "simple_phone": ["types", "required", "unique", "is_private", "phone", "text_default"],
 
