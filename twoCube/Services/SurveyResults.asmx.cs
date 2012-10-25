@@ -135,7 +135,8 @@ namespace twoCube.Services
 
         [WebMethod(Description = "takes in a jsonobject containing the completed survey done by respondent")]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
-        public void createCSV(int id, string memberHash)
+        //TO BE CHANGED AGAIN AFTER ADDITION OF COMPULSORY QN.
+        public void createCSV1(int id, string memberHash)
         {
             System.Web.HttpResponse csvresponse = System.Web.HttpContext.Current.Response;
             csvresponse.Clear();
@@ -148,12 +149,17 @@ namespace twoCube.Services
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    Entities.Survey survey;
-                    //getSurvey(id, userhash);
-                    survey = Entities.Survey.GetById(session, id);
+                    var result = new SurveyResults();
+                    var member = Member.GetByHash(session, memberHash);
+                    if (member == null)
+                        return;
+                    var survey = member.memberSurveyList.ToList<Survey>().Find(item => item.Id == id);
                     int i = 0;
                     foreach (var question in survey.surveyQuestionList)
                     {
+                        var resultQn = new Questions();
+                        resultQn.questionTitle = question.surveyQuestionTitle;
+                        resultQn.questionType = question.surveyQuestionType;
                         switch (question.surveyQuestionType)
                         {
                             case 0:
@@ -204,41 +210,119 @@ namespace twoCube.Services
 
                             case 2:
                             case 3:
+                                {
+                                    foreach (var response in question.surveyQuestionResponseList)
+                                    {
+                                        var questionOption = new Options { responseStr = response.responseIntegerValue.ToString() , noOfRespondents=1};
+                                        bool add = true;
+                                        foreach(var tempOption in resultQn.optionList)
+                                        {
+                                            if (questionOption.responseStr == null)
+                                            {
+                                                tempOption.noOfRespondents++;
+                                                add = false;
+                                                questionOption.noOfRespondents = tempOption.noOfRespondents;
+                                            }
+                                            else if (tempOption.responseStr.Equals(questionOption.responseStr))
+                                            {
+                                                tempOption.noOfRespondents++;
+                                                add = false;
+                                                questionOption.noOfRespondents = tempOption.noOfRespondents;
+                                            }
+                                        }
+                                        if (add)
+                                        {
+                                            questionOption.optionTitle = response.responseIntegerValue.ToString();
+                                            resultQn.optionList.Add(questionOption);
+                                        }
+                                    }
+
+                                    foreach (var qnOption in resultQn.optionList)
+                                    {
+                                        string fileRow = "";
+                                        string cell = "";
+                                        cell += "Question " + (i + 1).ToString() + ",";
+                                        if (question.surveyQuestionTitle.Contains(","))
+                                        {
+                                            cell += "\"" + question.surveyQuestionTitle + "\"" + ",";
+                                        }
+                                        else
+                                        {
+                                            cell += question.surveyQuestionTitle + ",";
+                                        }
+                                        cell += "N.A" + ",";
+                                        if (qnOption.optionTitle == null)
+                                        {
+                                            cell += qnOption.noOfRespondents.ToString() + " Responpondents has not responded." + ",";
+                                            cell += qnOption.noOfRespondents.ToString() + ",";
+                                            fileRow += cell + ",";
+                                            csvresponse.Write(fileRow);
+                                            csvresponse.Write(Environment.NewLine);
+                                        }
+                                        else
+                                        {
+                                            cell += qnOption.optionTitle + ",";
+                                            cell += qnOption.noOfRespondents.ToString() + ",";
+                                            fileRow += cell + ",";
+                                            csvresponse.Write(fileRow);
+                                            csvresponse.Write(Environment.NewLine);
+                                        }
+                                    }
+                                    i++;
+                                    break;
+                                }
+
                             case 4:
                             case 6:
                             case 7:
                                 {
-                                    foreach (var option in question.surveyQuestionOptionList)
+
+                                    foreach (var response in question.surveyQuestionResponseList)
                                     {
-                                        foreach (var response in question.surveyQuestionResponseList)
+                                        var questionOption = new Options { responseStr = response.responseStringValue, noOfRespondents = 1 };
+                                        bool add = true;
+                                        foreach (var tempOption in resultQn.optionList)
                                         {
-                                            string fileRow = "";
-                                            string cell = "";
-                                            cell += "Question " + (i + 1).ToString() + ",";
-                                            if (question.surveyQuestionTitle.Contains(","))
+                                            if (tempOption.responseStr.Equals(questionOption.responseStr))
                                             {
-                                                cell += "\"" + question.surveyQuestionTitle + "\"" + ",";
+                                                tempOption.noOfRespondents++;
+                                                add = false;
+                                                questionOption.noOfRespondents = tempOption.noOfRespondents;
                                             }
-                                            else
-                                            {
-                                                cell += question.surveyQuestionTitle + ",";
-                                            }
-                                            cell += "N.A" + ",";
-                                            if (response.responseStringValue.Contains(","))
-                                            {
-                                                cell += "\"" + response.responseStringValue + "\"" + ",";
-                                            }
-                                            else
-                                            {
-                                                cell += response.responseStringValue + ",";
-                                            }
-                                            cell += "1" + ",";
-                                            fileRow += cell + ",";
-                                            csvresponse.Write(fileRow);
-                                            csvresponse.Write(Environment.NewLine);
-
                                         }
+                                        if (add)
+                                        {
+                                            questionOption.optionTitle = response.responseStringValue;
+                                            resultQn.optionList.Add(questionOption);
+                                        }
+                                    }
 
+                                    foreach (var qnOption in resultQn.optionList)
+                                    {
+                                        string fileRow = "";
+                                        string cell = "";
+                                        cell += "Question " + (i + 1).ToString() + ",";
+                                        if (question.surveyQuestionTitle.Contains(","))
+                                        {
+                                            cell += "\"" + question.surveyQuestionTitle + "\"" + ",";
+                                        }
+                                        else
+                                        {
+                                            cell += question.surveyQuestionTitle + ",";
+                                        }
+                                        cell += "N.A" + ",";
+                                        if (qnOption.optionTitle.Contains(","))
+                                        {
+                                            cell += "\"" + qnOption.optionTitle + "\"" + ",";
+                                        }
+                                        else
+                                        {
+                                            cell += qnOption.optionTitle + ",";
+                                        }
+                                        cell += qnOption.noOfRespondents.ToString() + ",";
+                                        fileRow += cell + ",";
+                                        csvresponse.Write(fileRow);
+                                        csvresponse.Write(Environment.NewLine);
                                     }
                                     i++;
                                     break;
