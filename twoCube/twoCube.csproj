@@ -159,6 +159,7 @@
     <Content Include="images\slide-7.jpg" />
     <Content Include="images\slide.jpg" />
     <Content Include="jquery.colorbox.js" />
+    <Content Include="js\slides.min.jquery.js" />
     <Content Include="register.html" />
     <Content Include="indexold.html" />
     <Content Include="dosurvey.html" />
