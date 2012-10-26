@@ -15,9 +15,7 @@
     <script type="text/javascript" src="Scripts/json2.js"></script>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/scripts.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-	<script src="js/slides.min.jquery.js"></script>
+	<script type="text/javascript" src="js/slides.min.jquery.js"></script>
 
     <script>       
      $(function () {
