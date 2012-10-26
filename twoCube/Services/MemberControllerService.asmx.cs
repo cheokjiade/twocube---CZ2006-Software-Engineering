@@ -255,13 +255,13 @@ namespace twoCube.Services
 
         [WebMethod(Description = "Login, string username, string password")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
-        public void FBLogin(string jsonString, string FBID, string firstName, string lastName, string email)
+        public void FBLogin(string FBID, string firstName, string lastName, string email)
         {
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    JObject jsonObject = JObject.Parse(jsonString);
+                    //JObject jsonObject = JObject.Parse(jsonString);
                     JavaScriptSerializer js = new JavaScriptSerializer();
 
                     var member = Member.GetByFBID(session, FBID);
