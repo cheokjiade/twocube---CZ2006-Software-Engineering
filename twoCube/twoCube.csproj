@@ -92,6 +92,11 @@
     <Content Include="css\style.css" />
     <Content Include="images\body.jpg" />
     <Content Include="images\content.png" />
+    <Content Include="images\faces_1.PNG" />
+    <Content Include="images\faces_2.PNG" />
+    <Content Include="images\faces_3.PNG" />
+    <Content Include="images\faces_4.PNG" />
+    <Content Include="images\faces_5.PNG" />
     <Content Include="images\footer.jpg" />
     <Content Include="images\footer_wrapper.jpg" />
     <Content Include="images\header.png" />
@@ -109,9 +114,12 @@
     <Content Include="images\icon_phone_bg.gif" />
     <Content Include="images\icon_photo_bg.gif" />
     <Content Include="images\icon_price_bg.gif" />
+    <Content Include="images\icon_satisfactory.gif" />
+    <Content Include="images\icon_scaler_bg.gif" />
     <Content Include="images\icon_section_break_bg.gif" />
     <Content Include="images\icon_signature_bg.gif" />
     <Content Include="images\icon_single_line_text_bg.gif" />
+    <Content Include="images\icon_slider_bg.gif" />
     <Content Include="images\icon_time_bg.gif" />
     <Content Include="images\icon_website_bg.gif" />
     <Content Include="images\ie6\borderBottomCenter.png" />

@@ -40,6 +40,29 @@
                 FB.api('/me', function (me) {
                     if (me.name) {
                         document.getElementById('auth-displayname').innerHTML = me.name + me.id + me.first_name + me.last_name + me.email;
+                        $.post("./Services/MemberControllerService.asmx/FBLogin",
+                          {
+                              FBID: me.id,
+                              firstName: me.first_name,
+                              lastName: me.last_name,
+                              email: me.email
+                          },
+                            function (data) {
+                                console.log(data);
+                                var json = $.parseJSON(data);
+                                if (parseInt(data.LogIn) == 0)
+                                    alert('Username and Password not found!');
+
+                                else {
+                                    localStorage.setItem("twocubeSSO", data.twocubeSSO);
+                                    var url = "./"//"http://twocube.elasticbeanstalk.com/"; //Currently Unavailable!!
+                                    parent.$.colorbox.close();
+                                    parent.$("#cboxClose").click();
+                                    parent.jQuery.colorbox.close();
+                                    //parent.$.colorbox.close();
+                                    //$(location).attr('href', url);
+                                }
+                            }, "json");
                     }
                 })
                 document.getElementById('auth-loggedout').style.display = 'none';

@@ -76,8 +76,8 @@ namespace twoCube.Services
                     //print
 
                     JavaScriptSerializer js = new JavaScriptSerializer();
-                    DateTime dt = new DateTime();
-                    user.memberHash = util.UtilityMethods.CalculateMD5Hash(user.userName + dt.ToShortTimeString());
+                    //DateTime dt = DateTime.Now;
+                    user.memberHash = util.UtilityMethods.CalculateMD5Hash(user.userName + DateTime.Now.ToShortTimeString());
                     Context.Response.Write(js.Serialize(new Response3 { LogIn = 1, twocubeSSO = user.memberHash }));
                     session.Save(user);
                     transaction.Commit();
@@ -255,7 +255,7 @@ namespace twoCube.Services
 
         [WebMethod(Description = "Login, string username, string password")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
-        public void FBLogin(string jsonString)
+        public void FBLogin(string jsonString, string FBID, string firstName, string lastName, string email)
         {
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
@@ -264,15 +264,28 @@ namespace twoCube.Services
                     JObject jsonObject = JObject.Parse(jsonString);
                     JavaScriptSerializer js = new JavaScriptSerializer();
 
-                    var member = Member.GetByLogin(session, jsonObject.SelectToken("username").ToString(), jsonObject.SelectToken("password").ToString());
+                    var member = Member.GetByFBID(session, FBID);
                     if (member == null)
                     {
-                        Context.Response.Write(js.Serialize(new Response3 { LogIn = 0 }));
+                        var user = new Entities.Member
+                        {
+                            memberFirstName = firstName,
+                            memberLastName = lastName,
+                            userName = FBID,
+                            memberPassword = FBID,
+                            memberEmail = email, 
+                            memberFBID = FBID
+                        };
+                        user.memberHash = util.UtilityMethods.CalculateMD5Hash(user.userName + DateTime.Now.ToShortTimeString());
+                        Context.Response.Write(js.Serialize(new Response3 { LogIn = 1, twocubeSSO = user.memberHash }));
+                        session.Save(user);
+                        transaction.Commit();
+                        //Context.Response.Write(js.Serialize(new Response3 { LogIn = 0 }));
                     }
                     else
                     {
-                        DateTime dt = new DateTime();
-                        member.memberHash = util.UtilityMethods.CalculateMD5Hash(member.userName + dt.ToShortTimeString());
+                        //DateTime dt = new DateTime();
+                        member.memberHash = util.UtilityMethods.CalculateMD5Hash(member.userName + DateTime.Now.ToShortTimeString());
                         Context.Response.Write(js.Serialize(new Response3 { LogIn = 1, twocubeSSO = member.memberHash }));
                         session.SaveOrUpdate(member);
                         transaction.Commit();
