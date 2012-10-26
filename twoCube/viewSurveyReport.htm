@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
+    <title>twoCube - Analytics</title>
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
     <link rel="stylesheet" href="http://www.jacklmoore.com/colorbox/example1/colorbox.css" /> 
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -17,6 +18,10 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
     <script type="text/javascript" src="js/scripts.js"></script>
+    <!--<script type="text/javascript">
+        google.load("jquery", "1.4.2");
+        google.load("jqueryui", "1.7.2");
+    </script>-->
 </head>
 <body onload="onload()">
     <div id="wrapper">
@@ -57,6 +62,25 @@
     
         <script class="code" type="text/javascript">
             var data = localStorage.getItem("twocubeSSO") || 0;
+            google.load('visualization', '1', {packages: ['geochart']});
+
+
+            function drawVisualization() {
+              var data = google.visualization.arrayToDataTable([
+                ['Country', 'Respondents'],
+                ['Germany', 1],
+                ['United States', 8],
+                ['Brazil', 1],
+                ['Canada', 2],
+                ['France', 2],
+                ['RU', 1]
+              ]);
+    
+              var geochart = new google.visualization.GeoChart(
+                  document.getElementById('visualization'));
+              geochart.draw(data, {width: 556, height: 347});
+            }
+
             $.urlParam = function (name) {
                 var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
                 return results[1] || 0;
@@ -74,7 +98,10 @@
               }
               $("<h4> Number of Repondents: " + data.noOfRespondents + "</h4>").appendTo("#maindiv");
               $("<h4> Average time taken for " + data.noOfRespondents + " respondent(s) to do the survey: " + data.avgTime + " seconds </h4><br>").appendTo("#maindiv");
-
+               
+              $("<div id=\"visualization\"></div>").appendTo("#maindiv");
+              $("<br>").appendTo("#maindiv");
+              google.setOnLoadCallback(drawVisualization);
               $.each(data.questionList, function (question, questionList) {
                   // $("<h2>" + questionList.questionTitle + "</h2>").appendTo("#maindiv");
                   $("<br>").appendTo("#maindiv");
@@ -194,6 +221,12 @@
 
           });
 
-        </script>
+
+         
+
+            
+    
+
+</script>
 </body>
 </html>

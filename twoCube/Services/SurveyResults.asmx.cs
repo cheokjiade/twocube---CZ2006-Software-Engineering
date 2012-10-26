@@ -42,6 +42,43 @@ namespace twoCube.Services
                     foreach (var respondent in survey.respondentList)
                     {
                         totalTime += respondent.respondentTime;
+                        //add country code to list sequential search
+                        bool add = true;
+                        var countryCode = new KeyValueResponse { key = respondent.respondentCountryCode, value=1 };
+                        foreach (var tempCode in result.countryCode)
+                        {
+                            if(tempCode.key.Equals(countryCode.key))
+                            {
+                                tempCode.value++;
+                                add = false;
+                            }
+                        }
+                        if (add) result.countryCode.Add(countryCode);
+
+                        //add browser type
+                        add = true;
+                        var browserBrowser = new KeyValueResponse { key = respondent.respondentBrowser, value = 1 };
+                        foreach (var tempBrowser in result.browserBrowser)
+                        {
+                            if (tempBrowser.key.Equals(browserBrowser.key))
+                            {
+                                tempBrowser.value++;
+                                add = false;
+                            }
+                        }
+                        if (add) result.browserBrowser.Add(browserBrowser);
+                        //add operating system
+                        add = true;
+                        var browserOS = new KeyValueResponse { key = respondent.respondentOS, value = 1 };
+                        foreach (var tempOS in result.browserOS)
+                        {
+                            if (tempOS.key.Equals(browserOS.key))
+                            {
+                                tempOS.value++;
+                                add = false;
+                            }
+                        }
+                        if (add) result.browserOS.Add(browserOS);
                     }
                     if (result.noOfRespondents > 0)
                         result.avgTime = (totalTime / result.noOfRespondents) / 1000;

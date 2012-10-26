@@ -226,7 +226,7 @@ function initNewSlider(){
 }
 
 function save_form_data(){
-
+    var memberHash = localStorage.getItem("twocubeSSO") || 0;
     document.getElementById('display').innerHTML = JSON.stringify(main_form.data);
     document.getElementById('display2').innerHTML = ds.stringify();
 

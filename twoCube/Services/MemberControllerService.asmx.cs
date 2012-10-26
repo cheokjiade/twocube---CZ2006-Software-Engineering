@@ -54,6 +54,38 @@ namespace twoCube.Services
             }
         }
 
+        [WebMethod(Description = "Add User. String firstName, String lastName, String userName, Stirng password, int age, String location, String email, String qn, String answer")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public void AddFBUser(string jsonString)
+        {
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    JObject jsonObject = JObject.Parse(jsonString);
+                    var user = new Entities.Member
+                    {
+                        memberFirstName = jsonObject.SelectToken("firstName").ToString(),
+                        memberLastName = jsonObject.SelectToken("lastName").ToString(),
+                        userName = jsonObject.SelectToken("userName").ToString(),
+                        memberPassword = jsonObject.SelectToken("password").ToString(),
+                        memberEmail = jsonObject.SelectToken("email").ToString()
+                    };
+
+
+                    //print
+
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    DateTime dt = new DateTime();
+                    user.memberHash = util.UtilityMethods.CalculateMD5Hash(user.userName + dt.ToShortTimeString());
+                    Context.Response.Write(js.Serialize(new Response3 { LogIn = 1, twocubeSSO = user.memberHash }));
+                    session.Save(user);
+                    transaction.Commit();
+
+                }
+            }
+        }
+
         [WebMethod(Description = "View list of users. For create validation. only unique username can be created.")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void listOfUsers(string jsonString) //check username exist
@@ -213,6 +245,34 @@ namespace twoCube.Services
                     {
                         DateTime dt = new DateTime();
                         member.memberHash = util.UtilityMethods.CalculateMD5Hash(member.userName+dt.ToShortTimeString());
+                        Context.Response.Write(js.Serialize(new Response3 { LogIn = 1, twocubeSSO = member.memberHash }));
+                        session.SaveOrUpdate(member);
+                        transaction.Commit();
+                    }
+                }
+            }
+        }
+
+        [WebMethod(Description = "Login, string username, string password")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public void FBLogin(string jsonString)
+        {
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    JObject jsonObject = JObject.Parse(jsonString);
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+
+                    var member = Member.GetByLogin(session, jsonObject.SelectToken("username").ToString(), jsonObject.SelectToken("password").ToString());
+                    if (member == null)
+                    {
+                        Context.Response.Write(js.Serialize(new Response3 { LogIn = 0 }));
+                    }
+                    else
+                    {
+                        DateTime dt = new DateTime();
+                        member.memberHash = util.UtilityMethods.CalculateMD5Hash(member.userName + dt.ToShortTimeString());
                         Context.Response.Write(js.Serialize(new Response3 { LogIn = 1, twocubeSSO = member.memberHash }));
                         session.SaveOrUpdate(member);
                         transaction.Commit();

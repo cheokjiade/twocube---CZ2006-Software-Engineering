@@ -398,6 +398,7 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="SurveyResultsEntities\KeyValueResponse.cs" />
     <Compile Include="SurveyResultsEntities\Options.cs" />
     <Compile Include="SurveyResultsEntities\Questions.cs" />
     <Compile Include="SurveyResultsEntities\SurveyResults.cs" />

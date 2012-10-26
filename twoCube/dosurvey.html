@@ -100,7 +100,7 @@ function(data) {
     $("<input type=\"hidden\" name=\"surveyTime\" value=\"\">").appendTo("#survey");
 
     $.each(data.surveyQuestionList, function(qnvali,qnval){
-	  $("<br/><br/><strong>" + qnvali + ". " + qnval.surveyQuestionTitle + "</strong><br/>").appendTo("#survey");
+	  $("<br/><br/><strong>" + (qnvali+1) + ". " + qnval.surveyQuestionTitle + "</strong><br/>").appendTo("#survey");
       if(qnval.surveyQuestionType == 0){
         $.each(qnval.surveyQuestionOptionList, function(i,optval){
             if(optval.surveyQuestionOptionTitleType == 2){
