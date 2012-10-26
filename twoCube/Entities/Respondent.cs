@@ -21,6 +21,7 @@ namespace twoCube.Entities
         public Respondent()
         {
             surveyQuestionResponseList = new List<SurveyQuestionResponse>();
+            respondentDateTime = DateTime.Now;
         }
 
         public virtual void AddSurveyQuestion(SurveyQuestionResponse surveyQuestionResponse)

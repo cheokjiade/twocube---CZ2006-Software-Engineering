@@ -202,7 +202,7 @@ namespace twoCube.Services
                             jsonObject.TryGetValue("surveyTime", out time);
                             int timeTaken = Int32.Parse(time.ToString());
 
-                            var respondent = new Entities.Respondent { respondentIPAddress = ipAddress, respondentSessionID = "fromworkingresponse" , respondentTime = timeTaken};
+                            var respondent = new Entities.Respondent { respondentIPAddress = ipAddress, respondentSessionID = "fromworkingresponse", respondentTime = timeTaken, respondentCountryCode = jsonObject.SelectToken("surveyLocationCountryCode").ToString(), respondentBrowser = jsonObject.SelectToken("surveyBrowserBrowser").ToString(), respondentOS = jsonObject.SelectToken("surveyBrowserOS").ToString(), respondentLang = jsonObject.SelectToken("surveyLocaleLang").ToString() };
                             jsonObject = JObject.Parse(jToken.ToString());
                             int i = 0;
                             foreach (var question in survey.surveyQuestionList)

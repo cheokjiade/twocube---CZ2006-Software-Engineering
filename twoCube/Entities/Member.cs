@@ -21,6 +21,7 @@ namespace twoCube.Entities
         public virtual string memberQuestion { get; set; } //Forget password
         public virtual string memberAnswer { get; set; } //Forget password
         public virtual string memberHash { get; set; }
+        public virtual string memberFBID { get; set; }
         public virtual IList<Survey> memberSurveyList { get; set; }
 
         public Member() 
@@ -63,6 +64,12 @@ namespace twoCube.Entities
         {
             return session.CreateCriteria(typeof(Member))
                 .Add(Expression.Eq("memberHash", memberHash))
+                .UniqueResult<Member>();
+        }
+        public static Member GetByFBID(ISession session, string memberFBID)
+        {
+            return session.CreateCriteria(typeof(Member))
+                .Add(Expression.Eq("memberFBID", memberFBID))
                 .UniqueResult<Member>();
         }
     }

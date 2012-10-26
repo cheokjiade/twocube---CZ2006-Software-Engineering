@@ -55,25 +55,13 @@
                     options: { enable_location: true, ipinfodb_key: "ae861b1dae2bb20d727d1f6b6d3a3b19cec65d6cb2ae436a7225fb39ff8ac1e8", gapi_location: true },
                     // Async API (use with location)
                     start: function (session) { // also can use as a global
-                        alert('Hi again from ' + session.location.countryCode + '., you are using ' + session.browser.browser + session.browser.version + ' running on ' + session.browser.os + '. \nThe resolution of your display is ' + session.device.screen.width + 'x' + session.device.screen.width + '\n\nYour language is ' + session.locale.lang + '-' + session.locale.country);
-                        if (session.original_session.visits > 1) {
-                            if (session.location) { alert('Hi again from ' + session.location.countryCode + '.'); }
-                            else { alert('Welcome back!'); }
-                        } else {
-                            if (session.contains(session.current_session.referrer_info.host, 'facebook.com')) {
-                                //alert('Hi there from ' + session.location.address.city + '. How about liking us on facebook?');
-                            } else if (session.contains(session.current_session.referrer_info.host, 'github.com')) {
-                                alert('How about watching us on github?');
-                            } else if (session.contains(session.current_session.referrer_info.host, 'twitter.com')) {
-                                alert('Hi there from twitter!');
-                            } else if (session.current_session.search.engine) {
-                                alert('Did you find what you were looking for from ' + session.current_session.search.engine + '?');
-                            }
-                        }
-                        if (session.locale.lang !== 'en') {
-                            var translate_url = 'http://translate.google.com/translate?sl=auto&tl=' + session.locale.lang + '&js=n&prev=_t&hl=en&ie=UTF-8&layout=2&eotf=1&u=' + escape(session.current_session.url);
-                            add_msg('Need a <a href="' + translate_url + '">translation</a>?');
-                        }
+                        $("<input type=\"hidden\" name=\"surveyBrowserBrowser\" value=\"" + session.browser.browser + "\">").appendTo("#survey");
+                        $("<input type=\"hidden\" name=\"surveyLocationCountryCode\" value=\"" + session.location.countryCode + "\">").appendTo("#survey");
+                        $("<input type=\"hidden\" name=\"surveyBrowserVersion\" value=\"" + session.browser.version + "\">").appendTo("#survey");
+                        $("<input type=\"hidden\" name=\"surveyBrowserOS\" value=\"" + session.browser.os + "\">").appendTo("#survey");
+                        $("<input type=\"hidden\" name=\"surveyLocaleLang\" value=\"" + session.locale.lang + "\">").appendTo("#survey");
+                        $("<input type=\"hidden\" name=\"surveyLocaleCountry\" value=\"" + session.locale.country + "\">").appendTo("#survey");
+                        //alert('Hi again from ' + session.location.countryCode + '., you are using ' + session.browser.browser + session.browser.version + ' running on ' + session.browser.os + '. \nThe resolution of your display is ' + session.device.screen.width + 'x' + session.device.screen.width + '\n\nYour language is ' + session.locale.lang + '-' + session.locale.country);
                     }
                 };
         </script>
