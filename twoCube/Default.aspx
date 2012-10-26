@@ -68,19 +68,19 @@
      <!-- Start Top -->
         <div id="container">
 		<div id="example">
-			<img src="images/new-ribbon.png" width="112" height="112" alt="New Ribbon" id="ribbon"/>
+			<!--<img src="images/new-ribbon.png" width="112" height="112" alt="New Ribbon" id="ribbon"/>-->
            <div id="slides">
 				<div class="slides_container">
 					<div class="slide">
-						<img src="images/slide-1.jpg" width="570" height="270" alt="Slide 1"/>
+						<img src="http://profile.ak.fbcdn.net/hprofile-ak-ash4/371504_652201722_326593817_n.jpg" width="570" height="270" alt="Slide 1"/>
 						<div class="caption" style="bottom:0">
-							<p>test1</p>
+							<p>June</p>
 						</div>
 					</div>
 					<div class="slide">
-						<img src="images/slide-2.jpg" width="570" height="270" alt="Slide 2"/>
+						<img src="http://profile.ak.fbcdn.net/hprofile-ak-prn1/49499_100001074800572_1286678510_n.jpg" width="570" height="270" alt="Slide 2"/>
 						<div class="caption">
-							<p>test2</p>
+							<p>Star</p>
 						</div>
 					</div>
 					<div class="slide">
