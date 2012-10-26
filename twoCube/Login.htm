@@ -39,7 +39,7 @@
                 // user has auth'd your app and is logged into Facebook
                 FB.api('/me', function (me) {
                     if (me.name) {
-                        document.getElementById('auth-displayname').innerHTML = me.name;
+                        document.getElementById('auth-displayname').innerHTML = me.name + me.id + me.first_name + me.last_name + me.email;
                     }
                 })
                 document.getElementById('auth-loggedout').style.display = 'none';
