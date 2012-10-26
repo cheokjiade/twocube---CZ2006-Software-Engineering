@@ -72,43 +72,43 @@
            <div id="slides">
 				<div class="slides_container">
 					<div class="slide">
-						<img src="http://profile.ak.fbcdn.net/hprofile-ak-ash4/371504_652201722_326593817_n.jpg" width="570" height="270" alt="Slide 1"/>
+						<img src="http://profile.ak.fbcdn.net/hprofile-ak-ash4/371504_652201722_326593817_n.jpg" width="570" height="570" alt="Slide 1"/>
 						<div class="caption" style="bottom:0">
 							<p>June</p>
 						</div>
 					</div>
 					<div class="slide">
-						<img src="http://profile.ak.fbcdn.net/hprofile-ak-prn1/49499_100001074800572_1286678510_n.jpg" width="570" height="270" alt="Slide 2"/>
+						<img src="http://profile.ak.fbcdn.net/hprofile-ak-prn1/49499_100001074800572_1286678510_n.jpg" width="570" height="570" alt="Slide 2"/>
 						<div class="caption">
 							<p>Star</p>
 						</div>
 					</div>
 					<div class="slide">
-						<img src="images/slide-3.jpg" width="570" height="270" alt="Slide 3"/>
+						<img src="images/slide-3.jpg" width="570" height="570" alt="Slide 3"/>
 						<div class="caption">
 							<p>test3</p>
 						</div>
 					</div>
 					<div class="slide">
-						<img src="images/slide-4.jpg" width="570" height="270" alt="Slide 4"/>
+						<img src="images/slide-4.jpg" width="570" height="570" alt="Slide 4"/>
 						<div class="caption">
 							<p>test4</p>
 						</div>
 					</div>
 					<div class="slide">
-						<img src="images/slide-5.jpg" width="570" height="270" alt="Slide 5" />
+						<img src="images/slide-5.jpg" width="570" height="570" alt="Slide 5" />
 						<div class="caption">
 							<p>test4</p>
 						</div>
 					</div>
 					<div class="slide">
-						<img src="images/slide-6.jpg" width="570" height="270" alt="Slide 6" />
+						<img src="images/slide-6.jpg" width="570" height="570" alt="Slide 6" />
 						<div class="caption">
 							<p>test5</p>
 						</div>
 					</div>
 					<div class="slide">
-						<a href="http://www.flickr.com/photos/aftab/3152515428/" title="Save my love for loneliness | Flickr - Photo Sharing!" target="_blank"><img src="images/slide-7.jpg" width="570" height="270" alt="Slide 7"></a>
+						<a href="http://www.flickr.com/photos/aftab/3152515428/" title="Save my love for loneliness | Flickr - Photo Sharing!" target="_blank"><img src="images/slide-7.jpg" width="570" height="570" alt="Slide 7"></a>
 						<div class="caption">
 							<p>test6</p>
 						</div>
@@ -117,7 +117,7 @@
 				<a href="#" class="prev"><img src="images/arrow-prev.png" width="24" height="43" alt="Arrow Prev"/></a>
 				<a href="#" class="next"><img src="images/arrow-next.png" width="24" height="43" alt="Arrow Next"/></a>
 			</div>
-			<img src="images/example-frame.png" width="739" height="341" alt="Example Frame" id="frame" />
+			<img src="images/example-frame.png" width="739" height="641" alt="Example Frame" id="frame" />
 		</div></div></div>
     <!-- End Top -->
     <div class="cleaner"></div>
