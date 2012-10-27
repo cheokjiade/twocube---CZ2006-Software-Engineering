@@ -20,6 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 
             </intent-filter>
+            <intent-filter>
+		        <data android:scheme="http" android:host="twocube1.elasticbeanstalk.com"/>
+		        <action android:name="android.intent.action.VIEW" />
+		        <category android:name="android.intent.category.BROWSABLE" />
+		        <category android:name="android.intent.category.DEFAULT" />
+		    </intent-filter>
         </activity>
         <activity android:name="SurveyActivity">
             <action android:name="android.intent.action.VIEW" />

@@ -20,6 +20,7 @@ import com.twocube.entities.Survey;
 import com.twocube.entities.SurveyQuestion;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
@@ -51,6 +52,8 @@ public class TwoCubeActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        Uri data = getIntent().getData();
+        //data.getQueryParameter("s").toString();
         inflater = ((Activity) this).getLayoutInflater();
         jHandler = new JSONHandler();
         mHandler = new Handler();
@@ -77,7 +80,11 @@ public class TwoCubeActivity extends Activity {
 			}
 		});
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-        nameValuePairs.add(new BasicNameValuePair("Id", "2"));
+        if(data!=null){
+        	nameValuePairs.add(new BasicNameValuePair("Id", data.getQueryParameter("s")==null?"80":data.getQueryParameter("s")));
+        	Log.w("jsonhandler", data.getQueryParameter("s"));
+        }
+        else nameValuePairs.add(new BasicNameValuePair("Id", "80"));
         jHandler.handleJSON(nameValuePairs, "http://twocube1.elasticbeanstalk.com/Services/SurveyControllerService.asmx/getSurveyById");
     }
     
