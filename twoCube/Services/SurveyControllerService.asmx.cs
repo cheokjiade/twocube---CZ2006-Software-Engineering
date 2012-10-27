@@ -35,7 +35,6 @@ namespace twoCube.Services
                     question.surveyQuestionResponseList = null;
                 }
                 Context.Response.Write(js.Serialize(survey));
-
             }
         }
 
@@ -59,6 +58,31 @@ namespace twoCube.Services
                 //    question.surveyQuestionResponseList = null;
                 //}
                 Context.Response.Write(js.Serialize(surveyResponseList));
+
+            }
+        }
+
+        [WebMethod(Description = "Your Description")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public void closeSurvey(string memberHash, int surveyID)
+        {
+            using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    var survey = Entities.Survey.GetById(session, surveyID);
+                    survey.surveyStatus = false;
+                    session.SaveOrUpdate(survey);
+                    transaction.Commit();
+                }
+                
+                //survey.respondentList = null;
+                //foreach (var question in survey.surveyQuestionList)
+                //{
+                //    question.surveyQuestionResponseList = null;
+                //}
+                //Context.Response.Write(js.Serialize(surveyResponseList));
 
             }
         }
