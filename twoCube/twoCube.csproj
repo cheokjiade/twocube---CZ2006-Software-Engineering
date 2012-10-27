@@ -104,6 +104,14 @@
     <Content Include="images\footer.jpg" />
     <Content Include="images\footer_wrapper.jpg" />
     <Content Include="images\header.png" />
+    <Content Include="images\icons\add.gif" />
+    <Content Include="images\icons\arrow.gif" />
+    <Content Include="images\icons\delete.gif" />
+    <Content Include="images\icons\duplicate.gif" />
+    <Content Include="images\icons\filesave.gif" />
+    <Content Include="images\icons\pencil.gif" />
+    <Content Include="images\icons\star.gif" />
+    <Content Include="images\icons\stardim.gif" />
     <Content Include="images\icon_address_bg.gif" />
     <Content Include="images\icon_checkbox_bg.gif" />
     <Content Include="images\icon_date_bg.gif" />
@@ -437,7 +445,6 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\logo.psd" />
     <None Include="Properties\PublishProfiles\external.pubxml" />
     <None Include="Properties\PublishProfiles\twoCube.pubxml" />
   </ItemGroup>

@@ -724,7 +724,7 @@ fieldset .desc { color: rgb(34, 34, 34) ! important; }
 }
 input[disabled], select[disabled] { color: rgb(102, 102, 102) ! important; }
 #add_elements { padding: 15px; clear: both; }
-#add_elements[id] { margin: 25px 0pt 0pt;}
+#add_elements[id] { margin: 25px 0pt 0pt; position: fixed; }
 #element_buttons ul { float: left; list-style-type: none; list-style-image: none; list-style-position: outside; }
 #first_column li { margin: 5px 5px 5px 0pt; text-align:right; padding: 0px; width:150px; height:30px;  }
 
