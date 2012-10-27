@@ -38,7 +38,7 @@ function loadMenu() {
                 <li><a href='./createsurvey.html'>Create Survey</a></li>\
                 <li><a href='./EditUserDetails.htm'>Account</a></li>\
                 <li><a href='./viewsurveylist.htm'>View Created Surveys</a></li>\
-				<li><a href='#' onclick='logoutFacebook(); logout();'>Logout</a></li>\
+				<li><a href='#' onclick='logout();'>Logout</a></li>\
             </ul>\
             <br style='clear: left' />";
 
@@ -51,6 +51,7 @@ function loadFooter() {
     document.getElementById('footer').innerHTML = "Copyright © 2013 twoCube<div class='cleaner'></div>";
 }
 function logout() {
+    logoutFacebook();
     localStorage.clear();
     $(location).attr('href', './');
 }
@@ -63,7 +64,7 @@ function logoutFacebook() {
             xfbml: true
         });
 
-        FB.getLoginStatus(handleSessionResponse)
+        FB.getLoginStatus(handleSessionResponse);
 //    FB.logout(function () {
 //        // Reload the same page after logout
 //        window.location.reload();
