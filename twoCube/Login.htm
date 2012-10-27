@@ -119,7 +119,7 @@
 				            }
 				        });
 
-                    document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
+                    //document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
                     $.post("./Services/MemberControllerService.asmx/Login",
                   {
                       jsonString: JSON.stringify(formData, null, '\t')
