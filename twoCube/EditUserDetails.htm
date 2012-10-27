@@ -117,7 +117,7 @@
 				    }
 				});
 
-            document.getElementById('response').innerHTML = JSON.stringify(formData, null, '\t');
+            //document.getElementById('response').innerHTML = JSON.stringify(formData, null, '\t');
             $.post("./Services/MemberControllerService.asmx/validatecpw",
           {
               jsonString: JSON.stringify(formData, null, '\t')
@@ -148,7 +148,7 @@
 				    }
 				});
 
-                document.getElementById('response').innerHTML = JSON.stringify(formData, null, '\t');
+                //document.getElementById('response').innerHTML = JSON.stringify(formData, null, '\t');
                 $.post("./Services/MemberControllerService.asmx/checkEmailExist",
           {
               jsonString: JSON.stringify(formData, null, '\t')
@@ -201,7 +201,7 @@
 				    }
 				});
 
-            document.getElementById('response').innerHTML = JSON.stringify(formData, null, '\t');
+           // document.getElementById('response').innerHTML = JSON.stringify(formData, null, '\t');
             $.post("./Services/MemberControllerService.asmx/UpdateUserDetails",
           {
               jsonString: JSON.stringify(formData, null, '\t')
