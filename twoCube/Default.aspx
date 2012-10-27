@@ -157,23 +157,6 @@
         }
 
         /*
-	        Footer
-        */
-
-        #footer {
-	        text-align:center;
-	        width:580px;
-	        margin-top:9px;
-	        padding:4.5px 0 18px;
-	        border-top:1px solid #dfdfdf;
-        }
-
-        #footer p {
-	        margin:4.5px 0;
-	        font-size:1.0em;
-        }
-
-        /*
 	        Anchors
         */
 
