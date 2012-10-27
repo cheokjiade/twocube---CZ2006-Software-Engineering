@@ -165,6 +165,7 @@ namespace twoCube.Services
                     member.AddSurvey(survey);
                     session.SaveOrUpdate(member);
                     transaction.Commit();
+                    HttpContext.Current.Response.Redirect("./../../viewsurveylist.htm");
                 }
 
             }
