@@ -249,12 +249,12 @@ var myForm = document.createElement("form");
   myForm.submit() ;
   document.body.removeChild(myForm) ;
   */
-/*
+
 $.post("./Services/SurveyControllerService.asmx/repeater", { formString: JSON.stringify(main_form.data), elementString: ds.stringify() },
    function(data) {
      alert("Data Loaded: " + data);
    });
-  */
+  
 
 
 
