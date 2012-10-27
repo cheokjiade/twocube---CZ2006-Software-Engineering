@@ -1,4 +1,4 @@
-.ddsmoothmenu{
+/*.ddsmoothmenu{
 	float: right;
 	margin-top: 10px
 }
@@ -8,17 +8,17 @@
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
-}
+}*/
 
 /*Top level list items*/
-.ddsmoothmenu ul li{
+/*.ddsmoothmenu ul li{
 	position: relative;
 	display: inline;
 	float: left;
-}
+}*/
 
 /*Top level menu link items style*/
-.ddsmoothmenu ul li a{
+/*.ddsmoothmenu ul li a{
 	display: block;
 	line-height: 23px;
 	padding: 0 20px 5px;
@@ -30,45 +30,45 @@
 	font-weight: 700;
 	outline: none;
 	border: none;
-}
+}*/
 
-* html .ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
+/** html .ddsmoothmenu ul li a{ 
 display: inline-block;
 }
 
-.ddsmoothmenu ul li a.selected, .ddsmoothmenu ul li a:hover{ /*CSS class that's dynamically added to the currently active menu items' LI A element*/
+.ddsmoothmenu ul li a.selected, .ddsmoothmenu ul li a:hover{ 
 	color: #fff;
-}
+}*/
 	
 /*1st sub level menu*/
-.ddsmoothmenu ul li ul{
+/*.ddsmoothmenu ul li ul{
 	position: absolute;
 	left: 0;
-	display: none; /*collapse all sub menus to begin with*/
+	display: none; 
 	visibility: hidden;
 	background: #abf5f2;
-}
+}*/
 
 /*Sub level menu list items (undo style from Top level List Items)*/
-.ddsmoothmenu ul li ul li{
+/*.ddsmoothmenu ul li ul li{
 display: list-item;
 float: none;
-}
+}*/
 
 /*All subsequent sub menu levels vertical offset after 1st level sub menu */
-.ddsmoothmenu ul li ul li ul{
+/*.ddsmoothmenu ul li ul li ul{
 top: 0;
-}
+}*/
 
 /* Sub level menu links style */
-.ddsmoothmenu ul li ul li a{
+/*.ddsmoothmenu ul li ul li a{
 	font-weight: 500;
-	width: 120px; /*width of sub menus*/
+	width: 120px;
 	padding: 5px 10px;
 	margin: 0;
 	border-top-width: 0;
 	text-align: left;
-}
+}*/
 
 
 .ddsmoothmenu ul li ul li a.selected, .ddsmoothmenu ul li ul li a:hover { color: #fff; }
@@ -110,48 +110,48 @@ opacity: 0.8;
 /*JUNE*/
 
 
-.nav1 {
-	height:55px;
+.ddsmoothmenu {
+	height:35px;
 	margin:0 auto ;
 	text-align:center;
 }
 
-.nav1 ul {
+.ddsmoothmenu ul {
 	display:table;
 	margin:0 auto;
 	padding:0;
 	list-style-type:none;
 	position:relative;
-	height:55px;
+	height:35px;
 	text-transform:uppercase;
 	font-size:11px;
 	font-family:Arial,sans-serif;
 }
 
 
-.nav1 ul li {
+.ddsmoothmenu ul li {
 	display:block;
 	float:left;
 	margin:0;
 	padding:0;
-	background:transparent url('images/css/hmenu.jpg') repeat-x top left;
+	background:transparent url('../images/css/hmenu.jpg') repeat-x top left;
 	border-left:1px solid #ffffff;
 
 }
 
 
-.nav1 ul li a {
+.ddsmoothmenu ul li a {
 	display:block;
 	float:left;
 	color:#000000;
 	text-decoration:none;
 	padding:0px 50px ;
-	line-height:55px;
+	line-height:35px;
 	font-weight:bold;
 }
 
 
-.nav1 ul li a:hover, .nav1 li#current a {
+.ddsmoothmenu ul li a:hover, .ddsmoothmenu li#current a {
 	color:#FFFFFF;
-	background:transparent url('images/css/hmenu-sel.jpg') repeat-x top left;
+	background:transparent url('../images/css/hmenu-sel.jpg') repeat-x top left;
 }

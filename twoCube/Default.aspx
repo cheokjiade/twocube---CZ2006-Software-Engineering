@@ -231,9 +231,9 @@
         
         <div class="cleaner"></div>
     </div> <!-- end of header -->
-    <div id="nav1" class="nav1">
+    
+    <div id="middle"><div id="menu" class="ddsmoothmenu">
         </div> <!-- end of menu -->
-    <div id="middle">
     <div id="fb-root"></div>
 <script>    (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

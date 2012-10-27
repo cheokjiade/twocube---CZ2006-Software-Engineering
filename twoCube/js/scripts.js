@@ -34,9 +34,9 @@ function loadMenu() {
             <br style='clear: left' />";
 
     if (data == 0)
-        document.getElementById('nav1').innerHTML = menu;
+        document.getElementById('menu').innerHTML = menu;
     else
-        document.getElementById('nav1').innerHTML = loginedmenu;
+        document.getElementById('menu').innerHTML = loginedmenu;
 }
 function loadFooter() {
     document.getElementById('footer').innerHTML = "Copyright © 2013 twoCube<div class='cleaner'></div>";
