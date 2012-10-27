@@ -67,7 +67,7 @@ public class JSONHandler {
 					Log.w("jsonhandler", "ClientProtocolException");
 				}
 				catch(IOException e){
-					Log.w("jsonhandler", "IOException");
+					Log.w("jsonhandler", e.getMessage());
 					if(onResponseReceivedListener!=null)
 						onResponseReceivedListener.onIOException();
 				}
