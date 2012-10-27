@@ -97,6 +97,7 @@
     <Content Include="images\content.png" />
     <Content Include="images\css\hmenu-sel.jpg" />
     <Content Include="images\css\hmenu.jpg" />
+    <Content Include="images\default_img.jpg" />
     <Content Include="images\example-frame.png" />
     <Content Include="images\faces_1.PNG" />
     <Content Include="images\faces_2.PNG" />
