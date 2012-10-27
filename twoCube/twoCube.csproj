@@ -87,6 +87,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="colorbox.css" />
+    <Content Include="Errorpage.html" />
     <Content Include="Copy of template%28Do Not Overwrite%29.html" />
     <Content Include="css\ddsmoothmenu.css" />
     <Content Include="css\style.css" />
@@ -98,6 +99,7 @@
     <Content Include="images\css\hmenu-sel.jpg" />
     <Content Include="images\css\hmenu.jpg" />
     <Content Include="images\default_img.jpg" />
+    <Content Include="images\errormsg.png" />
     <Content Include="images\example-frame.png" />
     <Content Include="images\faces_1.PNG" />
     <Content Include="images\faces_2.PNG" />
