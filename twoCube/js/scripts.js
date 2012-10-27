@@ -29,7 +29,7 @@ function loadMenu() {
                 <li><a href='./createsurvey.html'>Create Survey</a></li>\
                 <li><a href='./EditUserDetails.htm'>Account</a></li>\
                 <li><a href='./viewsurveylist.htm'>View Created Surveys</a></li>\
-				<li><a href='#' onclick='logout();'>Logout</a></li>\
+				<li><a href='#' onclick='logoutFacebook(); logout();'>Logout</a></li>\
             </ul>\
             <br style='clear: left' />";
 
@@ -45,6 +45,30 @@ function logout() {
     localStorage.clear();
     $(location).attr('href', './');
 }
+function logoutFacebook() {
+    FB.init({
+        appId: '201735599959082', 
+        cookie: true,
+        status: true, 
+        xfbml: true
+    });
+
+    //FB.getLoginStatus(handleSessionResponse)
+    FB.logout(function () {
+        // Reload the same page after logout
+        window.location.reload();
+    });
+}
+//function handleSessionResponse(response) {
+//    //if we dont have a session (which means the user has been logged out, redirect the user)
+//    if (!response.authResponse) {
+//        return;
+//    }
+
+//    //if we do have a non-null response.session, call FB.logout(),
+//    //the JS method will log the user out of Facebook and remove any authorization cookies
+//    FB.logout(response.authResponse);
+//}
 function register() {
     $.colorbox({ href: "../register.html", open: true, iframe: true, width: "70%", height: "55%" });
 }
