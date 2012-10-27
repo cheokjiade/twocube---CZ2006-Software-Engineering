@@ -47,7 +47,7 @@
                 // user has auth'd your app and is logged into Facebook
                 FB.api('/me', function (me) {
                     if (me.name) {
-                        document.getElementById('auth-displayname').innerHTML = me.name + me.id + me.first_name + me.last_name + me.email;
+                        document.getElementById('auth-displayname').innerHTML = me.name;
                         $.post("./Services/MemberControllerService.asmx/FBLogin",
                           {
                               FBID: me.id,
@@ -132,7 +132,7 @@
 
                         else {
                             localStorage.setItem("twocubeSSO", data.twocubeSSO);
-                            var url = "./"//"http://twocube.elasticbeanstalk.com/"; //Currently Unavailable!!
+                            var url = "./"//"http://twocube1.elasticbeanstalk.com/";
                             parent.$.colorbox.close();
                             parent.$("#cboxClose").click();
                             parent.jQuery.colorbox.close();
