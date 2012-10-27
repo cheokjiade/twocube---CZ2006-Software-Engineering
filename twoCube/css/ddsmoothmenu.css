@@ -110,13 +110,13 @@ opacity: 0.8;
 /*JUNE*/
 
 
-#nav1 {
+.nav1 {
 	height:55px;
 	margin:0 auto ;
 	text-align:center;
 }
 
-#nav1 ul {
+.nav1 ul {
 	display:table;
 	margin:0 auto;
 	padding:0;
@@ -129,7 +129,7 @@ opacity: 0.8;
 }
 
 
-#nav1 ul li {
+.nav1 ul li {
 	display:block;
 	float:left;
 	margin:0;
@@ -140,7 +140,7 @@ opacity: 0.8;
 }
 
 
-#nav1 ul li a {
+.nav1 ul li a {
 	display:block;
 	float:left;
 	color:#000000;
@@ -151,7 +151,7 @@ opacity: 0.8;
 }
 
 
-#nav1 ul li a:hover, #nav1 li#current a {
+.nav1 ul li a:hover, .nav1 li#current a {
 	color:#FFFFFF;
 	background:transparent url('images/css/hmenu-sel.jpg') repeat-x top left;
 }

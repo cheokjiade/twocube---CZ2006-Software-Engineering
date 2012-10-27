@@ -228,10 +228,11 @@
 <div id="wrapper">
 	<div id="header">
         <div id="site_title"><h1><a href="#"></a></h1></div>
-        <div id="nav1" class="ddsmoothmenu">
-        </div> <!-- end of menu -->
+        
         <div class="cleaner"></div>
     </div> <!-- end of header -->
+    <div id="nav1" class="nav1">
+        </div> <!-- end of menu -->
     <div id="middle">
     <div id="fb-root"></div>
 <script>    (function (d, s, id) {
