@@ -18,7 +18,7 @@
 	<script type="text/javascript" src="js/slides.min.jquery.js"></script>
     <style type="text/css">
         #container {
-	        width:580px;
+	        width:860px;
 	        padding:10px;
 	        margin:0 auto;
 	        position:relative;
@@ -26,8 +26,8 @@
         }
 
         #example {
-	        width:600px;
-	        height:350px;
+	        width:860px;
+	        height:470px;
 	        position:relative;
         }
 
@@ -41,10 +41,10 @@
         #frame {
 	        position:absolute;
 	        z-index:0;
-	        width:739px;
-	        height:341px;
-	        top:-3px;
-	        left:-80px;
+	        width:1100px;
+	        height:500px;
+	        top:-5px;
+	        left:-120px;
         }
 
         /*
@@ -66,7 +66,7 @@
         */
 
         .slides_container {
-	        width:570px;
+	        width:850px;
 	        overflow:hidden;
 	        position:relative;
 	        display:none;
@@ -81,8 +81,8 @@
         */
 
         .slides_container div.slide {
-	        width:570px;
-	        height:270px;
+	        width:850px;
+	        height:405px;
 	        display:block;
         }
 
@@ -148,7 +148,7 @@
 	        padding:5px 20px 0 20px;
 	        background:#000;
 	        background:rgba(0,0,0,.5);
-	        width:540px;
+	        width:850px;
 	        font-size:1.3em;
 	        line-height:1.33;
 	        color:#fff;
@@ -249,13 +249,13 @@
            <div id="slides">
 				<div class="slides_container">
 					<div class="slide">
-						<img src="http://profile.ak.fbcdn.net/hprofile-ak-ash4/371504_652201722_326593817_n.jpg" width="570" height="570" alt="Slide 1"/>
+						<img src="http://profile.ak.fbcdn.net/hprofile-ak-ash4/371504_652201722_326593817_n.jpg" width="850" height="405" alt="Slide 1"/>
 						<div class="caption" style="bottom:0">
 							<p>June</p>
 						</div>
 					</div>
 					<div class="slide">
-						<img src="http://profile.ak.fbcdn.net/hprofile-ak-prn1/49499_100001074800572_1286678510_n.jpg" width="570" height="570" alt="Slide 2"/>
+						<img src="http://profile.ak.fbcdn.net/hprofile-ak-prn1/49499_100001074800572_1286678510_n.jpg" width="850" height="405" alt="Slide 2"/>
 						<div class="caption">
 							<p>Star</p>
 						</div>
