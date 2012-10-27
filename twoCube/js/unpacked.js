@@ -232,7 +232,7 @@ function save_form_data(){
         alert('Please login or register before submiting');
         return;
     }
-    /*
+    
     document.getElementById('display').innerHTML = JSON.stringify(main_form.data);
     document.getElementById('display2').innerHTML = ds.stringify();
 
@@ -257,13 +257,13 @@ function save_form_data(){
     myForm.appendChild(myInput3);
     document.body.appendChild(myForm);
     myForm.submit();
-    document.body.removeChild(myForm);*/
+    document.body.removeChild(myForm);
   
 
-$.post("./Services/SurveyControllerService.asmx/repeater", { formString: JSON.stringify(main_form.data), elementString: ds.stringify(), memberHash: memberHash},
+/*$.post("./Services/SurveyControllerService.asmx/repeater", { formString: JSON.stringify(main_form.data), elementString: ds.stringify(), memberHash: memberHash},
    function(data) {
      alert("Data Loaded: " + data);
-   });
+   });*/
   
 
 
