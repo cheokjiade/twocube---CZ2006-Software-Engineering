@@ -8,13 +8,13 @@ $(document).bind('cbox_closed', function () {
 });
 
 // Load the SDK Asynchronously
-(function (d) {
+/*(function (d) {
     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
     if (d.getElementById(id)) { return; }
     js = d.createElement('script'); js.id = id; js.async = true;
     js.src = "//connect.facebook.net/en_US/all.js";
     ref.parentNode.insertBefore(js, ref);
-} (document));
+} (document));*/
 
 function onload() {
     loadMenu();
@@ -49,7 +49,7 @@ function loadMenu() {
         document.getElementById('menu').innerHTML = loginedmenu;
 }
 function loadFooter() {
-    document.getElementById('footer').innerHTML = "Copyright © 2013 twoCube<div class='cleaner'> <div id=\"fb-root\"></div></div>";
+    document.getElementById('footer').innerHTML = "Copyright © 2013 twoCube<div class='cleaner'></div>";
 }
 function logout() {
     logoutFacebook();
