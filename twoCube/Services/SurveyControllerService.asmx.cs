@@ -186,16 +186,16 @@ namespace twoCube.Services
 
                                     var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 1, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
                                     JToken qn1,qn2,qn3,qn4,qn5;
-                                    if(jsonObject.TryGetValue("satisfactory_vUnsatisfactory", out qn1))
-                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = qn1.ToString(), surveyQuestionOptionTitleType=2 });
-                                    if (jsonObject.TryGetValue("satisfactory_Unsatisfactory", out qn2))
-                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = qn2.ToString(), surveyQuestionOptionTitleType = 2 });
-                                    if (jsonObject.TryGetValue("satisfactory_Neutral", out qn3))
-                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = qn3.ToString(), surveyQuestionOptionTitleType = 2 });
-                                    if (jsonObject.TryGetValue("satisfactory_Satisfactory", out qn4))
-                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = qn4.ToString(), surveyQuestionOptionTitleType = 2 });
-                                    if (jsonObject.TryGetValue("satisfactory_vSatisfactory", out qn5))
-                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = qn5.ToString(), surveyQuestionOptionTitleType = 2 });
+                                    if (question.SelectToken("satisfactory_vUnsatisfactory")!=null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_vUnsatisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
+                                    if (question.SelectToken("satisfactory_Unsatisfactory") != null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_Unsatisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
+                                    if (question.SelectToken("satisfactory_Neutral") != null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_Neutral").ToString(), surveyQuestionOptionTitleType = 2 });
+                                    if (question.SelectToken("satisfactory_Satisfactory")!=null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_Satisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
+                                    if (question.SelectToken("satisfactory_vSatisfactory")!=null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_vSatisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
                                     survey.surveyQuestionList.Add(surveyQuestion);
                                     break;
                                 }
