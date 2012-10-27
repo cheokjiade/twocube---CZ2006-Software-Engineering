@@ -14,66 +14,38 @@
     <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/ddsmoothmenu.js"></script>
-    <script type="text/javascript">
-        $.urlParam = function (name) {
-            var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
-            return results[1] || 0;
-        }
-        function onload() {
-            loadMenu();
-            loadFooter();
-            if ($.urlParam('s') != 0) window.location = "./dosurvey?s=" + $.urlParam('s');
-        }
-        function loadMenu() {
-            var menu = "<ul>\
-                <li><a href='index.html'>Home</a></li>\
-                <li><a href='index.html'>Create Survey</a></li>\
-                <li><a href='#'>About twoCube</a></li>\
-				<li><a href='#'>Login</a></li>\
-            </ul>\
-            <br style='clear: left' />";
-
-            document.getElementById('menu').innerHTML = menu;
-        }
-        function loadFooter() {
-            document.getElementById('footer').innerHTML = "Copyright © 2013 twoCube<div class='cleaner'></div>";
-        }
-    </script>  
+    <script type="text/javascript" src="js/scripts.js"></script>
+    
 </head>
 <body onload="onload()">
 
 <div id="wrapper">
 	<div id="header">
         <div id="site_title"><h1><a href="#"></a></h1></div>
-        <div id="menu" class="ddsmoothmenu">
-        </div> <!-- end of menu -->
+        
         <div class="cleaner"></div>
     </div> <!-- end of header -->
     
-     <div id="middle">
+     <div id="middle"><div id="menu" class="ddsmoothmenu">
+        </div> <br/>
+      <!-- end of menu -->
      <!-- Start Top -->
-		<div id="mid_title">About Us</div>
-            <p style="font-size: medium">twoCube™ offers a one-stop solution to all survey needs. Getting feedback and responses from the people are the vital activities every organization will conduct. twoCube™ survey allows users to create surveys, distribute them and view statistics report on the responses. </p>
-
-         <p style="font-size: medium"> &nbsp;</p>
-         <p style="font-size: medium"> twoCube™ is a new player in the survey industry. It strives to assist individuals and organizations by creating a platform to gather and analyze data. It also strives to achieve to make its web survey as simple and convenient for all the users. Not only measuring customer satisfaction, a survey aids organizations in learning customers’ preferences and uncover new ideas. In addition, individuals are also able to determine a business idea’s feasibility through surveys. Online surveys offer the advantage of convenience and time saving as well. Over the years, online survey websites has come to play in the process of business improvement. </p>
-         <p style="font-size: medium"> &nbsp;</p>
-          <p style="font-size: x-large; font-family: Calibri; color: #0000FF;"> 
-          twoCube™ offers 3 simple steps:
-</p>
-         <p style="font-size: large; font-family: Calibri; color: #0000FF;"> 
-             •	Creating a survey
-</p>
-         <p style="font-size: large; font-family: Calibri; color: #0000FF;"> 
-             •	Collecting data</p>
-         <p style="font-size: large; font-family: Calibri; color: #0000FF;"> 
-•	Generating reports
-</p>
-         <p style="font-size: large; font-family: Calibri; color: #0000FF;"> 
-             &nbsp;</p>
-
-
-            <div id="learn_more"><a href="#">Learn More</a></div>
+		<center><div id="mid_title">About twoCube</div></center>
+        <p style="font-size: medium; text-align: justify;"><u>Who are we?</u><br />
+        Hi there, we are twoCube™. We are a group of passionate people who has created this survey platform just for YOU!<br /><br />
+        <u>Our Vision</u><br />
+         twoCube™ offers a one-stop solution to all your survey needs. twoCube™ survey allows you to create surveys with unlimited number of questions, distribute them and view statistics report on the responses at <b>no cost</b>!
+         We strives to assist YOU as an individual or organisation by creating a platform for you to gather and analyze data. As an orgnisation, not only do we hope you can measure your customers' satisfaction, we also hope to help you in learning customers’ preferences and uncover new ideas. 
+         In addition, you as an individual are also able to determine a business idea’s feasibility through surveys. 
+         <br /><br />
+          twoCube™ offers 3 simple steps for YOU to create your survey that suits your needs!<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; •	Creating a survey<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; •	Collecting data<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; •	Generating reports<br />
+         <br />twoCube™ hopes that you'll enjoy using our platform! Cheers!
+         </p>
+         
+        <p style="font-size: small; text-align: justify;">For any enquiries, please feel free to contact us at <u>twoCube@twoCube.com</u>.</p>
     <!-- End Top -->
     <div class="cleaner"></div>
 	</div> <!-- end of middle -->
