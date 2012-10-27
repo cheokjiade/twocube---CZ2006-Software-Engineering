@@ -169,6 +169,9 @@
     <Content Include="images\slide-6.jpg" />
     <Content Include="images\slide-7.jpg" />
     <Content Include="images\slide.jpg" />
+    <Content Include="images\slide1.png" />
+    <Content Include="images\slide2.png" />
+    <Content Include="images\slide3.png" />
     <Content Include="jquery.colorbox.js" />
     <Content Include="js\slides.min.jquery.js" />
     <Content Include="register.html" />
