@@ -8,19 +8,27 @@ $(document).bind('cbox_closed', function () {
 });
 
 // Load the SDK Asynchronously
-/*(function (d) {
+(function (d) {
     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
     if (d.getElementById(id)) { return; }
     js = d.createElement('script'); js.id = id; js.async = true;
     js.src = "//connect.facebook.net/en_US/all.js";
     ref.parentNode.insertBefore(js, ref);
-} (document));*/
+} (document));
 
 function onload() {
     loadMenu();
     loadFooter();
     if (window.location.href.indexOf("dosurvey") == -1)
         if ($.urlParam('s') != 0) window.location = "./dosurvey.html?s=" + $.urlParam('s');
+}
+function loginScreen(showHide){
+	if(showHide == "show"){
+		document.getElementById('loginScreen').style.display = "block";
+	}
+	else if(showHide == "hide"){
+		document.getElementById('loginScreen').style.display = "none";
+	}
 }
 function loadMenu() {
 
@@ -49,7 +57,7 @@ function loadMenu() {
         document.getElementById('menu').innerHTML = loginedmenu;
 }
 function loadFooter() {
-    document.getElementById('footer').innerHTML = "Copyright © 2013 twoCube<div class='cleaner'></div>";
+    document.getElementById('footer').innerHTML = "Copyright © 2013 twoCube<div class='cleaner'> <div id=\"fb-root\"></div></div>";
 }
 function logout() {
     logoutFacebook();
