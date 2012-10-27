@@ -85,7 +85,7 @@ function register() {
     $.colorbox({ href: "../register.html", open: true, iframe: true, width: "70%", height: "55%" });
 }
 function login() {
-    $.colorbox({ href: "../Login.htm", open: true, iframe: true, width: "80%", height: "80%" });
+    $.colorbox({ href: "../Login.htm", open: true, iframe: true, width: "60%", height: "55%" });
 }
 $(document).bind('cbox_closed', function () {
     //$.colorbox.remove();
