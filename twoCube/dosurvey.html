@@ -216,6 +216,7 @@ function test()
           },
             function(data){
                 alert('Thanks for doing the survey. Returning you to our home page.');
+                $(location).attr('href', "./");
                 console.log(data);
             });
 	 }
