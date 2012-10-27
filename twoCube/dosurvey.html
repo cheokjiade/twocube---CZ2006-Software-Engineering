@@ -105,7 +105,7 @@ function(data) {
       if(qnval.surveyQuestionType == 0){
         $.each(qnval.surveyQuestionOptionList, function(i,optval){
             if(optval.surveyQuestionOptionTitleType == 2){
-                $("<input type=\"radio\" name=\"s."+qnvali+"\" value=\""+i+"\" id=\"" + qnvali + i + "\" /><label for=\""+qnvali + i+"\"><img width=\"70\" height=\"70\" src=\"" + optval.surveyQuestionOptionTitle + "\"></label><br/>").appendTo("#survey");
+                $("<input type=\"radio\" name=\"s."+qnvali+"\" value=\""+i+"\" id=\"" + qnvali + i + "\" required  /><label for=\""+qnvali + i+"\"><img width=\"70\" height=\"70\" src=\"" + optval.surveyQuestionOptionTitle + "\"></label><br/>").appendTo("#survey");
                 //$("<input type=\"radio\" name=\"s."+qnvali+"\" value=\""+i+"\" id=\"" + qnvali + i + "\" /><label for=\""+qnvali + i+"\">" + optval.surveyQuestionOptionTitle + "</label><br/><input id=\"" + qnvali + i + "\" type=\"text\" name=\"s." + qnvali + "[]\"/>").appendTo("#survey");
             }else{
                 $("<input type=\"radio\" name=\"s."+qnvali+"\" value=\""+i+"\" id=\"" + qnvali + i + "\" required /><label for=\""+qnvali + i+"\">" + optval.surveyQuestionOptionTitle + "</label><br/>").appendTo("#survey");
@@ -137,7 +137,7 @@ function(data) {
       }else if (qnval.surveyQuestionType == 3){
         $.each(qnval.surveyQuestionOptionList, function(i,optval){
             $("<div id=\""+qnvali+"\" style=\"clear:both;\"></div>").appendTo("#survey");
-	        $("<input class=\"integer\" type=\"text\" name=\"s." + qnvali + "\"/><br/>").appendTo("#"+qnvali);
+	        $("<input class=\"integer\" type=\"text\" name=\"s." + qnvali + "\" required /><br/>").appendTo("#"+qnvali);
             $("<img/>").attr("src",optval.surveyQuestionOptionTitle).appendTo("#"+qnvali);
             $("<p style=\"clear:both;\"> </p>").appendTo("#"+qnvali);
             $(".integer").numeric(false, function() { alert("Integers only"); this.value = ""; this.focus(); });
@@ -145,7 +145,7 @@ function(data) {
       }else if (qnval.surveyQuestionType == 4){
         $.each(qnval.surveyQuestionOptionList, function(i,optval){
             $("<div id=\""+qnvali+"\" style=\"clear:both;\"></div>").appendTo("#survey");
-	        $("<input id=\"datepicker"+qnvali+"\" type=\"text\" name=\"s." + qnvali + "\"/><br/>").appendTo("#"+qnvali);
+	        $("<input id=\"datepicker"+qnvali+"\" type=\"text\" name=\"s." + qnvali + "\" required /><br/>").appendTo("#"+qnvali);
             $("<img/>").attr("src",optval.surveyQuestionOptionTitle).appendTo("#"+qnvali);
             $("<p style=\"clear:both;\"> </p>").appendTo("#"+qnvali);
             $( "#datepicker"+qnvali).datepicker();
@@ -154,8 +154,8 @@ function(data) {
         $("<div id=\""+qnvali+"\" style=\"clear:both\"></div>").appendTo("#survey");
         $.each(qnval.surveyQuestionOptionList, function(i,optval){
         if(optval.surveyQuestionOptionTitleType == 2)
-            $("<div class=\"rad\" style=\"display:inline-block; width:70px;\"><label for=\""+qnvali + i+"\" style=\"display:block; width:70px; text-align:center;\"><img src=\"" + optval.surveyQuestionOptionTitle + "\"></label><input type=\"radio\" style=\"width:70px; text-align:center;\" name=\"s."+qnvali+"\" value=\""+i+"\" id=\"" + qnvali + i + "\" /></div>").appendTo("#"+qnvali);
-        else $("<div class=\"rad\" style=\"display:inline-block; width:70px;\"><label for=\""+qnvali + i+"\" style=\"display:block; width:70px; text-align:center;\">" + optval.surveyQuestionOptionTitle + "</label><input type=\"radio\" style=\"width:70px; text-align:center;\" name=\"s."+qnvali+"\" value=\""+i+"\" id=\"" + qnvali + i + "\" /></div>").appendTo("#"+qnvali);
+            $("<div class=\"rad\" style=\"display:inline-block; width:70px;\"><label for=\""+qnvali + i+"\" style=\"display:block; width:70px; text-align:center;\"><img src=\"" + optval.surveyQuestionOptionTitle + "\"></label><input type=\"radio\" style=\"width:70px; text-align:center;\" name=\"s."+qnvali+"\" value=\""+i+"\" id=\"" + qnvali + i + "\" required  /></div>").appendTo("#"+qnvali);
+        else $("<div class=\"rad\" style=\"display:inline-block; width:70px;\"><label for=\""+qnvali + i+"\" style=\"display:block; width:70px; text-align:center;\">" + optval.surveyQuestionOptionTitle + "</label><input type=\"radio\" style=\"width:70px; text-align:center;\" name=\"s."+qnvali+"\" value=\""+i+"\" id=\"" + qnvali + i + "\" required  /></div>").appendTo("#"+qnvali);
         });
       }else if (qnval.surveyQuestionType == 6){
         $.each(qnval.surveyQuestionOptionList, function(i,optval){
