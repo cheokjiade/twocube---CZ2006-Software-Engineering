@@ -212,9 +212,15 @@
             alert('Information Updated!');
         }
         function changePassword() {
-            $.colorbox({ href: "../UpdatePassword.htm", open: true, iframe: true, width: "60%", height: "50%" });
+            $.colorbox({ href: "../UpdatePassword.htm", open: true, iframe: true, width: "650px", height: "300px" });
         }
     </script>
+    <style type="text/css">
+        .style1
+        {
+            width: 105px;
+        }
+    </style>
 </head>
 <body onload="onload()">
 
@@ -232,63 +238,48 @@
      <!-- Start Top -->
 		<div id="mid_title">Update Account Details</div>
 <form id="updateForm" action="javascript:checkFields()">
-    <table style="width:100%;">
+    <table style="width:49%;">
         <tr>
-            <td>
+            <td class="style1">
                <label>User Name:</label></td>
             <td>
                 <input type="text" name="username" id="userName"/></td>
-            <td>
-                &nbsp;</td>
         </tr>
         <tr>
-            <td>
+            <td class="style1">
                <label>First Name:</label></td>
             <td>
                 <input type="text" name="firstName" id="firstName"/></td>
-            <td>
-                &nbsp;</td>
         </tr>
         <tr>
-            <td>
+            <td class="style1">
                 <label>Last Name:</label></td>
             <td>
                 <input type="text" name="lastName" id="lastName"/></td>
-            <td>
-                &nbsp;</td>
         </tr>
         <tr>
-            <td>
+            <td class="style1">
                 <label>Email:</label></td>
             <td>
                 <input type="text" name="email" id="email" readonly="readonly" onfocus="actSave();"/><input type="button" id="emailEdit" onclick="changeEmail();" value="Edit"/><input type="button" onclick="emailCheck();" id="emailSave" value="Save" disabled="true"/><input type="button" onclick="cancelEmail();" id="emailCancel" value="Cancel" disabled="true"/></td>
-            <td>
-                &nbsp;</td>
         </tr>
         <tr>
-            <td>
+            <td class="style1">
                 <label>Password:</label></td>
             <td>
-                <input type="password" name="password" id="password"/></td>
-            <td>
-                <a onclick="changePassword();">Change</a></td>
+                <input type="password" name="password" id="password"/>  <a onclick="changePassword();">Change password</a></td>
+            
         </tr>
         <tr>
-            <td>
+            <td class="style1">
                 &nbsp;</td>
             <td>
-    <input type="submit" value="Update" /></td>
-            <td>
-                &nbsp;</td>
+    <input type="submit" value="Update" />
+        
+              </td>
         </tr>
     </table>
     
-    <br />
-    &nbsp;&nbsp;&nbsp;<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-    <br />
     &nbsp;
 </form>
 <div id="response"></div></div>
