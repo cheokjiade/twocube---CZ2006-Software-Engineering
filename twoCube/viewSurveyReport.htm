@@ -61,15 +61,29 @@
     
         <script class="code" type="text/javascript">
             var data = localStorage.getItem("twocubeSSO") || 0;
-            google.load('visualization', '1', {packages: ['geochart']});
+            google.load('visualization', '1', {packages: ['geochart', 'corechart']});
 
 
-            function drawVisualization(datastuff) {
+            function geoChart(datastuff) {
               var data = google.visualization.arrayToDataTable(datastuff);
     
               var geochart = new google.visualization.GeoChart(
                   document.getElementById('visualization'));
               geochart.draw(data, {width: 556, height: 347});
+            }
+
+            function browserChart(browstuff) {
+                var data = google.visualization.arrayToDataTable(browstuff);
+    
+                  var brow = new google.visualization.PieChart(document.getElementById('broswerStat'));
+                  brow.draw(data, {width: 556, height: 347});
+            }
+
+            function osChart(osstuff) {
+                var data = google.visualization.arrayToDataTable(osstuff);
+    
+                  var os = new google.visualization.PieChart(document.getElementById('osStat'));
+                  os.draw(data, {width: 556, height: 347});
             }
 
             $.urlParam = function (name) {
@@ -103,7 +117,36 @@
                 datastuff.push(datastuffitem);
               });
 
-              google.setOnLoadCallback(drawVisualization(datastuff));
+              google.setOnLoadCallback(geoChart(datastuff));
+
+              $("<div id=\"broswerStat\"></div>").appendTo("#maindiv");
+              $("<br>").appendTo("#maindiv");
+              var browstuff = [];
+              var browstuffheader = ['Browser', 'Respondents'];
+              browstuff.push(browstuffheader);
+              $.each(data.browserBrowser, function (respBrowser, browser) {
+                var browstuffitem = [];
+                browstuffitem.push(browser.key);
+                browstuffitem.push(browser.value);
+                browstuff.push(browstuffitem);
+              });
+
+              google.setOnLoadCallback(browserChart(browstuff));
+
+              $("<div id=\"osStat\"></div>").appendTo("#maindiv");
+              $("<br>").appendTo("#maindiv");
+              var osstuff = [];
+              var osstuffheader = ['Operating System', 'Respondents'];
+              osstuff.push(osstuffheader);
+              $.each(data.browserOS, function (respOS, os) {
+                var osstuffitem = [];
+                osstuffitem.push(os.key);
+                osstuffitem.push(os.value);
+                osstuff.push(osstuffitem);
+              });
+
+              google.setOnLoadCallback(osChart(osstuff));
+
               $.each(data.questionList, function (question, questionList) {
                   // $("<h2>" + questionList.questionTitle + "</h2>").appendTo("#maindiv");
                   $("<br>").appendTo("#maindiv");
