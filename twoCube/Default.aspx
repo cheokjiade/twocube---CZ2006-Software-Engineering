@@ -233,7 +233,7 @@
     </div> <!-- end of header -->
     
     <div id="middle"><div id="menu" class="ddsmoothmenu">
-        </div> <!-- end of menu -->
+        </div> <br/><!-- end of menu -->
     <div id="fb-root"></div>
 <script>    (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
