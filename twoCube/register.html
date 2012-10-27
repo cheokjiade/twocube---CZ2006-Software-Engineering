@@ -10,24 +10,7 @@
     <script type="text/javascript" src="https://raw.github.com/SamWM/jQuery-Plugins/master/numeric/jquery.numeric.js"></script>
     <script type="text/javascript" src="https://raw.github.com/maxatwork/form2js/master/src/form2js.js"></script>
     <script type="text/javascript" src="Scripts/json2.js"></script>
-    <style type="text/css">
-        #inputField
-        {
-            width: 128px;
-        }
-        #Text5
-        {
-            margin-top: 0px;
-        }
-        .style1
-        {
-            text-decoration: underline;
-        }
-    </style>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+
 <script type="text/javascript">
     $.urlParam = function (name) {
         var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -72,16 +55,21 @@
         window.location.reload();
     }
 </script>  
+    <style type="text/css">
+        .style1
+        {
+            font-family: Verdana;
+        }
+        #middle
+        {
+            font-family: Calibri;
+        }
+    </style>
 </head>
 <body onload="onload()">
 
 <div id="wrapper">
-	<div id="header">
-        <div id="site_title"><h1><a href="#"></a></h1></div>
-        <div id="menu" class="ddsmoothmenu">
-        </div> <!-- end of menu -->
-        <div class="cleaner"></div>
-    </div> <!-- end of header -->
+    <!-- end of header -->
     
      <div id="middle">
      <!-- Start Top -->
@@ -117,18 +105,13 @@
     return false;
   }
 " action="javascript:test()">
-    <div>
-        <table>
-            <tr>
-                <td>
-                    <strong>Sign up here!</strong></td>
-                <td>
-                    &nbsp;</td>
-                <td>
-                    &nbsp;</td>
-                <td>
-                    &nbsp;</td>
-            </tr>
+
+    <div style="font-size: medium">
+     &nbsp;
+     <fieldset style="height: 211px; width: 765px">
+         <legend class="style1" 
+                style="background-color: #000000; height: 30px; width: 248px; font-size: x-large; color: #FFFFFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sign up here!</legend>
+        <table style="height: 177px; width: 730px">
             <tr>
                 <td class="style1">
                     <strong>Personal Information:</strong>
