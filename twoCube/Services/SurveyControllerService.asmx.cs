@@ -185,7 +185,6 @@ namespace twoCube.Services
                                 {
 
                                     var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 1, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
-                                    JToken qn1,qn2,qn3,qn4,qn5;
                                     if (question.SelectToken("satisfactory_vUnsatisfactory")!=null)
                                         surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_vUnsatisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
                                     if (question.SelectToken("satisfactory_Unsatisfactory") != null)
@@ -199,14 +198,36 @@ namespace twoCube.Services
                                     survey.surveyQuestionList.Add(surveyQuestion);
                                     break;
                                 }
-                            case "section1":
+                            case "satisfactory":
                                 {
-
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 5, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
+                                    if (question.SelectToken("satisfactory_vUnsatisfactory") != null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_vUnsatisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
+                                    if (question.SelectToken("satisfactory_Unsatisfactory") != null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_Unsatisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
+                                    if (question.SelectToken("satisfactory_Neutral") != null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_Neutral").ToString(), surveyQuestionOptionTitleType = 2 });
+                                    if (question.SelectToken("satisfactory_Satisfactory") != null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_Satisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
+                                    if (question.SelectToken("satisfactory_vSatisfactory") != null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_vSatisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
+                                    survey.surveyQuestionList.Add(surveyQuestion);
                                     break;
                                 }
-                            case "section2":
+                            case "img_radio":
                                 {
-
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 0, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
+                                    if (question.SelectToken("satisfactory_vUnsatisfactory") != null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_vUnsatisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
+                                    if (question.SelectToken("satisfactory_Unsatisfactory") != null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_Unsatisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
+                                    if (question.SelectToken("satisfactory_Neutral") != null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_Neutral").ToString(), surveyQuestionOptionTitleType = 2 });
+                                    if (question.SelectToken("satisfactory_Satisfactory") != null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_Satisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
+                                    if (question.SelectToken("satisfactory_vSatisfactory") != null)
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_vSatisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
+                                    survey.surveyQuestionList.Add(surveyQuestion);
                                     break;
                                 }
                         
