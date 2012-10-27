@@ -103,7 +103,8 @@
               }
               $("<h4> Number of Repondents: " + data.noOfRespondents + "</h4>").appendTo("#maindiv");
               $("<h4> Average time taken for " + data.noOfRespondents + " respondent(s) to do the survey: " + data.avgTime + " seconds </h4><br>").appendTo("#maindiv");
-               
+              
+              $("<h4>Respondent Geographic Location: </h4>").appendTo("#maindiv"); 
               $("<div id=\"visualization\"></div>").appendTo("#maindiv");
               $("<br>").appendTo("#maindiv");
 
@@ -119,6 +120,7 @@
 
               google.setOnLoadCallback(geoChart(datastuff));
 
+              $("<h4>Respondent Browser Type: </h4>").appendTo("#maindiv");
               $("<div id=\"broswerStat\"></div>").appendTo("#maindiv");
               $("<br>").appendTo("#maindiv");
               var browstuff = [];
@@ -133,6 +135,7 @@
 
               google.setOnLoadCallback(browserChart(browstuff));
 
+              $("<h4>Respondent Operating System: </h4>").appendTo("#maindiv");
               $("<div id=\"osStat\"></div>").appendTo("#maindiv");
               $("<br>").appendTo("#maindiv");
               var osstuff = [];
