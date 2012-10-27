@@ -64,16 +64,8 @@
             google.load('visualization', '1', {packages: ['geochart']});
 
 
-            function drawVisualization() {
-              var data = google.visualization.arrayToDataTable([
-                ['Country', 'Respondents'],
-                ['Germany', 1],
-                ['United States', 8],
-                ['Brazil', 1],
-                ['Canada', 2],
-                ['France', 2],
-                ['RU', 1]
-              ]);
+            function drawVisualization(datastuff) {
+              var data = google.visualization.arrayToDataTable(datastuff);
     
               var geochart = new google.visualization.GeoChart(
                   document.getElementById('visualization'));
@@ -100,7 +92,18 @@
                
               $("<div id=\"visualization\"></div>").appendTo("#maindiv");
               $("<br>").appendTo("#maindiv");
-              google.setOnLoadCallback(drawVisualization);
+
+              var datastuff = [];
+              var datastuffheader = ['Country', 'Respondents'];
+              datastuff.push(datastuffheader);
+              $.each(data.countryCode, function (countryNumber, country) {
+                var datastuffitem = [];
+                datastuffitem.push(country.key);
+                datastuffitem.push(country.value);
+                datastuff.push(datastuffitem);
+              });
+
+              google.setOnLoadCallback(drawVisualization(datastuff));
               $.each(data.questionList, function (question, questionList) {
                   // $("<h2>" + questionList.questionTitle + "</h2>").appendTo("#maindiv");
                   $("<br>").appendTo("#maindiv");
