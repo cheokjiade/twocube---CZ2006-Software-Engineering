@@ -250,45 +250,21 @@
            <div id="slides">
 				<div class="slides_container">
 					<div class="slide">
-						<img src="http://profile.ak.fbcdn.net/hprofile-ak-ash4/371504_652201722_326593817_n.jpg" width="850" height="405" alt="Slide 1"/>
+						<img src="images/slide1.png" width="850" height="405" alt="Slide 1"/>
 						<div class="caption" style="bottom:0">
-							<p>June</p>
+							<p>Create your survey!</p>
 						</div>
 					</div>
 					<div class="slide">
-						<img src="http://profile.ak.fbcdn.net/hprofile-ak-prn1/49499_100001074800572_1286678510_n.jpg" width="850" height="405" alt="Slide 2"/>
+						<img src="images/slide2.png" width="850" height="405" alt="Slide 2"/>
 						<div class="caption">
-							<p>Star</p>
+							<p>Collect responses from friends!</p>
 						</div>
 					</div>
 					<div class="slide">
-						<img src="images/slide-3.jpg" width="570" height="570" alt="Slide 3"/>
+						<img src="images/slide3.png" width="850" height="405" alt="Slide 3"/>
 						<div class="caption">
-							<p>test3</p>
-						</div>
-					</div>
-					<div class="slide">
-						<img src="images/slide-4.jpg" width="570" height="570" alt="Slide 4"/>
-						<div class="caption">
-							<p>test4</p>
-						</div>
-					</div>
-					<div class="slide">
-						<img src="images/slide-5.jpg" width="570" height="570" alt="Slide 5" />
-						<div class="caption">
-							<p>test4</p>
-						</div>
-					</div>
-					<div class="slide">
-						<img src="images/slide-6.jpg" width="570" height="570" alt="Slide 6" />
-						<div class="caption">
-							<p>test5</p>
-						</div>
-					</div>
-					<div class="slide">
-						<a href="http://www.flickr.com/photos/aftab/3152515428/" title="Save my love for loneliness | Flickr - Photo Sharing!" target="_blank"><img src="images/slide-7.jpg" width="570" height="570" alt="Slide 7"></a>
-						<div class="caption">
-							<p>test6</p>
+							<p>Analyse results to gain insights!</p>
 						</div>
 					</div>
 				</div>
