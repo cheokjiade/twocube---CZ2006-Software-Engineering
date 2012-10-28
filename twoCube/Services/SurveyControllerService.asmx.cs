@@ -230,6 +230,16 @@ namespace twoCube.Services
                                     survey.surveyQuestionList.Add(surveyQuestion);
                                     break;
                                 }
+                            case "select":
+                                {
+                                    var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 10, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
+                                    foreach (var option in question.SelectToken("options").ToList())
+                                    {
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = option.SelectToken("option").ToString() });
+                                    }
+                                    survey.surveyQuestionList.Add(surveyQuestion);
+                                    break;
+                                }
                         
                         }
                     }
@@ -285,6 +295,7 @@ namespace twoCube.Services
                                 {
                                     switch (question.surveyQuestionType)
                                     {
+                                        case 10:
                                         case 0:
                                         case 5:
                                         case 2:
