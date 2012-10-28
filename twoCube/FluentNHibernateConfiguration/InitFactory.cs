@@ -48,9 +48,9 @@ namespace twoCube.FluentNHibernateConfiguration
         {
             // This NHibernate tool takes a configuration (with mapping info in)
             // and exports a database schema from it.
-            var dbSchemaExport = new SchemaExport(config);
+            var dbSchemaExport = new SchemaUpdate(config);
             //dbSchemaExport.Drop(false, true);
-            dbSchemaExport.Create(false, true);
+            dbSchemaExport.Execute(false, true);
         }
     }
 }
