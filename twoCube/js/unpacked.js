@@ -233,8 +233,8 @@ function save_form_data(){
         return;
     }
     
-    document.getElementById('display').innerHTML = JSON.stringify(main_form.data);
-    document.getElementById('display2').innerHTML = ds.stringify();
+    //document.getElementById('display').innerHTML = JSON.stringify(main_form.data);
+    //document.getElementById('display2').innerHTML = ds.stringify();
 
 
     var myForm = document.createElement("form");

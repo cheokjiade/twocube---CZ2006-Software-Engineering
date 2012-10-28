@@ -47,14 +47,14 @@
         
         <div id="element_buttons">
         <ul id="first_column">
-<!--        <li><a href="javascript:insert_element('text')"><img src="images/icon_single_line_text_bg.gif"/><span>Single Line Text</span></a>-->
+        <li><a href="javascript:insert_element('text')"><img src="images/icon_single_line_text_bg.gif"/><span>Single Line Text</span></a>
         <li><a href="javascript:insert_element('textarea');"><img src="images/icon_paragraph_text_bg.gif"><span>Paragraph Text</span></a></li>
         <li><a href="javascript:insert_element('radio');"><img src="images/icon_multiplechoice_bg.gif"><span>Multiple Choice</span></a></li>
 <!--        <li><a href="javascript:insert_element('simple_name');"><img src="images/icon_name_bg.gif"><span>Name</span></a></li>-->
-        <li><a href="javascript:insert_element('time');"><img src="images/icon_time_bg.gif"><span>Time</span></a></li>
+<!--        <li><a href="javascript:insert_element('time');"><img src="images/icon_time_bg.gif"><span>Time</span></a></li>-->
 <!--        <li><a href="javascript:insert_element('address');"><img src="images/icon_address_bg.gif"><span>Address</span></a></li>-->
 <!--        <li><a href="javascript:insert_element('currency');"><img src="images/icon_price_bg.gif"><span>Price</span></a></li>-->
-        <li><a href="javascript:insert_element('section');" title="Organize your form."><img src="images/icon_section_break_bg.gif"><span>Section Break</span></a></li>
+<!--        <li><a href="javascript:insert_element('section');" title="Organize your form."><img src="images/icon_section_break_bg.gif"><span>Section Break</span></a></li>-->
         <li><a href="javascript:insert_element('slider');"><img src="images/icon_slider_bg.gif"><span>Slider</span></a></li>
 <!--        <li><a href="javascript:insert_element('signature');"><img src="images/icon_signature_bg.gif"><span>Signature</span></a></li>-->
         <li><a href="javascript:insert_element('img_radio');"><img src="images/icon_multiplechoice_bg.gif"><span>Image Radio</span></a></li>
@@ -123,7 +123,7 @@
         <a href="#" class="tooltip" title="Field Type" rel="Field Type detemines what kind of data can be collected by your field. After you save the form, the field type cannot be changed.">(?)</a>
         </label>
         <select class="select full" id="element_type" autocomplete="off" tabindex="12" onchange="set_properties($F(this), &#39;type&#39;)" style="display:none;">
-        <!--<option value="text">Single Line Text</option>-->
+        <option value="text">Single Line Text</option>
         <option value="textarea">Paragraph Text</option>
         <option value="radio">Multiple Choice</option>
         <option value="checkbox">Checkboxes</option>
@@ -131,7 +131,7 @@
         <option value="number">Number</option>
         <!--<option value="simple_name">Name</option>-->
         <option value="date">Date</option>
-        <option value="time">Time</option>
+        <!--<option value="time">Time</option>-->
        <!-- <option value="phone">Phone</option>-->
         <option value="slider">Slider</option>
         <!--<option value="money">Price</option>
@@ -139,7 +139,7 @@
         <option value="email">Email</option>
         <option value="address">Address</option>
         <option value="file">File Upload</option-->>
-        <option value="section">Section Break</option>
+        <!--<option value="section">Section Break</option>-->
 
         </select>
         </li>
@@ -678,14 +678,14 @@
 </div><!-- middle -->
 <h2>Below is for debugging purposes</h2>
 
-<div id="debug"></div>
+<!--<div id="debug"></div>
 
 <a href="javascript:loginScreen('show')">Login</a>
 
 <h3>Form</h3>
 <div id="display"></div>
 <h3>Data</h3>
-<div id="display2"></div>
+<div id="display2"></div>-->
 
 
 <script type="text/javascript">
