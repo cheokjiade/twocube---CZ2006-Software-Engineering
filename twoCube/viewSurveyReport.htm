@@ -182,9 +182,9 @@
                   } 
                   
                   else if (questionList.questionType == 0 || questionList.questionType == 5) { //radio button, scale radio                  
-                  
+                  /*
                   $("<h4>Pie: </h4>").appendTo("#maindiv");
-                  $("<div id=\"pieStat\"></div>").appendTo("#maindiv");
+                  //$("<div id=\"pieStat\"></div>").appendTo("#maindiv");
                   $("<br>").appendTo("#maindiv");
 
                   var piestuffheader = [];
@@ -196,15 +196,10 @@
                     piestuff.push(piestuffitem);
                   });
 
-                  var options = {
-                    title: question + 1 + ". " + questionList.questionTitle
-                  };
-                  
                   google.setOnLoadCallback(pieChart);
-
-                  }
+                  } */
                   
-                  /*
+                  
                       $("<div id=\"chartPie" + question + "\" style=\"height:350px; width:600px;\"></div>").appendTo("#maindiv");
                       $(function () {
                           var stuff = [];
@@ -242,8 +237,9 @@
                           legend: { show: true, location: 'e' }
                       });
 
-                      })*/
-
+                      })
+                  }
+                  
                   else if (questionList.questionType == 1) { //checkbox
                       $("<div id=\"barChart" + question + "\" style=\"height:370px; width:600px;\"></div>").appendTo("#maindiv");
                       $(function () {
