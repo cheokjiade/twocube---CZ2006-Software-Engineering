@@ -59,12 +59,18 @@
 </div>
 </div>
     
-        <script class="code" type="text/javascript">
+        <script type="text/javascript">
             var data = localStorage.getItem("twocubeSSO") || 0;
+            var datastuff = [];
+            var browstuff = [];
+            var osstuff = [];
+            //google.load('visualization', '1', {packages: ['geochart']});
             google.load('visualization', '1', {packages: ['geochart', 'corechart']});
 
-
-            function geoChart(datastuff) {
+            function createVisualtizations(){
+                geoChart(stuff)
+            }
+            function geoChart() {
               var data = google.visualization.arrayToDataTable(datastuff);
     
               var geochart = new google.visualization.GeoChart(
@@ -72,14 +78,14 @@
               geochart.draw(data, {width: 556, height: 347});
             }
 
-            function browserChart(browstuff) {
+            function browserChart() {
                 var data = google.visualization.arrayToDataTable(browstuff);
     
                   var brow = new google.visualization.PieChart(document.getElementById('broswerStat'));
                   brow.draw(data, {width: 556, height: 347});
             }
 
-            function osChart(osstuff) {
+            function osChart() {
                 var data = google.visualization.arrayToDataTable(osstuff);
     
                   var os = new google.visualization.PieChart(document.getElementById('osStat'));
@@ -108,7 +114,7 @@
               $("<div id=\"visualization\"></div>").appendTo("#maindiv");
               $("<br>").appendTo("#maindiv");
 
-              var datastuff = [];
+              
               var datastuffheader = ['Country', 'Respondents'];
               datastuff.push(datastuffheader);
               $.each(data.countryCode, function (countryNumber, country) {
@@ -118,12 +124,12 @@
                 datastuff.push(datastuffitem);
               });
 
-              google.setOnLoadCallback(geoChart(datastuff));
+              google.setOnLoadCallback(geoChart);
 
               $("<h4>Respondent Browser Type: </h4>").appendTo("#maindiv");
               $("<div id=\"broswerStat\"></div>").appendTo("#maindiv");
               $("<br>").appendTo("#maindiv");
-              var browstuff = [];
+              
               var browstuffheader = ['Browser', 'Respondents'];
               browstuff.push(browstuffheader);
               $.each(data.browserBrowser, function (respBrowser, browser) {
@@ -133,12 +139,12 @@
                 browstuff.push(browstuffitem);
               });
 
-              google.setOnLoadCallback(browserChart(browstuff));
+              google.setOnLoadCallback(browserChart);
 
               $("<h4>Respondent Operating System: </h4>").appendTo("#maindiv");
               $("<div id=\"osStat\"></div>").appendTo("#maindiv");
               $("<br>").appendTo("#maindiv");
-              var osstuff = [];
+              
               var osstuffheader = ['Operating System', 'Respondents'];
               osstuff.push(osstuffheader);
               $.each(data.browserOS, function (respOS, os) {
@@ -148,7 +154,9 @@
                 osstuff.push(osstuffitem);
               });
 
-              google.setOnLoadCallback(osChart(osstuff));
+              google.setOnLoadCallback(osChart);
+
+              
 
               $.each(data.questionList, function (question, questionList) {
                   // $("<h2>" + questionList.questionTitle + "</h2>").appendTo("#maindiv");
