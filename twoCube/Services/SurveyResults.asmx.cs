@@ -6,7 +6,6 @@ using System.Web.Services;
 using twoCube.SurveyResultsEntities;
 using System.Web.Script.Serialization;
 using twoCube.Entities;
-
 namespace twoCube.Services
 {
     /// <summary>
@@ -203,6 +202,7 @@ namespace twoCube.Services
                             case 0:
                             case 1:
                             case 5:
+                            case 10:
                                 {
                                     int optionNo = 0;
                                     foreach (var option in question.surveyQuestionOptionList)
