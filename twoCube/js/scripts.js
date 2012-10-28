@@ -27,7 +27,7 @@ function loadMenu() {
 
     var menu = "<ul>\
                 <li><a href='./'>Home</a></li>\
-                <li><a href='./createsurvey.html'>Create Survey</a></li>\
+                <li><a href='#' onclick='login();'>Create Survey</a></li>\
                 <li><a href='#' onclick='register();'>Register</a></li>\
 				<li><a href='#' onclick='login();'>Login</a></li>\
             </ul>\
@@ -44,6 +44,8 @@ function loadMenu() {
 
     if (data == 0)
         document.getElementById('menu').innerHTML = menu;
+
+
     else
         document.getElementById('menu').innerHTML = loginedmenu;
 }
