@@ -13,6 +13,14 @@
     <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
     <script type="text/javascript" src="js/scripts.js"></script>
     <script type="text/javascript">
+
+        //start
+        $(function () {
+            if (data == 0) {
+                $(location).attr('href', "./");
+            }
+        });
+        //end
         $(document).ready(function () {
             var data = localStorage.getItem("twocubeSSO") || 0;
             if (data == 0)
