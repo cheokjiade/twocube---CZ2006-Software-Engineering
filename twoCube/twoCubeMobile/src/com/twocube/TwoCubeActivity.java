@@ -27,6 +27,7 @@ import com.twocube.entities.Survey;
 import com.twocube.entities.SurveyQuestion;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,6 +48,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RadioGroup.LayoutParams;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -311,6 +313,34 @@ public class TwoCubeActivity extends Activity {
 						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
 						llQuestion.addView(et);
 					}
+				}if(tempQuestion.getInt("surveyQuestionType") == 5){
+					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
+					RadioGroup rg = new RadioGroup(this);
+					rg.setOrientation(RadioGroup.HORIZONTAL);
+					//rg.setLayoutParams(LayoutParams.);
+					int pos = i;
+					final SurveyQuestion sq =  new SurveyQuestion(0);
+					survey.getQuestionList().add(sq);
+					for (int j = 0; j < optionArray.length(); j++) {
+						JSONObject tempOption = optionArray.getJSONObject(j);
+						RadioButton rb = new RadioButton(this);
+						//rb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+						//rb.setBackgroundColor(Color.BLUE);
+						rg.addView(rb);
+						//CheckBox cb = new CheckBox(this);
+						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+						
+					}
+					rg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+						
+						@Override
+						public void onCheckedChanged(RadioGroup group, int checkedId) {
+							if(checkedId == -1){}
+							else sq.setNumAns(group.indexOfChild(findViewById(group.getCheckedRadioButtonId())));
+							
+						}
+					});
+					llQuestion.addView(rg);
 				}
 				
 				((LinearLayout)findViewById(R.id.ll_main)).addView(v);
