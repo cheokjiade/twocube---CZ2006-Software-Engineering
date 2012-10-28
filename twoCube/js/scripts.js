@@ -82,10 +82,10 @@ function handleSessionResponse(response) {
     FB.logout(response.authResponse);
 }
 function register() {
-    $.colorbox({ href: "../register.html", open: true, iframe: true, width: "860px", height: "350px" });
+    $.colorbox({ href: "../register.html", open: true, iframe: true, width: "870px", height: "350px" });
 }
 function login() {
-    $.colorbox({ href: "../Login.htm", open: true, iframe: true, width: "710px", height: "450px" });
+    $.colorbox({ href: "../Login.htm", open: true, iframe: true, width: "550px", height: "450px" });
 }
 $(document).bind('cbox_closed', function () {
     //$.colorbox.remove();
