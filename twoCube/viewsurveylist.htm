@@ -16,11 +16,16 @@
     <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
     <script type="text/javascript" src="js/scripts.js"></script>
     <script type="text/javascript">
-
-
+    //start
+        $(function () {
+            if (data == 0) {
+                $(location).attr('href', "./");
+            }
+        });
+    //end
             $.getJSON("./Services/SurveyControllerService.asmx/getSurveyList",
               {
-                  memberHash: data
+                        memberHash: data
               },
               function (d) {
                   if (jQuery.isEmptyObject(d)) $("<h2>No Surveys have been created.</h2>").appendTo("#mainDiv");
