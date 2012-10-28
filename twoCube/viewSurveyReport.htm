@@ -70,6 +70,9 @@
             var barstuff = [];
             var listbarstuff = [];
             var bar_i = 0;
+            var colstuff = [];
+            var listcolstuff = [];
+            var col_i = 0;
             //google.load('visualization', '1', {packages: ['geochart']});
             google.load('visualization', '1', {packages: ['geochart', 'corechart']});
 
@@ -115,7 +118,17 @@
                   var bar = new google.visualization.BarChart(document.getElementById('barStat'+i));
                   bar.draw(data, {width: 556, height: 347});
                 }
-            }
+          }
+
+
+          function drawCol() {
+              for (var i = 0; i < listcolstuff.length; i++) {
+                  var data = google.visualization.arrayToDataTable(listcolstuff[i]);
+
+                  var col = new google.visualization.ColumnChart(document.getElementById('colStat' + i));
+                  col.draw(data, { width: 556, height: 347 });
+              }
+          }
 
 
             $.urlParam = function (name) {
@@ -188,7 +201,7 @@
                   if (questionList.questionType == 2 || questionList.questionType == 3 || questionList.questionType == 4 || questionList.questionType == 6 || questionList.questionType == 7) {
                       $("<div id=\"list" + question + "\"></div>").appendTo("#maindiv");
 
-                      $("<font size=\"3\" color=\"#585858\">" + (question + 1) + ". " + questionList.questionTitle + "</font><p>").appendTo("#list" + question);
+                      $("<h4>" + (question + 1) + ". " + questionList.questionTitle + "</h4><p>").appendTo("#list" + question);
 
                       $.each(questionList.optionList, function (option, optionList) {
                           $("<div style=\"width:585px; border:1px solid grey;\"><font color=\"#585858\"><h5>" + ((optionList.noOfRespondents / data.noOfRespondents) * 100).toFixed(1) + "% of the respondents responded: " + "<b>" + optionList.responseStr + "</b></font></h5></div>").appendTo("#list" + question);
@@ -197,7 +210,7 @@
 
                   }
 
-                  else if (questionList.questionType == 0 || questionList.questionType == 5 || questionList.questionType == 10) { //radio button, scale radio
+                  else if (questionList.questionType == 0 || questionList.questionType == 10) { //radio button, scale radio
                       //$("<div id=\"pielist" + question + "\"></div>").appendTo("#maindiv"); 
                       var piestuff = [];
                       $("<h4>" + (question + 1) + ". " + questionList.questionTitle + "</h4>").appendTo("#maindiv");
@@ -234,6 +247,25 @@
                       })
                       listbarstuff.push(barstuff);
                       bar_i++;
+                  }
+
+                  else if (questionList.questionType == 5) { //horiontal radio button
+                      var colstuff = [];
+                      $("<h4>" + (question + 1) + ". " + questionList.questionTitle + "</h4>").appendTo("#maindiv");
+                      $("<div id=\"colStat" + col_i + "\"></div>").appendTo("#maindiv");
+                      $(function () {
+                          var colstuffheader = ['Option', 'No of Respondents'];
+                          colstuff.push(colstuffheader);
+                          $.each(questionList.optionList, function (option, optionList) {
+                              var colstuffitem = [];
+                              colstuffitem.push(optionList.optionTitle);
+                              colstuffitem.push(optionList.noOfRespondents);
+                              colstuff.push(colstuffitem);
+                          });
+                          $(google.setOnLoadCallback(drawCol));
+                      })
+                      listcolstuff.push(colstuff);
+                      col_i++;
                   } 
               });
     });
