@@ -259,6 +259,39 @@ public class TwoCubeActivity extends Activity {
 						});
 						llQuestion.addView(dp);
 					}
+				}else if(tempQuestion.getInt("surveyQuestionType") == 6||tempQuestion.getInt("surveyQuestionType") == 7){
+					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
+					final SurveyQuestion sq =  new SurveyQuestion(3);
+					survey.getQuestionList().add(sq);
+					for (int j = 0; j < optionArray.length(); j++) {
+						JSONObject tempOption = optionArray.getJSONObject(j);
+						final EditText et = new EditText(this);
+						//et.setInputType(InputType.TYPE_CLASS_NUMBER);
+						et.addTextChangedListener(new TextWatcher() {
+							
+							@Override
+							public void onTextChanged(CharSequence s, int start, int before, int count) {
+								sq.setStrAns(et.getEditableText().toString());
+								Log.w("JSON", et.getEditableText().toString());
+								
+							}
+							
+							@Override
+							public void beforeTextChanged(CharSequence s, int start, int count,
+									int after) {
+								// TODO Auto-generated method stub
+								
+							}
+							
+							@Override
+							public void afterTextChanged(Editable s) {
+								// TODO Auto-generated method stub
+								
+							}
+						});
+						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+						llQuestion.addView(et);
+					}
 				}
 				
 				((LinearLayout)findViewById(R.id.ll_main)).addView(v);
