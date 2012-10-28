@@ -96,6 +96,7 @@ namespace twoCube.Services
                             case 0:
                             case 1:
                             case 5:
+                            case 10:
                                 int count = 0;
                                 foreach (var option in question.surveyQuestionOptionList)
                                 {
