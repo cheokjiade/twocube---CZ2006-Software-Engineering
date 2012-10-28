@@ -91,6 +91,7 @@
     <Content Include="Copy of template%28Do Not Overwrite%29.html" />
     <Content Include="css\ddsmoothmenu.css" />
     <Content Include="css\style.css" />
+    <Content Include="favicon.ico" />
     <Content Include="images\arrow-next.png" />
     <Content Include="images\arrow-prev.png" />
     <Content Include="images\background.png" />
