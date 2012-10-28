@@ -31,6 +31,26 @@
                   });
                   $("<br/><br/><br/><br/><br/><br/>").appendTo("#mainDiv");
               });
+
+
+              function closeSurvey() {
+                  var formData = form2js('testForm', '.', true,
+				function (node) {
+				    if (node.id && node.id.match(/callbackTest/)) {
+				        return { name: node.id, value: node.innerHTML };
+				    }
+				});
+
+                  //document.getElementById('response').innerHTML = JSON.stringify(formData, null, '\t');
+                  $.post("./Services/SurveyControllerService.asmx/CloseSurvey",
+          {
+              jsonString: JSON.stringify(formData, null, '\t')
+          },
+            function (data) {
+                console.log(data);
+            });
+                  alert('Updated!');
+              }
     </script>
 </head>
 <body onload="onload()">
