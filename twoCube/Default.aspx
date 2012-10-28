@@ -225,6 +225,7 @@
     <div id="middle"><div id="menu" class="ddsmoothmenu">
         </div> <br/><!-- end of menu -->
     <div class="fb-like" data-href="http://twocube1.elasticbeanstalk.com" data-send="true" data-width="450" data-show-faces="true"></div>
+   <p align="right"> <a href="./AboutUsPage.html">About twoCube</a></p>
      <!-- Start Top -->
         <div id="container">
 		<div id="example">
