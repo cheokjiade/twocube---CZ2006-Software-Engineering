@@ -45,6 +45,8 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -162,8 +164,21 @@ public class TwoCubeActivity extends Activity {
 					for (int j = 0; j < optionArray.length(); j++) {
 						JSONObject tempOption = optionArray.getJSONObject(j);
 						RadioButton rb = new RadioButton(this);
-						rb.setText(tempOption.getString("surveyQuestionOptionTitle"));
-						rg.addView(rb);
+						if(tempOption.getInt("surveyQuestionOptionTitleType")==2){
+							LinearLayout hllOption = new LinearLayout(this);
+							hllOption.setOrientation(LinearLayout.HORIZONTAL);
+							ImageView ivImage;
+							ivImage = new ImageView(this);
+							ivImage.setLayoutParams(new LinearLayout.LayoutParams(120, 120));
+							hllOption.addView(rb);
+							hllOption.addView(ivImage);
+							imageLoader.displayImage(tempOption.getString("surveyQuestionOptionTitle"), ivImage,new DisplayImageOptions.Builder().cacheOnDisc().build());
+							//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+							rg.addView(hllOption);
+						}else {
+							rb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+							rg.addView(rb);
+						}
 						//CheckBox cb = new CheckBox(this);
 						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
 						
@@ -182,9 +197,24 @@ public class TwoCubeActivity extends Activity {
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
 					for (int j = 0; j < optionArray.length(); j++) {
 						JSONObject tempOption = optionArray.getJSONObject(j);
-						CheckBox cb = new CheckBox(this);
-						cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
-						llQuestion.addView(cb);
+						if(tempOption.getInt("surveyQuestionOptionTitleType")==2){
+							LinearLayout hllOption = new LinearLayout(this);//(LinearLayout)v.findViewById(R.id.ll_question);
+							hllOption.setOrientation(LinearLayout.HORIZONTAL);
+							ImageView ivImage;
+							ivImage = new ImageView(this);
+							ivImage.setLayoutParams(new LinearLayout.LayoutParams(120, 120));
+							CheckBox cb = new CheckBox(this);
+							hllOption.addView(cb);
+							hllOption.addView(ivImage);
+							imageLoader.displayImage(tempOption.getString("surveyQuestionOptionTitle"), ivImage,new DisplayImageOptions.Builder().cacheOnDisc().build());
+							//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+							llQuestion.addView(hllOption);
+						}else{
+							CheckBox cb = new CheckBox(this);
+							cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+							llQuestion.addView(cb);
+						}
+						
 					}
 				}else if(tempQuestion.getInt("surveyQuestionType") == 2){
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
@@ -317,6 +347,8 @@ public class TwoCubeActivity extends Activity {
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
 					RadioGroup rg = new RadioGroup(this);
 					rg.setOrientation(RadioGroup.HORIZONTAL);
+					HorizontalScrollView hsv = new HorizontalScrollView(this);
+					hsv.addView(rg);
 					//rg.setLayoutParams(LayoutParams.);
 					int pos = i;
 					final SurveyQuestion sq =  new SurveyQuestion(0);
@@ -324,11 +356,34 @@ public class TwoCubeActivity extends Activity {
 					for (int j = 0; j < optionArray.length(); j++) {
 						JSONObject tempOption = optionArray.getJSONObject(j);
 						RadioButton rb = new RadioButton(this);
-						//rb.setText(tempOption.getString("surveyQuestionOptionTitle"));
-						//rb.setBackgroundColor(Color.BLUE);
-						rg.addView(rb);
-						//CheckBox cb = new CheckBox(this);
-						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+						if(tempOption.getInt("surveyQuestionOptionTitleType")==2){
+							
+							LinearLayout hllOption = new LinearLayout(this);
+							hllOption.setOrientation(LinearLayout.VERTICAL);
+							ImageView ivImage;
+							ivImage = new ImageView(this);
+							ivImage.setLayoutParams(new LinearLayout.LayoutParams(120, 120));
+							hllOption.addView(ivImage);
+							hllOption.addView(rb);
+							
+							imageLoader.displayImage(tempOption.getString("surveyQuestionOptionTitle"), ivImage,new DisplayImageOptions.Builder().cacheOnDisc().build());
+							//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+							rg.addView(hllOption);
+						}else{
+							
+							LinearLayout hllOption = new LinearLayout(this);
+							hllOption.setOrientation(LinearLayout.VERTICAL);
+							TextView tv = new TextView(this);
+							tv.setText(tempOption.getString("surveyQuestionOptionTitle"));
+							hllOption.addView(tv);
+							hllOption.addView(rb);
+							
+							//rb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+							//rb.setBackgroundColor(Color.BLUE);
+							rg.addView(hllOption);
+							//CheckBox cb = new CheckBox(this);
+							//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
+						}
 						
 					}
 					rg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -340,7 +395,8 @@ public class TwoCubeActivity extends Activity {
 							
 						}
 					});
-					llQuestion.addView(rg);
+					//if(tempOption.getInt("surveyQuestionOptionTitleType")==2)
+					llQuestion.addView(hsv);
 				}
 				
 				((LinearLayout)findViewById(R.id.ll_main)).addView(v);
@@ -366,6 +422,8 @@ public class TwoCubeActivity extends Activity {
 							obj.put(Integer.toString(i), question.getStrAns());
 						else if (question.getQuestionType()==4)
 							obj.put(Integer.toString(i), question.getStrAns());
+						else if(question.getQuestionType()==5)
+							obj.put(Integer.toString(i), question.getNumAns());
 						i++;
 					}
 					main.put("s", obj);
