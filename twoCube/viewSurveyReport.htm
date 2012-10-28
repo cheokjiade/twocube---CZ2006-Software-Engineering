@@ -91,16 +91,12 @@
                   var os = new google.visualization.PieChart(document.getElementById('osStat'));
                   os.draw(data, {width: 556, height: 347});
             }
+            
+            function pieChart() {
+                var data = google.visualization.arrayToDataTable(piestuff);
 
-            function pieChart {
-                var data = google.visualization.arrayToDataTable(pieStuff);
-
-                var options = {
-                    title: 'piechart'
-                };
-
-                var pie = new google.visualization.PieChart(document.getElementById('pie'));
-                pie.draw(data, options);
+                var pie = new google.visualization.PieChart(document.getElementById('pieStat'));
+                pie.draw(data, {width: 556, height: 347});
             }
 
             $.urlParam = function (name) {
@@ -112,12 +108,11 @@
               id: $.urlParam('id'),
               memberHash: data
           },
+
           function (data) {
               $("<u><h1>" + data.surveyTitle + "</h1></u>").appendTo("#maindiv");
-              if(data.surveyDescription!= null)
-              {
-                   $("<h4>" + data.surveyDescription + "</h4>").appendTo("#maindiv");
-              }
+              if(data.surveyDescription!= null) {
+                   $("<h4>" + data.surveyDescription + "</h4>").appendTo("#maindiv"); }
               $("<h4> Number of Repondents: " + data.noOfRespondents + "</h4>").appendTo("#maindiv");
               $("<h4> Average time taken for " + data.noOfRespondents + " respondent(s) to do the survey: " + data.avgTime + " seconds </h4><br>").appendTo("#maindiv");
               
@@ -125,7 +120,6 @@
               $("<div id=\"visualization\"></div>").appendTo("#maindiv");
               $("<br>").appendTo("#maindiv");
 
-              
               var datastuffheader = ['Country', 'Respondents'];
               datastuff.push(datastuffheader);
               $.each(data.countryCode, function (countryNumber, country) {
@@ -136,6 +130,7 @@
               });
 
               google.setOnLoadCallback(geoChart);
+
 
               $("<h4>Respondent Browser Type: </h4>").appendTo("#maindiv");
               $("<div id=\"broswerStat\"></div>").appendTo("#maindiv");
@@ -151,6 +146,7 @@
               });
 
               google.setOnLoadCallback(browserChart);
+
 
               $("<h4>Respondent Operating System: </h4>").appendTo("#maindiv");
               $("<div id=\"osStat\"></div>").appendTo("#maindiv");
@@ -170,6 +166,7 @@
               $.each(data.questionList, function (question, questionList) {
                   // $("<h2>" + questionList.questionTitle + "</h2>").appendTo("#maindiv");
                   $("<br>").appendTo("#maindiv");
+
                   //date, numerical input, text, textarea
                   if(questionList.questionType == 2 || questionList.questionType == 3 || questionList.questionType == 4 || questionList.questionType == 6 || questionList.questionType == 7)
                   {
@@ -184,10 +181,29 @@
                      
                   } 
                   
-                  else if (questionList.questionType == 0 || questionList.questionType == 5) { //radio button, scale radio
+                  else if (questionList.questionType == 0 || questionList.questionType == 5) { //radio button, scale radio                  
+                  
+                  $("<h4>Pie: </h4>").appendTo("#maindiv");
+                  $("<div id=\"pieStat\"></div>").appendTo("#maindiv");
+                  $("<br>").appendTo("#maindiv");
 
+                  var piestuffheader = [];
+                  piestuff.push(piestuffheader);
+                  $.each(questionList.optionList, function (option, optionList) {
+                    var piestuffitem = [];
+                    piestuffitem.push(optionList.optionTitle);
+                    piestuffitem.push(parseInt(optionList.noOfRespondents));
+                    piestuff.push(piestuffitem);
+                  });
 
+                  var options = {
+                    title: question + 1 + ". " + questionList.questionTitle
+                  };
+                  
+                  google.setOnLoadCallback(pieChart);
 
+                  }
+                  
                   /*
                       $("<div id=\"chartPie" + question + "\" style=\"height:350px; width:600px;\"></div>").appendTo("#maindiv");
                       $(function () {
@@ -205,9 +221,7 @@
                           $(stuff).map(function () { total += this[1]; })
 
                           myLabels = $.makeArray($(stuff).map(function () { return this[1] + " " + Math.round(this[1] / total * 100) + "%"; }));
-                          var plot1 = jQuery.jqplot('chartPie' + question, [stuff],
-
-                      {
+                          var plot1 = jQuery.jqplot('chartPie' + question, [stuff], {
                           title: question + 1 + ". " + questionList.questionTitle,
                           seriesDefaults: {
                               // Make this a pie chart.
@@ -228,9 +242,7 @@
                           legend: { show: true, location: 'e' }
                       });
 
-                      })
-                      */
-                  }
+                      })*/
 
                   else if (questionList.questionType == 1) { //checkbox
                       $("<div id=\"barChart" + question + "\" style=\"height:370px; width:600px;\"></div>").appendTo("#maindiv");
