@@ -176,10 +176,11 @@ function(data) {
             $("<p style=\"clear:both;\"> </p>").appendTo("#"+qnvali);
         });
       }else if (qnval.surveyQuestionType == 10){
-      $("<select id=\""+qnvali+"\"></select>").appendTo("#survey");
+       $("<select name=\"s."+qnvali+"\" id=\""+qnvali+"\">").appendTo("#survey");
         $.each(qnval.surveyQuestionOptionList, function(i,optval){
                 $("<option value=\"" + i + "\">"+ optval.surveyQuestionOptionTitle +"</option>").appendTo("#"+qnvali);
         });
+      $("</select>").appendTo("#survey");
       }
     });
     $('form').h5Validate();
