@@ -4,6 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>twoCube - Home</title>
     <link rel="shortcut icon" href="./favicon.ico" />
+    <meta property="og:title" content="twoCube - Powerful, Easy to use Surveys"/>
+    <meta property="og:image" content="http://twocube1.elasticbeanstalk.com/images/slide1.png"/>
+    <meta property="og:description" content="twoCube is a free survey creation site. With an easy to use survey editor and powerful analytic tools, we will be able to meet all your survey needs."/>
+    <meta property="og:site_name" content="twoCube"/>
     <link rel="stylesheet" href="http://www.jacklmoore.com/colorbox/example1/colorbox.css" /> 
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
