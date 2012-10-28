@@ -217,15 +217,15 @@ namespace twoCube.Services
                             case "img_radio":
                                 {
                                     var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 0, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
-                                    if (question.SelectToken("satisfactory_vUnsatisfactory") != null)
+                                    if (question.SelectToken("img_radio_vUnsatisfactory") != null)
                                         surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_vUnsatisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
-                                    if (question.SelectToken("satisfactory_Unsatisfactory") != null)
+                                    if (question.SelectToken("img_radio_Unsatisfactory") != null)
                                         surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_Unsatisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
-                                    if (question.SelectToken("satisfactory_Neutral") != null)
+                                    if (question.SelectToken("img_radio_Neutral") != null)
                                         surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_Neutral").ToString(), surveyQuestionOptionTitleType = 2 });
-                                    if (question.SelectToken("satisfactory_Satisfactory") != null)
+                                    if (question.SelectToken("img_radio_Satisfactory") != null)
                                         surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_Satisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
-                                    if (question.SelectToken("satisfactory_vSatisfactory") != null)
+                                    if (question.SelectToken("img_radio_vSatisfactory") != null)
                                         surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("satisfactory_vSatisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
                                     survey.surveyQuestionList.Add(surveyQuestion);
                                     break;

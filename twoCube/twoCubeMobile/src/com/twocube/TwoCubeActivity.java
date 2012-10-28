@@ -1,5 +1,6 @@
 package com.twocube;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -15,6 +16,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.JSONValue;
 
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.memory.MemoryCacheAware;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.twocube.JSONHandler.OnResponseReceivedListener;
 import com.twocube.entities.Survey;
 import com.twocube.entities.SurveyQuestion;
@@ -52,6 +59,10 @@ public class TwoCubeActivity extends Activity {
 	String surveyId;
 	LayoutInflater inflater;
 	Survey survey;
+	
+	ImageLoader imageLoader;// = ImageLoader.getInstance();
+	DisplayImageOptions options;
+	File cacheDir;
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +74,14 @@ public class TwoCubeActivity extends Activity {
         jHandler = new JSONHandler();
         jSubmitHandler = new JSONHandler();
         mHandler = new Handler();
+        
+        imageLoader = ImageLoader.getInstance();
+		cacheDir = StorageUtils.getCacheDirectory(this);
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext()).defaultDisplayImageOptions(DisplayImageOptions.createSimple()).denyCacheImageMultipleSizesInMemory().offOutOfMemoryHandling().build();
+		imageLoader.init(config);
+		options = new DisplayImageOptions.Builder().cacheOnDisc().build();
+		
+		
         jHandler.setOnResponseReceivedListener(new OnResponseReceivedListener() {
 			
 			@Override
@@ -327,7 +346,7 @@ public class TwoCubeActivity extends Activity {
 					main.put("surveyLocaleLang","en");
 					main.put("surveyLocaleCountry","us");
 					main.put("surveyLocationCountryCode","US");
-					main.put("surveyTime","345435");
+					main.put("surveyTime","34543");
 					StringWriter out = new StringWriter();
 					   try {
 						JSONValue.writeJSONString(main, out);
