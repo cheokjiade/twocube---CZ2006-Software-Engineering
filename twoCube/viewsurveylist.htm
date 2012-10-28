@@ -37,7 +37,7 @@
                   var formData = form2js('testForm', '.', true);
 
                   //document.getElementById('response').innerHTML = JSON.stringify(formData, null, '\t');
-                  $.post("./Services/SurveyControllerService.asmx/CloseSurvey",
+                  $.post("./Services/SurveyControllerService.asmx/closeSurvey",
           {
               jsonString: JSON.stringify(formData, null, '\t')
           },
