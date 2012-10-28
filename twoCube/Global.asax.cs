@@ -15,8 +15,8 @@ namespace twoCube
         {
             // Code that runs on application startup
             FluentNHibernateConfiguration.InitFactory.create();
-            SampleService ss = new SampleService();
-            ss.Insert();
+            //SampleService ss = new SampleService();
+            //ss.Insert();
         }
 
         void Application_End(object sender, EventArgs e)

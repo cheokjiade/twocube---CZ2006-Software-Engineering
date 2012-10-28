@@ -141,7 +141,7 @@ namespace twoCube.Services
                             case "slider":
                                 {
                                     var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 2, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
-                                    surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "", surveyQuestionOptionMaxText = question.SelectToken("size_max").ToString(), surveyQuestionOptionMinText = question.SelectToken("size_min").ToString() });
+                                    surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "", surveyQuestionOptionMaxText = question.SelectToken("size_max") != null ? question.SelectToken("size_max").ToString() : "Max", surveyQuestionOptionMinText = question.SelectToken("size_min") !=null? question.SelectToken("size_min").ToString() : "Min" });
                                     survey.surveyQuestionList.Add(surveyQuestion);
                                     break;
                                 }
@@ -151,9 +151,9 @@ namespace twoCube.Services
                                     int size = Int32.Parse(question.SelectToken("scaleAmount").ToString());
                                     for (int i = 0; i < size; i++)
                                     {
-                                        if (i == 0) surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("mintext").ToString() });
-                                        else if (i == (size - 1)) surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("maxtext").ToString() });
-                                        else surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = i.ToString() });
+                                        if (i == 0) surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("mintext")!=null?question.SelectToken("mintext").ToString():"Worst" });
+                                        else if (i == (size - 1)) surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("maxtext")!=null?question.SelectToken("maxtext").ToString():"Best" });
+                                        else surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "" });
                                     }
                                     survey.surveyQuestionList.Add(surveyQuestion);
                                         break;
