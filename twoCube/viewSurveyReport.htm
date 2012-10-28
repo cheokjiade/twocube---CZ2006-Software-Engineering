@@ -92,6 +92,17 @@
                   os.draw(data, {width: 556, height: 347});
             }
 
+            function pieChart {
+                var data = google.visualization.arrayToDataTable(pieStuff);
+
+                var options = {
+                    title: 'piechart'
+                };
+
+                var pie = new google.visualization.PieChart(document.getElementById('pie'));
+                pie.draw(data, options);
+            }
+
             $.urlParam = function (name) {
                 var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
                 return results[1] || 0;
@@ -156,8 +167,6 @@
 
               google.setOnLoadCallback(osChart);
 
-              
-
               $.each(data.questionList, function (question, questionList) {
                   // $("<h2>" + questionList.questionTitle + "</h2>").appendTo("#maindiv");
                   $("<br>").appendTo("#maindiv");
@@ -173,10 +182,13 @@
                              //  $("<table cellpadding=\"8\" cellspacing=\"0\" border=\"1\" width=\"585px\"><tr><td><h5>" + optionList.noOfRespondents + " responded: " + optionList.responseStr + "</h5></td></tr></table>").appendTo("#list"+question);
                           });
                      
-                  }
-
+                  } 
+                  
                   else if (questionList.questionType == 0 || questionList.questionType == 5) { //radio button, scale radio
 
+
+
+                  /*
                       $("<div id=\"chartPie" + question + "\" style=\"height:350px; width:600px;\"></div>").appendTo("#maindiv");
                       $(function () {
                           var stuff = [];
@@ -217,6 +229,7 @@
                       });
 
                       })
+                      */
                   }
 
                   else if (questionList.questionType == 1) { //checkbox
