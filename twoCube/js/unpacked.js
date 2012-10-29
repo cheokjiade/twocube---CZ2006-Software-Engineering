@@ -83,7 +83,8 @@ var satFive = document.getElementById("tb_img_checkbox_vSatisfactory").value;
 	satFour = "<img src='"+satFour+"' width='50px'/>";
 	satFive = "<img src='"+satFive+"' width='50px'/>";
 
-return "<div><table width='100px'><tr><td align='center' width='90px'><input type='checkbox' name='check'>" + (satOne) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check'>" + (satTwo) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check'>" + (satThree) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check'>" + (satFour) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check'>" + (satFive) + "</td></tr></table></div>"},
+	return "<div><table width='100px'><tr><td align='center' width='90px'><input type='checkbox' name='check' class='checkboxRadioStyle'>" + (satOne) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check' class='checkboxRadioStyle'>" + (satTwo) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check' class='checkboxRadioStyle'>" + (satThree) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check' class='checkboxRadioStyle'>" + (satFour) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check' class='checkboxRadioStyle'>" + (satFive) + "</td></tr></table></div>"
+},
 
 img_radio:function(){
 
@@ -99,7 +100,8 @@ var satFiver = document.getElementById("tb_img_radio_vSatisfactory").value;
 	satFourr = "<img src='"+satFourr+"' width='50px'/>";
 	satFiver = "<img src='"+satFiver+"' width='50px'/>";
 
-return "<div><table width='100px'><tr><td height='60px' width='90px'><input type='radio' name='satisfactory'>" + (satOner) + "</td></tr><tr><td height='60px' width='90px'><input type='radio' name='satisfactory'>" + (satTwor) + "</td></tr><tr><td height='60px' width='90px'><input type='radio' name='satisfactory' >" + (satThreer) + "</td></tr><tr><td height='60px' width='90px'><input type='radio' name='satisfactory' >" + (satFourr) + "</td></tr><tr><td height='60px' width='90px'><input type='radio' name='satisfactory' >" + (satFiver) + "</td></tr></table></div>"},
+	return "<div><table width='100px'><tr><td height='60px' width='90px'><input type='radio' name='satisfactory' class='checkboxRadioStyle'>" + (satOner) + "</td></tr><tr><td height='60px' width='90px'><input type='radio' name='satisfactory' class='checkboxRadioStyle'>" + (satTwor) + "</td></tr><tr><td height='60px' width='90px'><input type='radio' name='satisfactory' class='checkboxRadioStyle'>" + (satThreer) + "</td></tr><tr><td height='60px' width='90px'><input type='radio' name='satisfactory' class='checkboxRadioStyle'>" + (satFourr) + "</td></tr><tr><td height='60px' width='90px'><input type='radio' name='satisfactory' class='checkboxRadioStyle'>" + (satFiver) + "</td></tr></table></div>"
+},
 
 simple_phone:function(){return"<div class=\"full\"><input readonly=\"readonly\" id=\"field"+this.id+"\" class=\"text medium\" type=\"text\"></div>"},address:function(){return"<div class=\"full\"><div class=\"full\"><input readonly=\"readonly\" class=\"text large\" type=\"text\"><label>Street Address</label></div><div class=\"full\"><input readonly=\"readonly\" class=\"text large\" type=\"text\"><label>Address Line 2</label></div><div class=\"left\"><input readonly=\"readonly\" class=\"text medium\" type=\"text\"><label>City</label></div><div class=\"right\"><input readonly=\"readonly\" class=\"text medium\" type=\"text\"><label>State / Province / Region</label></div><div class=\"left\"><input readonly=\"readonly\" class=\"text medium\" type=\"text\"><label>Zip / Postal Code</label></div><div class=\"right\"><select class=\"select medium\" name=\"\"><option value=\"\"></option></select><label>Country</label></div></div>"},
 

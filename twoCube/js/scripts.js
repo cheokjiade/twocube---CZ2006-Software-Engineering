@@ -26,19 +26,19 @@ function loadMenu() {
 
 
     var menu = "<ul>\
-                <li><a href='./'>Home</a></li>\
-                <li><a href='#' onclick='login();'>Create Survey</a></li>\
-                <li><a href='#' onclick='register();'>Register</a></li>\
-				<li><a href='#' onclick='login();'>Login</a></li>\
+                <li><a class='menuNew' href='./'>Home</a></li>\
+                <li><a class='menuNew' href='#' onclick='login();'>Create Survey</a></li>\
+                <li><a class='menuNew' href='#' onclick='register();'>Register</a></li>\
+				<li><a class='menuNew' href='#' onclick='login();'>Login</a></li>\
             </ul>\
             <br style='clear: left' />";
 
     var loginedmenu = "<ul>\
-                <li><a href='./'>Home</a></li>\
-                <li><a href='./createsurvey.html'>Create Survey</a></li>\
-                <li><a href='./EditUserDetails.htm'>Account</a></li>\
-                <li><a href='./viewsurveylist.htm'>View Created Surveys</a></li>\
-				<li><a href='#' onclick='logout();'>Logout</a></li>\
+                <li><a class='menuNew' href='./'>Home</a></li>\
+                <li><a class='menuNew' href='./createsurvey.html'>Create Survey</a></li>\
+                <li><a class='menuNew' href='./EditUserDetails.htm'>Account</a></li>\
+                <li><a class='menuNew' href='./viewsurveylist.htm'>View Your Surveys</a></li>\
+				<li><a class='menuNew' href='#' onclick='logout();'>Logout</a></li>\
             </ul>\
             <br style='clear: left' />";
 

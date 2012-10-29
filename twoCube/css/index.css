@@ -1034,3 +1034,6 @@ form li.highlighted
   padding-left: 10px;
   padding-top: 5px;
 }
+checkbox, radio, .checkboxRadioStyle {
+	height: 50px;
+}

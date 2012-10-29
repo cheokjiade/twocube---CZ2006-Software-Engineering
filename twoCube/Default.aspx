@@ -229,7 +229,7 @@
     <div id="middle"><div id="menu" class="ddsmoothmenu">
         </div> <br/><!-- end of menu -->
     <div class="fb-like" data-href="http://twocube1.elasticbeanstalk.com" data-send="true" data-width="450" data-show-faces="true"></div>
-   
+   <p align="right">Download mobile app <a href="https://dl.dropbox.com/u/769226/twoCube.apk">here</a>!</p>
      <!-- Start Top -->
         <div id="container">
 		<div id="example">

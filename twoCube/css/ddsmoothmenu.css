@@ -114,6 +114,7 @@ opacity: 0.8;
 	height:35px;
 	margin:0 auto ;
 	text-align:center;
+	width:800px;
 }
 
 .ddsmoothmenu ul {
@@ -136,7 +137,7 @@ opacity: 0.8;
 	padding:0;
 	background:transparent url('../images/css/hmenu.jpg') repeat-x top left;
 	border-left:1px solid #ffffff;
-
+    width:150px;
 }
 
 
@@ -145,9 +146,10 @@ opacity: 0.8;
 	float:left;
 	color:#000000;
 	text-decoration:none;
-	padding:0px 50px ;
-	line-height:35px;
+	padding:0px ;
+	line-height:30px;
 	font-weight:bold;
+	width:150px;
 }
 
 
