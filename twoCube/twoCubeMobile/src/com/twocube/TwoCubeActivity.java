@@ -61,7 +61,16 @@ import android.widget.TextView;
 /**
  * 
  * @author Nobody
+ * 
  * Main activity class
+ * 
+ * libraries used:
+ * android-support-v4 to allow honeycomb and above functionality to be used in previous android versions
+ * commons-io by apache for communicating with a server
+ * core previously meant for photo and signature. unused
+ * gson for creating a json object from a json string and iterating throught hte object
+ * json-simple for creating a json object from a serializable object
+ * universal image loader for easy loadin of images into the app
  */
 public class TwoCubeActivity extends Activity {
 	// JSON handler to handle receiving the information from server and sending response back
@@ -270,21 +279,16 @@ public class TwoCubeActivity extends Activity {
 							
 							@Override
 							public void onStopTrackingTouch(SeekBar seekBar) {
-								// TODO Auto-generated method stub
-								
 							}
 							
 							@Override
 							public void onStartTrackingTouch(SeekBar seekBar) {
-								// TODO Auto-generated method stub
-								
 							}
 							
 							@Override
 							public void onProgressChanged(SeekBar seekBar, int progress,
 									boolean fromUser) {
 								sq.setNumAns(progress);
-								
 							}
 						});
 						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
@@ -310,14 +314,10 @@ public class TwoCubeActivity extends Activity {
 							@Override
 							public void beforeTextChanged(CharSequence s, int start, int count,
 									int after) {
-								// TODO Auto-generated method stub
-								
 							}
 							
 							@Override
 							public void afterTextChanged(Editable s) {
-								// TODO Auto-generated method stub
-								
 							}
 						});
 						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
@@ -372,14 +372,10 @@ public class TwoCubeActivity extends Activity {
 							@Override
 							public void beforeTextChanged(CharSequence s, int start, int count,
 									int after) {
-								// TODO Auto-generated method stub
-								
 							}
 							
 							@Override
 							public void afterTextChanged(Editable s) {
-								// TODO Auto-generated method stub
-								
 							}
 						});
 						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
@@ -389,6 +385,7 @@ public class TwoCubeActivity extends Activity {
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
 					RadioGroup rg = new RadioGroup(this);
 					rg.setOrientation(RadioGroup.HORIZONTAL);
+					//to allow overflow and so can scroll sideways
 					HorizontalScrollView hsv = new HorizontalScrollView(this);
 					hsv.addView(rg);
 					final List<RadioButton> rbList = new ArrayList<RadioButton>();
@@ -462,13 +459,15 @@ public class TwoCubeActivity extends Activity {
 			}
 			Button bnSubmit = new Button(this);
 			bnSubmit.setText("Submit");
-			
+			//logic when submit button is clicked
 			bnSubmit.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
+					//Map in order to create a fixed order json object using json-simple
 					Map main=new LinkedHashMap();
 					Map obj=new LinkedHashMap();
+					//i as a counter
 					int i = 0;
 					for(SurveyQuestion question:survey.getQuestionList()){
 						if(question.getQuestionType()==0)
@@ -494,6 +493,7 @@ public class TwoCubeActivity extends Activity {
 							obj.put(Integer.toString(i), question.getNumAns());
 						i++;
 					}
+					//hardcoded due to lack of time
 					main.put("s", obj);
 					main.put("surveyId",surveyId);
 					main.put("surveyBrowserBrowser","Mobile App");
@@ -514,12 +514,13 @@ public class TwoCubeActivity extends Activity {
 					   Log.w("JSON", jsonText);
 					   List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 					   nameValuePairs.add(new BasicNameValuePair("jsonString", jsonText));
+					   //submit json object to server
 					   jSubmitHandler.handleJSON(nameValuePairs, "http://twocube1.elasticbeanstalk.com/Services/SurveyControllerService.asmx/submitSurvey");
 				}
 			});
-			((LinearLayout)findViewById(R.id.ll_main)).addView(bnSubmit);
+			
+			((LinearLayout)findViewById(R.id.ll_main)).addView(bnSubmit);//adds the button to the view
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
