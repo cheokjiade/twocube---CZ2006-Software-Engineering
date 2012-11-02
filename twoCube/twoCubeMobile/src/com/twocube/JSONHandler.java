@@ -17,7 +17,13 @@ import org.apache.http.params.HttpConnectionParams;
 
 import android.os.Looper;
 import android.util.Log;
-
+/**
+ * 
+ * @author Cheok Jia De
+ * Created 3/6/2012
+ * Utility class for parsing in key value pairs to a server and receiving a json string
+ *
+ */
 public class JSONHandler {
 	OnResponseReceivedListener onResponseReceivedListener = null;
 	

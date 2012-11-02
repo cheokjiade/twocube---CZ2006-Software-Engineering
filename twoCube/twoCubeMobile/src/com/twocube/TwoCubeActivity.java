@@ -58,15 +58,24 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-
+/**
+ * 
+ * @author Nobody
+ * Main activity class
+ */
 public class TwoCubeActivity extends Activity {
+	// JSON handler to handle receiving the information from server and sending response back
 	JSONHandler jHandler,jSubmitHandler;
+	// Handler to enable other threads to update UI in main thread
 	Handler mHandler;
-	String jsonString= "{\"Id\":2,\"surveyTitle\":\"Sample Survey\",\"surveyDescription\":\"A Random Sample Survey. This is just a sample of how json can be used to render a survey.\",\"surveyStatus\":false,\"surveyCreated\":\"\",\"surveyStartDate\":\"\",\"surveyEndDate\":\"\",\"surveyQuestionList\":[{\"Id\":3,\"surveyQuestionType\":0,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"What is your favourite color?\",\"surveyQuestionOptionList\":[{\"Id\":4,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"White\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":5,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Yellow\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":6,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Blue\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":7,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Green\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":8,\"surveyQuestionOptionType\":2,\"surveyQuestionOptionTitle\":\"Enter another color:\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null},{\"Id\":11,\"surveyQuestionType\":0,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"Who is the most hardworking person in our team?\",\"surveyQuestionOptionList\":[{\"Id\":12,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":13,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Wei Leng\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":14,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Hong Jing\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":15,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Xu Ai\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":16,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Wesley\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null},{\"Id\":19,\"surveyQuestionType\":0,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"And the best phone is\",\"surveyQuestionOptionList\":[{\"Id\":20,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Galaxy S 3\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":21,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Galaxy S 2\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":22,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Galaxy S\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":23,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"HTC One X\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":24,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Galaxy Nexus\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":25,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Motorola Droid Razr Maxx\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null},{\"Id\":28,\"surveyQuestionType\":1,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"Who is the most hardworking person in our team? (You can choose more than 1 answer)\",\"surveyQuestionOptionList\":[{\"Id\":29,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":30,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":31,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":32,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":33,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":34,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":35,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":36,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":37,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null},{\"Id\":44,\"surveyQuestionType\":2,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"How hardworking is June?\",\"surveyQuestionOptionList\":[{\"Id\":45,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Hardworkingness\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null},{\"Id\":48,\"surveyQuestionType\":3,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"How young is this pretty young star? Numeric input.\",\"surveyQuestionOptionList\":[{\"Id\":49,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"http://graph.facebook.com/weileng.peh/picture?type=large\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null},{\"Id\":52,\"surveyQuestionType\":4,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"Or the birthday of this talented actor/singer? Date input.\",\"surveyQuestionOptionList\":[{\"Id\":53,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"http://graph.facebook.com/197371292379/picture?type=large\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null},{\"Id\":56,\"surveyQuestionType\":5,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"Which picture is the odd one out?\",\"surveyQuestionOptionList\":[{\"Id\":57,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"http://graph.facebook.com/alexei.sourin/picture?type=square\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":58,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"http://graph.facebook.com/kuiyu.chang/picture?type=square\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":59,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"http://graph.facebook.com/bengkoon.ng/picture?type=square\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":60,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"http://graph.facebook.com/bingsheng.he/picture?type=square\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":61,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"http://graph.facebook.com/limws.brandon/picture?type=square\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null}],\"respondentList\":null}";
+	//String jsonString= "{\"Id\":2,\"surveyTitle\":\"Sample Survey\",\"surveyDescription\":\"A Random Sample Survey. This is just a sample of how json can be used to render a survey.\",\"surveyStatus\":false,\"surveyCreated\":\"\",\"surveyStartDate\":\"\",\"surveyEndDate\":\"\",\"surveyQuestionList\":[{\"Id\":3,\"surveyQuestionType\":0,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"What is your favourite color?\",\"surveyQuestionOptionList\":[{\"Id\":4,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"White\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":5,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Yellow\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":6,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Blue\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":7,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Green\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":8,\"surveyQuestionOptionType\":2,\"surveyQuestionOptionTitle\":\"Enter another color:\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null},{\"Id\":11,\"surveyQuestionType\":0,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"Who is the most hardworking person in our team?\",\"surveyQuestionOptionList\":[{\"Id\":12,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":13,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Wei Leng\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":14,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Hong Jing\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":15,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Xu Ai\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":16,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Wesley\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null},{\"Id\":19,\"surveyQuestionType\":0,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"And the best phone is\",\"surveyQuestionOptionList\":[{\"Id\":20,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Galaxy S 3\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":21,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Galaxy S 2\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":22,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Galaxy S\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":23,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"HTC One X\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":24,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Galaxy Nexus\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":25,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Motorola Droid Razr Maxx\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null},{\"Id\":28,\"surveyQuestionType\":1,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"Who is the most hardworking person in our team? (You can choose more than 1 answer)\",\"surveyQuestionOptionList\":[{\"Id\":29,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":30,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":31,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":32,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":33,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":34,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":35,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":36,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":37,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"June\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null},{\"Id\":44,\"surveyQuestionType\":2,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"How hardworking is June?\",\"surveyQuestionOptionList\":[{\"Id\":45,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"Hardworkingness\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null},{\"Id\":48,\"surveyQuestionType\":3,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"How young is this pretty young star? Numeric input.\",\"surveyQuestionOptionList\":[{\"Id\":49,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"http://graph.facebook.com/weileng.peh/picture?type=large\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null},{\"Id\":52,\"surveyQuestionType\":4,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"Or the birthday of this talented actor/singer? Date input.\",\"surveyQuestionOptionList\":[{\"Id\":53,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"http://graph.facebook.com/197371292379/picture?type=large\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null},{\"Id\":56,\"surveyQuestionType\":5,\"surveyQuestionIsCompulsory\":false,\"surveyQuestionTitle\":\"Which picture is the odd one out?\",\"surveyQuestionOptionList\":[{\"Id\":57,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"http://graph.facebook.com/alexei.sourin/picture?type=square\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":58,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"http://graph.facebook.com/kuiyu.chang/picture?type=square\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":59,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"http://graph.facebook.com/bengkoon.ng/picture?type=square\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":60,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"http://graph.facebook.com/bingsheng.he/picture?type=square\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null},{\"Id\":61,\"surveyQuestionOptionType\":0,\"surveyQuestionOptionTitle\":\"http://graph.facebook.com/limws.brandon/picture?type=square\",\"surveyQuestionOptionTitleType\":0,\"surveyQuestionOptionRange\":0,\"surveyQuestionOptionMinText\":null,\"surveyQuestionOptionMaxText\":null}],\"surveyQuestionResponseList\":null}],\"respondentList\":null}";
 	String surveyId;
+	//Layout inflater to inflate ui created in xml
 	LayoutInflater inflater;
+	//Survey object
 	Survey survey;
 	
+	//Image loader for universal image loader
 	ImageLoader imageLoader;// = ImageLoader.getInstance();
 	DisplayImageOptions options;
 	File cacheDir;
@@ -77,6 +86,7 @@ public class TwoCubeActivity extends Activity {
         setContentView(R.layout.main);
         Uri data = getIntent().getData();
         //data.getQueryParameter("s").toString();
+        //initialize various classes
         inflater = ((Activity) this).getLayoutInflater();
         jHandler = new JSONHandler();
         jSubmitHandler = new JSONHandler();
@@ -88,27 +98,22 @@ public class TwoCubeActivity extends Activity {
 		imageLoader.init(config);
 		options = new DisplayImageOptions.Builder().cacheOnDisc().build();
 		
-		
+		//set response handler for getting survey
         jHandler.setOnResponseReceivedListener(new OnResponseReceivedListener() {
 			
 			@Override
 			public void onResponseReceived(final String receivedString, boolean success) {
 				mHandler.post(new Runnable() {
-					
 					@Override
 					public void run() {
+						//method to iterate through jsonstring and generate survey ui
 						createSurvey(receivedString);
-						
 					}
 				});
-				
-				
 			}
 			
 			@Override
 			public void onIOException() {
-				// TODO Auto-generated method stub
-				
 			}
 		});
         jSubmitHandler.setOnResponseReceivedListener(new OnResponseReceivedListener() {
@@ -119,20 +124,17 @@ public class TwoCubeActivity extends Activity {
 					
 					@Override
 					public void run() {
-						//createSurvey(receivedString);
+						//exits when successfully created
 						System.exit(0);
-						
 					}
 				});
 				
 			}
-			
 			@Override
 			public void onIOException() {
-				// TODO Auto-generated method stub
-				
 			}
 		});
+        //name value pairs as it sends via http post
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         if(data!=null){
         	nameValuePairs.add(new BasicNameValuePair("Id", data.getQueryParameter("s")==null?"80":data.getQueryParameter("s")));
@@ -140,25 +142,32 @@ public class TwoCubeActivity extends Activity {
         	surveyId = data.getQueryParameter("s");
         }
         else nameValuePairs.add(new BasicNameValuePair("Id", "80"));
+        //same web service as that used in web version
         jHandler.handleJSON(nameValuePairs, "http://twocube1.elasticbeanstalk.com/Services/SurveyControllerService.asmx/getSurveyById");
     }
     
     public void createSurvey(String jsonString){
     	try {
+    		//create json object from json string. using gson library
 			JSONObject jsonobj = new JSONObject(jsonString);
 			survey = new Survey();
+			//set text for title and description
 			TextView tvSurveyTitle =(TextView)findViewById(R.id.tv_title_main);
 			TextView tvSurveyDescription =(TextView)findViewById(R.id.tv_description_main);
 			tvSurveyTitle.setText(jsonobj.getString("surveyTitle"));
 			tvSurveyDescription.setText(jsonobj.getString("surveyDescription"));
+			
 			JSONArray questionArray = new JSONArray(jsonobj.getString("surveyQuestionList"));
+			//iterate through each question
 			for (int i = 0; i < questionArray.length(); i++) {
 				JSONObject tempQuestion = questionArray.getJSONObject(i);
+				//Dynamically create a view for each question
 				View v = inflater.inflate(R.layout.question_layout, null); 
 				LinearLayout llQuestion = (LinearLayout)v.findViewById(R.id.ll_question);
 				((TextView)v.findViewById(R.id.tv_title_question)).setText(tempQuestion.getString("surveyQuestionTitle"));
 				
-				if(tempQuestion.getInt("surveyQuestionType") == 0||tempQuestion.getInt("surveyQuestionType") == 10){
+				//using if else instead of switch as switch has been deprecated after android 2.1(i think its 2.1)
+				if(tempQuestion.getInt("surveyQuestionType") == 0||tempQuestion.getInt("surveyQuestionType") == 10){//1 and 10 are radio buttons
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
 					RadioGroup rg = new RadioGroup(this);
 					int pos = i;
@@ -169,7 +178,8 @@ public class TwoCubeActivity extends Activity {
 						JSONObject tempOption = optionArray.getJSONObject(j);
 						final RadioButton rb = new RadioButton(this);
 						rbList.add(rb);
-						if(tempOption.getInt("surveyQuestionOptionTitleType")==2){
+						
+						if(tempOption.getInt("surveyQuestionOptionTitleType")==2){//2 means image
 							LinearLayout hllOption = new LinearLayout(this);
 							hllOption.setOrientation(LinearLayout.HORIZONTAL);
 							ImageView ivImage;
@@ -201,27 +211,24 @@ public class TwoCubeActivity extends Activity {
 						}
 						//CheckBox cb = new CheckBox(this);
 						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
-						
 					}
 					rg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-						
 						@Override
 						public void onCheckedChanged(RadioGroup group, int checkedId) {
 							if(checkedId == -1){}
 							else sq.setNumAns(group.indexOfChild(findViewById(group.getCheckedRadioButtonId())));
-							
 						}
 					});
 					llQuestion.addView(rg);
-				}else if(tempQuestion.getInt("surveyQuestionType") == 1){
+				}else if(tempQuestion.getInt("surveyQuestionType") == 1){//check boxes
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
 					final SurveyQuestion sq =  new SurveyQuestion(1);
 					survey.getQuestionList().add(sq);
 					for (int j = 0; j < optionArray.length(); j++) {
 						JSONObject tempOption = optionArray.getJSONObject(j);
 						CheckBox cb = new CheckBox(this);
-						if(tempOption.getInt("surveyQuestionOptionTitleType")==2){
-							LinearLayout hllOption = new LinearLayout(this);//(LinearLayout)v.findViewById(R.id.ll_question);
+						if(tempOption.getInt("surveyQuestionOptionTitleType")==2){//image
+							LinearLayout hllOption = new LinearLayout(this);
 							hllOption.setOrientation(LinearLayout.HORIZONTAL);
 							ImageView ivImage;
 							ivImage = new ImageView(this);
@@ -251,7 +258,7 @@ public class TwoCubeActivity extends Activity {
 						});
 						
 					}
-				}else if(tempQuestion.getInt("surveyQuestionType") == 2){
+				}else if(tempQuestion.getInt("surveyQuestionType") == 2){//slider
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
 					final SurveyQuestion sq =  new SurveyQuestion(2);
 					survey.getQuestionList().add(sq);
@@ -283,7 +290,7 @@ public class TwoCubeActivity extends Activity {
 						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
 						llQuestion.addView(sb);
 					}
-				}else if(tempQuestion.getInt("surveyQuestionType") == 3){
+				}else if(tempQuestion.getInt("surveyQuestionType") == 3){//numerical
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
 					final SurveyQuestion sq =  new SurveyQuestion(3);
 					survey.getQuestionList().add(sq);
@@ -316,7 +323,7 @@ public class TwoCubeActivity extends Activity {
 						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
 						llQuestion.addView(et);
 					}
-				}else if(tempQuestion.getInt("surveyQuestionType") == 4){
+				}else if(tempQuestion.getInt("surveyQuestionType") == 4){//date
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
 					final SurveyQuestion sq =  new SurveyQuestion(4);
 					survey.getQuestionList().add(sq);
@@ -345,7 +352,7 @@ public class TwoCubeActivity extends Activity {
 						});
 						llQuestion.addView(dp);
 					}
-				}else if(tempQuestion.getInt("surveyQuestionType") == 6||tempQuestion.getInt("surveyQuestionType") == 7){
+				}else if(tempQuestion.getInt("surveyQuestionType") == 6||tempQuestion.getInt("surveyQuestionType") == 7){//text
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
 					final SurveyQuestion sq =  new SurveyQuestion(3);
 					survey.getQuestionList().add(sq);
@@ -378,7 +385,7 @@ public class TwoCubeActivity extends Activity {
 						//cb.setText(tempOption.getString("surveyQuestionOptionTitle"));
 						llQuestion.addView(et);
 					}
-				}if(tempQuestion.getInt("surveyQuestionType") == 5){
+				}if(tempQuestion.getInt("surveyQuestionType") == 5){//horizontal radio button
 					JSONArray optionArray = new JSONArray(tempQuestion.getString("surveyQuestionOptionList"));
 					RadioGroup rg = new RadioGroup(this);
 					rg.setOrientation(RadioGroup.HORIZONTAL);
@@ -455,8 +462,7 @@ public class TwoCubeActivity extends Activity {
 			}
 			Button bnSubmit = new Button(this);
 			bnSubmit.setText("Submit");
-			//final 
-
+			
 			bnSubmit.setOnClickListener(new OnClickListener() {
 				
 				@Override
