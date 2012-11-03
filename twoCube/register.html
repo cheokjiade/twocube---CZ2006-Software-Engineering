@@ -232,7 +232,6 @@
 				    }
 				});
 
-            //document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t'); //formData = object
             $.post("./Services/MemberControllerService.asmx/listOfUsers",
           {
               jsonString: JSON.stringify(formData, null, '\t')
@@ -259,7 +258,6 @@
 				    }
 				});
 
-           // document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t'); //formData = object
             $.post("./Services/MemberControllerService.asmx/checkEmailExist",
           {
               jsonString: JSON.stringify(formData, null, '\t')
@@ -268,7 +266,7 @@
                 console.log(data);
                 var json = $.parseJSON(data);
                 if (parseInt(data.emailExists) == 0) {
-                    validatePwd();
+                    validatePwd(); //check for validate password
                     data.emailExists == 1;
 
                 } else {
@@ -279,7 +277,7 @@
 
         }
 
-        function test1() {
+        function test1() { //method to create account if validation succeed
             var formData = form2js('testForm', '.', true,
 				function (node) {
 				    if (node.id && node.id.match(/callbackTest/)) {
@@ -287,7 +285,6 @@
 				    }
 				});
 
-          //  document.getElementById('testArea').innerHTML = JSON.stringify(formData, null, '\t');
             $.post("./Services/MemberControllerService.asmx/AddUser",
           {
               jsonString: JSON.stringify(formData, null, '\t')
@@ -305,7 +302,7 @@
             //$(location).attr('href', "./");
         }
 
-        function validatePwd() {
+        function validatePwd() { //validate password. password & confirm password matches, it is > length (6 digits/alpha)
             var invalid = " "; // Invalid character is a space
             var minLength = 6; // Minimum length
             var pw1 = document.getElementById('Password2').value;
@@ -331,13 +328,13 @@
                     return false;
                 }
                 else {
-                    validateEmail();
+                    validateEmail(); //check for email
                     return true;
                 }
             }
         }
 
-        function validateEmail() {
+        function validateEmail() { //check if email is in correct format
             var x = document.getElementById('Text6').value;
             var y = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             if (x.search(y) == -1) {
@@ -346,12 +343,12 @@
                 return false;
             }
             else {
-                validateUserName();
+                validateUserName(); //check for user name 
                 return true;
             }
         }
 
-        function validateUserName() {
+        function validateUserName() { //check that username has at least 1 alpah & digit
             var e = document.getElementById('Text4').value;
             var regexNum = /\d/;
             var regexLetter = /[a-zA-z]/;
@@ -360,11 +357,10 @@
                 return false;
             }
             else {
-                test1();
+                test1(); //create an account of all validates succeed
                 return true;
             }
         }
-
 
     </script>
     <!-- End Top -->
