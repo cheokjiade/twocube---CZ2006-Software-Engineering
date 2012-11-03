@@ -6,13 +6,14 @@ $.urlParam = function (name) {
 $(document).bind('cbox_closed', function () {
     if (data != 0) $(location).attr('href', './');
 });
-
+//init views
 function onload() {
     loadMenu();
     loadFooter();
     if (window.location.href.indexOf("dosurvey") == -1)
         if ($.urlParam('s') != 0) window.location = "./dosurvey.html?s=" + $.urlParam('s');
 }
+//pop up for login screen on create survey page
 function loginScreen(showHide){
 	if(showHide == "show"){
 		document.getElementById('loginScreen').style.display = "block";
@@ -21,10 +22,8 @@ function loginScreen(showHide){
 		document.getElementById('loginScreen').style.display = "none";
 	}
 }
+//menu script for easy update to every page
 function loadMenu() {
-
-
-
     var menu = "<ul>\
                 <li><a class='menuNew' href='./'>Home</a></li>\
                 <li><a class='menuNew' href='#' onclick='login();'>Create Survey</a></li>\
@@ -48,7 +47,7 @@ function loadMenu() {
 
     else
         document.getElementById('menu').innerHTML = loginedmenu;
-}
+}//footer script to update every footer
 function loadFooter() {
     document.getElementById('footer').innerHTML = "Copyright © 2013 twoCube<div class='cleaner'></div>";
 }
@@ -83,6 +82,7 @@ function handleSessionResponse(response) {
     //the JS method will log the user out of Facebook and remove any authorization cookies
     FB.logout(response.authResponse);
 }
+//pop up
 function register() {
     $.colorbox({ href: "../register.html", open: true, iframe: true, width: "870px", height: "450px" });
 }
