@@ -21,7 +21,7 @@ namespace twoCube.Services
     public class SurveyControllerService : System.Web.Services.WebService
     {
 
-        [WebMethod(Description = "Your Description")]
+        [WebMethod(Description = "Returns a survey without the responses. Used to display a survey to the respondent")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void getSurveyById(int Id)
         {
@@ -38,7 +38,7 @@ namespace twoCube.Services
             }
         }
 
-        [WebMethod(Description = "Your Description")]
+        [WebMethod(Description = "Returns a list of surveys created by the specific user.")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void getSurveyList(string memberHash)
         {
@@ -52,16 +52,12 @@ namespace twoCube.Services
                 {
                     surveyResponseList.Add(new SurveyResponse {Id = survey.Id, surveyName = survey.surveyTitle, surveyStatus = survey.surveyStatus });
                 }
-                //survey.respondentList = null;
-                //foreach (var question in survey.surveyQuestionList)
-                //{
-                //    question.surveyQuestionResponseList = null;
-                //}
                 Context.Response.Write(js.Serialize(surveyResponseList));
 
             }
         }
-
+       
+        /*
         [WebMethod(Description = "Your Description")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void closeSurvey(string memberHash, int surveyID)
@@ -87,7 +83,9 @@ namespace twoCube.Services
             }
         }
 
-        [WebMethod(Description = "takes in a jsonobject containing the completed survey done by respondent")]
+        */
+        
+        [WebMethod(Description = "takes in a jsonobject containing the completed survey done by respondent and persists it")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void repeater(string formString, string elementString, string memberHash)
         {
@@ -350,6 +348,10 @@ namespace twoCube.Services
                 }
             }
         }
+        
+        /*
+         * The class that contains the basic information about a survey. A list of this class is sent back for view survey list
+         */
         public class SurveyResponse
         {
             public int Id { get; set; }
