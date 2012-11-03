@@ -22,7 +22,7 @@ namespace twoCube.Services
     public class MemberControllerService : System.Web.Services.WebService
     {
 
-        [WebMethod(Description = "Add User. String firstName, String lastName, String userName, Stirng password, int age, String location, String email, String qn, String answer")]
+        [WebMethod(Description = "Add User. String firstName, String lastName, String userName, String password, String email")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void AddUser(string jsonString)
         {
@@ -40,9 +40,6 @@ namespace twoCube.Services
                         memberEmail = jsonObject.SelectToken("email").ToString()
                     };
 
-                    
-                    //print
-
                     JavaScriptSerializer js = new JavaScriptSerializer();
                     DateTime dt = new DateTime();
                     user.memberHash = util.UtilityMethods.CalculateMD5Hash(user.userName + dt.ToShortTimeString());
@@ -54,7 +51,7 @@ namespace twoCube.Services
             }
         }
 
-        [WebMethod(Description = "Add User. String firstName, String lastName, String userName, Stirng password, int age, String location, String email, String qn, String answer")]
+        [WebMethod(Description = "Add User. String firstName, String lastName, String userName, String password, String email, String qn, String answer")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void AddFBUser(string jsonString)
         {
@@ -72,23 +69,18 @@ namespace twoCube.Services
                         memberEmail = jsonObject.SelectToken("email").ToString()
                     };
 
-
-                    //print
-
                     JavaScriptSerializer js = new JavaScriptSerializer();
-                    //DateTime dt = DateTime.Now;
                     user.memberHash = util.UtilityMethods.CalculateMD5Hash(user.userName + DateTime.Now.ToShortTimeString());
                     Context.Response.Write(js.Serialize(new Response3 { LogIn = 1, twocubeSSO = user.memberHash }));
                     session.Save(user);
                     transaction.Commit();
-
                 }
             }
         }
 
         [WebMethod(Description = "View list of users. For create validation. only unique username can be created.")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
-        public void listOfUsers(string jsonString) //check username exist
+        public void listOfUsers(string jsonString)
         {
             using (var session = FluentNHibernateConfiguration.InitFactory.sessionFactory.OpenSession())
             {
@@ -136,7 +128,7 @@ namespace twoCube.Services
             }
         }
 
-        public class Response1
+        public class Response1 //to check if email already existed.
         {
             public int emailExists { get; set; }
         }
@@ -157,7 +149,7 @@ namespace twoCube.Services
         }
 
 
-        [WebMethod(Description = "Update User. Take in string username, string password")]
+        [WebMethod(Description = "Update User. Take in string username, string password, string email")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void UpdateUserDetails(string jsonString)
         {
@@ -170,16 +162,15 @@ namespace twoCube.Services
                     var user = Entities.Member.GetByLogin(session, jsonObject.SelectToken("username").ToString(), jsonObject.SelectToken("password").ToString());
                     user.memberFirstName = jsonObject.SelectToken("firstName").ToString();
                     user.memberLastName = jsonObject.SelectToken("lastName").ToString();
-                    //user.dateOfBirthday = DateTime.Parse(jsonObject.SelectToken("dob").ToString());
                     user.memberEmail = jsonObject.SelectToken("email").ToString();
                     session.SaveOrUpdate(user);
                     transaction.Commit();
-                    //Context.Response.Write(js.Serialize();
+
                 }
             }
         }
 
-        [WebMethod(Description = "Update password, String userName, Stirng password")]
+        [WebMethod(Description = "Update password, String userName, String password")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void UpdateUserPassword(string jsonString)
         {
