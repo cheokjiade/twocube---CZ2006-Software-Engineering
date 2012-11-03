@@ -59,7 +59,7 @@
             return o;
         };
 
-        function checkfirstname() {
+        function checkfirstname() { //check if the firstname field is empty
             var contin = true;
             if (updateForm.firstName.value == "") {
                 contin = false;
@@ -68,7 +68,7 @@
             return contin;
         }
 
-        function checklastname() {
+        function checklastname() { //check if the lastname field is empty
             var contin = true;
             if (updateForm.lastName.value == "") {
                 contin = false;
@@ -77,7 +77,7 @@
             return contin;
         }
 
-        function checkemail() {
+        function checkemail() { //checking if email field is empty
             var contin = true;
             if (updateForm.email.value == "") {
                 contin = false;
@@ -86,7 +86,7 @@
             return contin;
         }
 
-        function checkpassword() {
+        function checkpassword() { //check if password field is empty
             var contin = true;
             if (updateForm.password.value == "") {
                 contin = false;
@@ -94,18 +94,18 @@
 
             return contin;
         }
-        function checkFields() {
+        function checkFields() { //checing of all fields if its empty.
             if (checkfirstname() && checklastname() && checkpassword()) {
                 checkpw();
                 //emailCheck();
             }
             else {
-                alert('Please enter all the fields');
+                alert('Please enter all the fields'); //prompt msgbox if any of the fields is empty.
             }
         }
 
 
-        function emailValidation() {
+        function emailValidation() { //validating if the email address entered is valid.
             var email = updateForm.email.value;
             var emailval = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             if (email.search(emailval) == -1) {
@@ -117,7 +117,7 @@
         }
 
 
-        function checkpw() {
+        function checkpw() { //check password entered in password field.
             var formData = form2js('updateForm', '.', true,
 				function (node) {
 				    if (node.id && node.id.match(/callbackTest/)) {
@@ -140,14 +140,14 @@
                     data.pwExists == 0;
 
                 } else {
-                    alert('Username and password not match');
+                    alert('Username and password not match'); //prompt msgbox if username and password mismatch.
                 }
 
 
             }, "json");
         }
 
-        function emailCheck() { //returned null if not found. returned user info when it is in db //test = function
+        function emailCheck() { //returned null if not found. returned user info when it is in db
             if (checkemail() && emailValidation()) {
                 var formData = form2js('updateForm', '.', true,
 				function (node) {
@@ -169,30 +169,30 @@
                     updateForm.emailSave.disabled = true;
                     data.emailExists == 1;
                 } else {
-                    alert('Email address has already been used. Please try again.');
+                    alert('Email address has already been used. Please try again.'); //prompt msgbox if email address entered is already in used.
                 }
             }, "json");
 
             } else {
 
-                alert("Invalid Email address");
+                alert("Invalid Email address"); //prompt msgbox if email address entered is invalid.
             }
 
         }
 
-        function changeEmail() {
+        function changeEmail() { //function if users want to edit their email add.
             updateForm.email.readOnly = false;
             updateForm.emailEdit.disabled = true;
             updateForm.emailCancel.disabled = false;
 
         }
 
-        function actSave() {
+        function actSave() { //function to save if users have entered a new email add.
             updateForm.emailSave.disabled = false;
 
         }
 
-        function cancelEmail() {
+        function cancelEmail() { //function if users decide not to change their email add. they can click on the cancel button.
             updateForm.emailEdit.disabled = false;
             updateForm.emailCancel.disabled = true;
             updateForm.emailSave.disabled = true;
@@ -201,7 +201,7 @@
 
         }
 
-        function update() {
+        function update() { //update function
             var formData = form2js('updateForm', '.', true,
 				function (node) {
 				    if (node.id && node.id.match(/callbackTest/)) {
@@ -217,7 +217,7 @@
             function (data) {
                 console.log(data);
             });
-            alert('Information Updated!');
+            alert('Information Updated!'); //prompt msgbox that informations are updated if all fields are entered correctly and is successful.
         }
         function changePassword() {
             $.colorbox({ href: "../UpdatePassword.htm", open: true, iframe: true, width: "650px", height: "300px" });
