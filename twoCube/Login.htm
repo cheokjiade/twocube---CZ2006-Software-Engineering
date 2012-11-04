@@ -32,6 +32,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script>
+    
     // Load the SDK Asynchronously
     (function (d) {
         var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
@@ -54,10 +55,13 @@
         // listen for and handle auth.statusChange events
         FB.Event.subscribe('auth.statusChange', function (response) {
             if (response.authResponse) {
+                
                 // user has auth'd your app and is logged into Facebook
                 FB.api('/me', function (me) {
                     if (me.name) {
                         document.getElementById('auth-displayname').innerHTML = me.name;
+                        
+                        //get user facebook data
                         $.post("./Services/MemberControllerService.asmx/FBLogin",
                           {
                               FBID: me.id,
@@ -73,7 +77,7 @@
 
                                 else {
                                     localStorage.setItem("twocubeSSO", data.twocubeSSO);
-                                    var url = "./"//"http://twocube.elasticbeanstalk.com/"; //Currently Unavailable!!
+                                    var url = "./"
                                     parent.$.colorbox.close();
                                     parent.$("#cboxClose").click();
                                     parent.jQuery.colorbox.close();
@@ -83,9 +87,12 @@
                             }, "json");
                     }
                 })
+                
+                // user has auth'd your app, or is logged into Facebook
                 document.getElementById('auth-loggedout').style.display =  'none';
                 document.getElementById('auth-loggedin').style.display = 'block';
             } else {
+                
                 // user has not auth'd your app, or is not logged into Facebook
                 document.getElementById('auth-loggedout').style.display = 'block';
                 document.getElementById('auth-loggedin').style.display = 'none';
@@ -104,11 +111,14 @@
     <div id="auth-status">
     <div id="auth-loggedout">
 
+    <!--Facebook login button-->
     <div class="fb-login-button" autologoutlink="true" scope="email,user_checkins">Login with Facebook</div>
         <br />
         <br />
         ------------------OR------------------<p>
                     </p>
+
+    <!--Registration Form-->
     <div style="width: 364px; height: 145px">
     <fieldset style="height: 95px; width: 250px">
     <legend style="width: 295px; height: 19px;">[&nbsp;Enter Your User Information&nbsp;]</legend>
@@ -137,12 +147,15 @@
                     function (data) {
                         console.log(data);
                         var json = $.parseJSON(data);
+                        
+                        //If data does not exist in the database, system will show alert message
                         if (parseInt(data.LogIn) == 0)
                             alert('Username and Password not found!');
 
+                        //If data exist in the database, system will redirect to the home page of registered user
                         else {
                             localStorage.setItem("twocubeSSO", data.twocubeSSO);
-                            var url = "./"//"http://twocube1.elasticbeanstalk.com/";
+                            var url = "./"
                             parent.$.colorbox.close();
                             parent.$("#cboxClose").click();
                             parent.jQuery.colorbox.close();
@@ -157,6 +170,8 @@
     </div>
 </div>
 <div id="auth-loggedin" style="display: none">
+
+<!--Print the welcome message after facebook login and before redirect to home page-->
 Hi, <span id="auth-displayname"></span>(<a href="#" id="auth-logoutlink">logout</a>)
 </div>
 </div>
