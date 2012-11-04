@@ -100,11 +100,6 @@ namespace twoCube.Services
             }
         }
 
-        public class Response
-        {
-            public int userExists { get; set; }
-        }
-
         [WebMethod(Description = "Email validation. unique email can be created.")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void checkEmailExist(string jsonString)
@@ -128,11 +123,6 @@ namespace twoCube.Services
             }
         }
 
-        public class Response1 //to check if email already existed.
-        {
-            public int emailExists { get; set; }
-        }
-
         [WebMethod(Description = "View User. Take in string userhash")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
         public void ViewUserDetails(string jsonString)
@@ -147,7 +137,6 @@ namespace twoCube.Services
                 }
             }
         }
-
 
         [WebMethod(Description = "Update User. Take in string username, string password, string email")]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
@@ -209,11 +198,6 @@ namespace twoCube.Services
                     }
                 }
             }
-        }
-
-        public class pwResponse
-        {
-            public int pwExists { get; set; }
         }
 
         [WebMethod(Description = "Login, string username, string password")]
@@ -284,7 +268,19 @@ namespace twoCube.Services
                 }
             }
         }
-
+        
+        public class Response1 //to check if email already existed.
+        {
+            public int emailExists { get; set; }
+        }
+        public class Response
+        {
+            public int userExists { get; set; }
+        }
+        public class pwResponse
+        {
+            public int pwExists { get; set; }
+        }
         public class Response3
         {
             public int LogIn { get; set; }
