@@ -1,13 +1,16 @@
-twoCube™
+twoCubeï¿½
 =======
-[SRS](https://github.com/cheokjiade/twocube/blob/master/Documentation/SRSv1.docx?raw=true)  
 
-[Final Report - Added in sequence diagrams](https://github.com/cheokjiade/twocube/raw/master/Documentation/twoCubeReport.docx)  
+[Installation Guide](https://github.com/cheokjiade/twocube/wiki/Installation-Instructions)
 
-[Website, Hosted on Amazon EC2](http://twocube.elasticbeanstalk.com/) 
+[Final Report](https://github.com/cheokjiade/twocube/raw/master/Documentation/twoCubeReport.docx)  
+
+[Work Breakdown Structure - WBS](https://github.com/cheokjiade/twocube/blob/master/Documentation/twoCubeWBS.xlsx)
+
+[Website, Hosted on Amazon EC2](http://twocube1.elasticbeanstalk.com/) 
 
 ***
-NTUSurvey by twoCube™  
+NTUSurvey by twoCubeï¿½  
 
 A survey website with the services on c# and interfacing with a [postgresql](http://www.postgresql.org/) database using [Fluent NHibernate](https://github.com/jagregory/fluent-nhibernate) Object Relational Mapping. The application and database are hosted on Amazon's EC2 tiny servers. The view and control layers communicate via [JSON](http://www.json.org/) and the view is done in [jQuery](http://jquery.com/) and HTML5.  
 
