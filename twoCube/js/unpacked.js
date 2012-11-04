@@ -27,6 +27,7 @@ satisfactory:function(){JJ("#prop_satisfactory").css("display","block");},
 img_checkbox:function(){JJ("#prop_img_checkbox").css("display","block");},
 img_radio:function(){JJ("#prop_img_radio").css("display","block");},
 
+//currecy function
 currency:function(){JJ("#prop_currency_format").css("display","block");constraint=ds.get(active_element,"constraint");money_format=document.getElementById("money_format");for(var i=0;i<money_format.options.length;i++){if(money_format.options[i].value==constraint){money_format.selectedIndex=i}}}};var field=function(){};field.prototype={initialize:function(a){this.id=a},
 
 display:function(){this.li=document.createElement("li");this.generate_markup();this.li.id="li_"+this.id;JJ(this.li).addClass("drag");if(ds.get(this.id,"is_private")=="1"){JJ(this.li).addClass("private")}return this.li},selected:function(){JJ(this.li).addClass("current_edit")},unselect:function(){JJ(this.li).removeClass("current_edit")},generate_markup:function(){this.li.innerHTML="<img id=\"arrow\" src=\"images/icons/arrow.gif\" alt=\"\" class=\"arrow\"><a href=\"#\" class=\"hover_ready\" onclick=\"return false;\" title=\"Click to edit. Drag to reorder.\">"+this.field_label()+this[ds.get(this.id,"type")]()+"</a>"+this.element_actions()},field_label:function(){label_id="title"+this.id;label_val=ds.get(this.id,"title");label_val=label_val.replace(/\n/g,"<br />");var a="";if(ds.get(this.id,"is_required")=="1"){a="<span class=\"req\"> *</span>"}var b="<label class=\"desc\" id=\""+label_id+"\">"+label_val+a+"</label>";return b},element_actions:function(){if(JJ.browser.msie){style="style=\"margin-top: -18px\""}else{style=""}return"<div class=\"element_actions\" "+style+"><img src=\"images/icons/duplicate.gif\" alt=\"Duplicate\" title=\"Duplicate\" onclick=\"duplicate_element("+this.id+")\"> <img src=\"images/icons/delete.gif\" alt=\"Delete.\" title=\"Delete\" onclick=\"delete_element("+this.id+")\"></div>"},
@@ -36,11 +37,13 @@ text:function(){return"<div><input readonly=\"readonly\" id=\"field"+this.id+"\"
 textarea:function(){return"<div><textarea type=\"text\" readonly=\"readonly\" id=\"field"+this.id+"\" class=\"textarea "+ds.get(this.id,"size")+"\" rows=\"\" cols=\"\"></textarea></div>"},checkbox:function(){element_options=ds.get(this.id,"options");var a="";for(i=0;i<element_options.length;i++){el_val=element_options[i].option;if(el_val==""){el_val="&nbsp;"}if(element_options[i].is_default==1){checked="checked=\"checked\""}else{checked=""}a=a+"<input class=\"checkbox\" "+checked+" type=\"checkbox\"><label class=\"choice\">"+el_val+"</label>"+"\n"}a="<span id=\"field"+this.id+"\">"+a+"</span>";return a},select:function(){element_options=ds.get(this.id,"options");var a="";for(i=0;i<element_options.length;i++){if(element_options[i].is_default==1){selected="selected=\"selected\""}else{selected=""}a=a+"<option "+selected+">"+element_options[i].option+"</option>"}a="<div><select id=\"field"+this.id+"\" class=\"select "+ds.get(this.id,"size")+"\">"+a+"</select></div>";return a},
 radio:function(){element_options=ds.get(this.id,"options");var a="";for(i=0;i<element_options.length;i++){el_val=element_options[i].option;if(el_val==""){el_val="&nbsp;"}if(element_options[i].is_default==1){name="radiogroup"+this.id;checked="checked=\"checked\""}else{name="radiogroup";checked=""}a=a+"<input class=\"radio\" name=\""+name+"\" "+checked+" type=\"radio\"><label class=\"choice\">"+el_val+"</label>"+"\n"}a="<span id=\"field"+this.id+"\">"+a+"</span>";return a},name:function(){return"<div><span><input readonly=\"readonly\" class=\"text\" size=\"2\" type=\"text\"><label>Title</label></span><span><input readonly=\"readonly\" class=\"text\" size=\"12\" type=\"text\"><label>First</label></span><span><input readonly=\"readonly\" class=\"text\" size=\"14\" type=\"text\"><label>Last</label></span><span><input readonly=\"readonly\" class=\"text\" size=\"3\" type=\"text\"><label>Suffix</label></span></div>"},simple_name:function(){return"<div><span><input readonly=\"readonly\" class=\"text\" size=\"12\" type=\"text\"><label>First</label></span><span><input readonly=\"readonly\" class=\"text\" size=\"14\" type=\"text\"><label>Last</label></span></div>"},date:function(){return"<div><span><input readonly=\"readonly\" class=\"text\" size=\"2\" type=\"text\"> / <label>MM</label></span><span><input readonly=\"readonly\" class=\"text\" size=\"2\" type=\"text\"> / <label>DD</label></span><span><input readonly=\"readonly\" class=\"text\" size=\"4\" type=\"text\"> <label>YYYY</label></span><img src=\"images/icons/calendar.gif\" alt=\"Pick Date.\" class=\"icon\"></div>"},europe_date:function(){return"<div><span><input readonly=\"readonly\" class=\"text\" size=\"2\" type=\"text\"> / <label>DD</label></span><span><input readonly=\"readonly\" class=\"text\" size=\"2\" type=\"text\"> / <label>MM</label></span><span><input readonly=\"readonly\" class=\"text\" size=\"4\" type=\"text\"> <label>YYYY</label></span><img src=\"images/icons/calendar.gif\" alt=\"Pick Date.\" class=\"icon\"></div>"},time:function(){return"<div><span><input readonly=\"readonly\" class=\"text\" size=\"2\" type=\"text\"> : <label>HH</label></span><span><input readonly=\"readonly\" class=\"text\" size=\"2\" type=\"text\"> : <label>MM</label></span><span><input readonly=\"readonly\" class=\"text\" size=\"2\" type=\"text\"><label>SS</label></span><span><select class=\"select\" style=\"width: 4em;\"><option>AM</option><option>PM</option></select><label>AM/PM</label></span></div>"},phone:function(){return"<div><span><input readonly=\"readonly\" class=\"text\" size=\"3\" type=\"text\"> - <label>(###)</label></span><span><input readonly=\"readonly\" class=\"text\" size=\"3\" type=\"text\"> - <label>###</label></span><span><input readonly=\"readonly\" class=\"text\" size=\"4\" type=\"text\"><label>####</label></span></div>"},
 
+//slider function to get value from user and update instantly 
 slider:function(){size_max=ds.get(this.id,"size_max");size_min=ds.get(this.id,"size_min");return "<div><input type='range' name='Slider' min='1' max='10' value='1' style='width:440px' /><br/><span id = 'slider_min'>" + (document.getElementById("tb_slider_size_min").value) + "</span><span style='float:right' id = 'slider_max'>" + (document.getElementById("tb_slider_size_max").value) + "</span></div>"},
 
 photo:function(){return "<div><table bgcolor='#999999' width='200px' height='100px' border='1'><tr><td align='center'>Upload Photo Here</td></tr></table></div>"},
 signature:function(){return "<div><table bgcolor='#fffffff' width='200px' height='100px' border='1'><tr><td align='center'>Your Signature Here</td></tr></table></div>"},
 
+//satisfactory qn function to get user input
 satisfactory:function(){satisfactory_format=ds.get(this.id,"satisfactory_format");
 
 var satOne = document.getElementById("tb_satisfactory_vUnsatisfactory").value;
@@ -59,6 +62,9 @@ if(document.getElementById("satisfactory_format").value == "satisfactory_image")
 
 return "<div><table width='450px'><tr><td align='center' width='90px'><input type='radio' name='satisfactory'><br/>" + (satOne) + "</td><td align='center' width='90px'><input type='radio' name='satisfactory'><br/>" + (satTwo) + "</td><td align='center' width='90px'><input type='radio' name='satisfactory' ><br/>" + (satThree) + "</td><td align='center' width='90px'><input type='radio' name='satisfactory' ><br/>" + (satFour) + "</td><td align='center' width='90px'><input type='radio' name='satisfactory' ><br/>" + (satFive) + "</td></tr></table></div>"},
 
+//Scalar qn type function
+
+//get scale amount
 scaler:function(){size=ds.get(this.id,"size");
 	var display="";
 	
@@ -80,6 +86,7 @@ scaler:function(){size=ds.get(this.id,"size");
 	}
 return "<div><table><tr>"+display+"</tr><td colspan='10'><span id = 'scaler_min' style='font-size:12px'>" + (document.getElementById("tb_scaler_mintext").value) + "</span><span style='float:right;font-size:12px;margin-right:10px;' id = 'scaler_max'>" + (document.getElementById("tb_scaler_maxtext").value) + "</span></td></tr></table></div>"},
 
+//Imgae checkbox function
 img_checkbox:function(){
 
 var satOne = document.getElementById("tb_img_checkbox_vUnsatisfactory").value;
@@ -97,14 +104,17 @@ var satFive = document.getElementById("tb_img_checkbox_vSatisfactory").value;
 	return "<div><table width='100px'><tr><td align='center' width='90px'><input type='checkbox' name='check' class='checkboxRadioStyle'>" + (satOne) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check' class='checkboxRadioStyle'>" + (satTwo) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check' class='checkboxRadioStyle'>" + (satThree) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check' class='checkboxRadioStyle'>" + (satFour) + "</td></tr><tr><td align='center' width='90px'><input type='checkbox' name='check' class='checkboxRadioStyle'>" + (satFive) + "</td></tr></table></div>"
 },
 
+//Image radio function
 img_radio:function(){
 
+//get value
 var satOner = document.getElementById("tb_img_radio_vUnsatisfactory").value;
 var satTwor = document.getElementById("tb_img_radio_Unsatisfactory").value;
 var satThreer = document.getElementById("tb_img_radio_Neutral").value;
 var satFourr = document.getElementById("tb_img_radio_Satisfactory").value;
 var satFiver = document.getElementById("tb_img_radio_vSatisfactory").value;
 
+    //set value
 	satOner = "<img src='"+satOner+"' width='50px'/>";
 	satTwor = "<img src='"+satTwor+"' width='50px'/>";
 	satThreer = "<img src='"+satThreer+"' width='50px'/>";
