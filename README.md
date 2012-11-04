@@ -4,7 +4,7 @@ Shortcuts to various files:
 
 [Installation Guide](https://github.com/cheokjiade/twocube/wiki/Installation-Instructions)
 
-[Final Report](https://github.com/cheokjiade/twocube/raw/master/Documentation/twoCubeReport.docx)  
+[Final Report](https://github.com/cheokjiade/twocube/blob/master/Documentation/final%20report_2006.docx)  
 
 [Work Breakdown Structure - WBS](https://github.com/cheokjiade/twocube/blob/master/Documentation/twoCubeWBS.xlsx)
 
