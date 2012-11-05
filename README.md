@@ -12,6 +12,8 @@ Shortcuts to various files:
 
 [Website, Hosted on Amazon EC2](http://twocube1.elasticbeanstalk.com/) 
 
+[Libraries, Envrionment and External Services](https://github.com/cheokjiade/twocube/wiki/Software,-Hardware-and-Libraries-used) that we used and justifications for using them.
+
 ***
 Hello! We are twoCube consisting of the following members
 * Cheok Jia De (cheokjiade)
