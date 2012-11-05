@@ -8,6 +8,8 @@ Shortcuts to various files:
 
 [Work Breakdown Structure - WBS](https://github.com/cheokjiade/twocube/blob/master/Documentation/twoCubeWBS.xlsx)
 
+[Issue Tracking](https://github.com/cheokjiade/twocube/issues?page=1&sort=created&state=closed)
+
 [Website, Hosted on Amazon EC2](http://twocube1.elasticbeanstalk.com/) 
 
 ***
