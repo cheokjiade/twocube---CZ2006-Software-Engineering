@@ -146,7 +146,7 @@ namespace twoCube.Services
                             case "scaler":
                                 {
                                     var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 5, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
-                                    int size = Int32.Parse(question.SelectToken("scaleAmount").ToString());
+                                    int size = Int32.Parse(question.SelectToken("scaleAmount").ToString()) == null ? 5 : Int32.Parse(question.SelectToken("scaleAmount").ToString());
                                     for (int i = 0; i < size; i++)
                                     {
                                         if (i == 0) surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("mintext")!=null?question.SelectToken("mintext").ToString():"Worst" });
@@ -223,6 +223,14 @@ namespace twoCube.Services
                             case "img_radio":
                                 {
                                     var surveyQuestion = new Entities.SurveyQuestion { surveyQuestionTitle = question.SelectToken("title").ToString(), surveyQuestionType = 0, surveyQuestionIsCompulsory = question.SelectToken("title").ToString() == "1" };
+                                    if ((question.SelectToken("img_radio_vUnsatisfactory") == null) && (question.SelectToken("img_radio_Neutral") == null) && (question.SelectToken("img_radio_vSatisfactory") == null))
+                                    {
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "http://twocube1.elasticbeanstalk.com/images/faces_1.png", surveyQuestionOptionTitleType = 2 });
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "http://twocube1.elasticbeanstalk.com/images/faces_2.png", surveyQuestionOptionTitleType = 2 });
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "http://twocube1.elasticbeanstalk.com/images/faces_3.png", surveyQuestionOptionTitleType = 2 });
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "http://twocube1.elasticbeanstalk.com/images/faces_4.png", surveyQuestionOptionTitleType = 2 });
+                                        surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = "http://twocube1.elasticbeanstalk.com/images/faces_5.png", surveyQuestionOptionTitleType = 2 });
+                                    }
                                     if (question.SelectToken("img_radio_vUnsatisfactory") != null)
                                         surveyQuestion.surveyQuestionOptionList.Add(new Entities.SurveyQuestionOption { surveyQuestionOptionTitle = question.SelectToken("img_radio_vUnsatisfactory").ToString(), surveyQuestionOptionTitleType = 2 });
                                     if (question.SelectToken("img_radio_Unsatisfactory") != null)
